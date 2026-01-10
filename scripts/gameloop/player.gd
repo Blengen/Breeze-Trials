@@ -17,23 +17,28 @@ var sensitivity = global.sens
 var speed = 20
 var jump_power = 60
 var grav = 250
-const coyotetime = 0.1
+const coyotetime = 0.15
+const air_control = 0.05
+const air_multiplier = 0.95
 
 # Player state variables
 var input_vector: Vector2 = Vector2.ZERO
 var airtime = 0
 var coyote = 0
 var jump_check = false
+var tsla = 1 # Time Since Last Ability
+
+var ability_list: Array = []
 
 # Camera variables
 var cam_mode = "none"
 var zoom = 12.5
 
 # Smooth Rotation
-const rotation_speed = 15  # Adjust for faster/slower rotation (5 = medium)
+const rotation_speed = 15
 const rotation_threshold = 0.1  # Snap when within 0.1 degrees
-var target_angle = 0.0  # Store last target angle
-var offset = 0
+var target_angle = 0.0
+var offset = 0 # Offset when holding WASD
 #endregion
 
 # Setup, callables, and other functions
@@ -95,6 +100,7 @@ func _process(delta: float) -> void: # Runs every frame
 	# Run each part of the script
 	get_input_vector()
 	camera()
+	do_ability()
 	movement(delta)
 	player_rotation(delta)
 	animation()
@@ -121,16 +127,21 @@ func movement(delta: float) -> void:
 #region functions
 func move():
 	var normalized_input_vector = input_vector.normalized() # Corrects speed if you go diagonally
-	velocity = get_rig_basis() * Vector3(normalized_input_vector.x * speed, velocity.y, normalized_input_vector.y * speed)
-	# Set velocity to WASD * speed * transform.basis (angle), and keep the y velocity.
-	# Planning to add a sort of deccelleration feature, where if you're faster than your walkspeed (maxspeed),
-	# you'll slow down, instead of instantly snapping to low speed
+	
+	var bs = Vector2(abs(velocity.x), abs(velocity.z)).normalized()
+	if bs.x + bs.y <= speed:
+		velocity += get_rig_basis() * Vector3(normalized_input_vector.x * speed * air_control, 0, normalized_input_vector.y * speed * air_control)
+		velocity.x *= air_multiplier
+		velocity.z *= air_multiplier
+		
+	if not bs.x + bs.y >= speed:
+		velocity = get_rig_basis() * Vector3(normalized_input_vector.x * speed, velocity.y, normalized_input_vector.y * speed)
 
 func jump(delta):
 	if is_on_floor():
 		coyote = 0
 		if Input.is_action_pressed("jump"):
-			velocity.y = jump_power # Jump is space pressed and on ground.
+			velocity.y = jump_power
 			ani.play("jump")
 			jump_check = true
 			coyote = 1
@@ -203,7 +214,42 @@ func player_rotation(delta):
 	find_shortest_turn()
 	if input_vector != Vector2.ZERO: rotation_degrees.y = lerp(rotation_degrees.y, target_angle, rotation_speed * delta)
 	
+# ABILITIES #
+
+func do_ability():
+	if tsla < 0.1 or ability_list.is_empty() or not Input.is_action_just_pressed("ability"): return
 	
+	var ability = ability_list[0]
+	
+	var type = ability[0]
+	var value = ability[1]
+	var orb = ability[2]
+	
+	if type == "dash":
+		var normalized_input_vector = get_input_vector()
+		velocity += get_rig_basis() * Vector3(normalized_input_vector.x * value, 0, normalized_input_vector.y * value)
+		if velocity.y <= 1: velocity.y = 1
+
+	elif type == "jump":
+		pass
+
+	orb.timer.start()
+	ability_list.pop_front()
+
+func _on_area_entered(area: Area3D) -> void:
+	if area.editor_description == "orb": orb_hit(area)
+
+func orb_hit(area):
+	
+	if area.type == "dash" or area.type == "jump":
+		ability_list.append([area.type, float(area.value), area])
+		
+		area.visible = false
+		area.collider.call_deferred("set", "disabled", true)
+		# area.timer.start()
+	
+# DEBUG #
+
 func debug():
 	$"../debug/target_angle".rotation_degrees.y = target_angle
 	$"../debug/target_angle".position = position + Vector3(0, 1.5, 0)

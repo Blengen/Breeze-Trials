@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://87fjtv3ojqjl"]
+
+[ext_resource type="Shader" uid="uid://jmxejqx73w1f" path="res://materials/shaders/white_outline.gdshader" id="1_02j23"]
+[ext_resource type="Script" uid="uid://diot23mtupmso" path="res://scripts/objects/orb.gd" id="1_sdddm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hkf3d"]
+render_priority = -1
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 0.8627451)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w35tg"]
+render_priority = 0
+shader = ExtResource("1_02j23")
+shader_parameter/thickness = 0.05
+
+[sub_resource type="SphereMesh" id="SphereMesh_1wx7q"]
+radial_segments = 16
+rings = 8
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_u70sm"]
+
+[node name="orb" type="Area3D"]
+editor_description = "orb"
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+script = ExtResource("1_sdddm")
+
+[node name="mesh" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_hkf3d")
+material_overlay = SubResource("ShaderMaterial_w35tg")
+cast_shadow = 0
+mesh = SubResource("SphereMesh_1wx7q")
+
+[node name="collider" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_u70sm")
+
+[node name="icon" type="Sprite3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+billboard = 1
+
+[node name="type" type="Node" parent="."]
+editor_description = "dash"
+
+[node name="value" type="Node" parent="."]
+editor_description = "100"
+
+[node name="timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]

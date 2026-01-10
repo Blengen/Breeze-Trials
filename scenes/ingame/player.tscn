@@ -971,6 +971,23 @@ debug_color = Color(0.76862746, 0.15294118, 1, 1)
 [node name="type" type="Node" parent="body"]
 editor_description = "play"
 
+[node name="area" type="Area3D" parent="body"]
+
+[node name="collider_main" type="CollisionShape3D" parent="body/area"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, -0.19999999, 0)
+shape = SubResource("CylinderShape3D_scncy")
+debug_color = Color(0.76862746, 0.15294118, 1, 1)
+
+[node name="collider_left" type="CollisionShape3D" parent="body/area"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -0.3, -0.19999999, 0)
+shape = SubResource("CylinderShape3D_say45")
+debug_color = Color(0.76862746, 0.15294118, 1, 1)
+
+[node name="collider_right" type="CollisionShape3D" parent="body/area"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0.3, -0.19999999, 0)
+shape = SubResource("CylinderShape3D_say45")
+debug_color = Color(0.76862746, 0.15294118, 1, 1)
+
 [node name="cam_rig" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.7071066, 0.7071066, 0, -0.7071066, 0.7071066, 0, 1.5, 0)
 
@@ -1012,3 +1029,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 [node name="mesh" type="MeshInstance3D" parent="debug/target_angle"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
 mesh = SubResource("BoxMesh_say45")
+
+[connection signal="area_entered" from="body/area" to="body" method="_on_area_entered"]

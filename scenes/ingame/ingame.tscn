@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=4 uid="uid://b16x3mwm7e4h2"]
+[gd_scene load_steps=14 format=4 uid="uid://b16x3mwm7e4h2"]
 
 [ext_resource type="Script" uid="uid://7h3heuyotj4m" path="res://scripts/gameloop/gameloop.gd" id="1_cnm17"]
 [ext_resource type="AudioStream" uid="uid://bx2y80ikp0wxa" path="res://audio/hihat.mp3" id="2_3e8ec"]
 [ext_resource type="Texture2D" uid="uid://beso2ar0bymhc" path="res://images/skies/sky1.hdr" id="2_e2h46"]
 [ext_resource type="PackedScene" uid="uid://weodvb5mj5gd" path="res://scenes/ingame/player.tscn" id="3_dpktk"]
 [ext_resource type="Material" uid="uid://cyocxa5e6jrq0" path="res://materials/textures/grass.tres" id="4_cla3i"]
+[ext_resource type="PackedScene" uid="uid://87fjtv3ojqjl" path="res://scenes/ingame/orb.tscn" id="6_5g6bt"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_jjr68"]
 panorama = ExtResource("2_e2h46")
@@ -95,4 +96,7 @@ material_override = ExtResource("4_cla3i")
 mesh = SubResource("ArrayMesh_5g6bt")
 
 [node name="player" parent="." instance=ExtResource("3_dpktk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 3, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+
+[node name="orb" parent="." instance=ExtResource("6_5g6bt")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 8, -11)
