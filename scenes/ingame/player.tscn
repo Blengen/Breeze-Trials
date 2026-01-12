@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://weodvb5mj5gd"]
+[gd_scene load_steps=33 format=4 uid="uid://weodvb5mj5gd"]
 
 [ext_resource type="Script" uid="uid://cp4ou55srs6m5" path="res://scripts/gameloop/player.gd" id="1_scncy"]
 [ext_resource type="Material" uid="uid://dsjpvs82c5e7l" path="res://materials/player/left_leg.tres" id="1_ykxoq"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://dm8elje78q73t" path="res://addons/NodeShaker3D/Scripts/NodeShaker3D.gd" id="8_7l42e"]
 [ext_resource type="Texture2D" uid="uid://o7mhsfqkkcdh" path="res://images/cam_lock.png" id="8_say45"]
 [ext_resource type="FontFile" uid="uid://cixohe42kxmvu" path="res://themes/fonts/league_spartan_bold.ttf" id="9_e4dxj"]
+[ext_resource type="Texture2D" uid="uid://bra3hwb1lnjvu" path="res://images/vignette.png" id="11_vsqks"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_80fua"]
 
@@ -906,6 +907,8 @@ size = Vector3(0.1, 0.1, 8)
 [node name="player" type="Node3D"]
 
 [node name="body" type="CharacterBody3D" parent="."]
+wall_min_slide_angle = 0.017453292
+floor_constant_speed = true
 script = ExtResource("1_scncy")
 
 [node name="visual" type="Node3D" parent="body"]
@@ -1030,16 +1033,6 @@ grow_vertical = 2
 texture = ExtResource("8_say45")
 expand_mode = 1
 
-[node name="debug" type="Label" parent="ui"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("9_e4dxj")
-theme_override_font_sizes/font_size = 40
-
 [node name="fuel" type="Label" parent="ui"]
 layout_mode = 1
 anchors_preset = 5
@@ -1060,6 +1053,17 @@ theme_override_fonts/font = ExtResource("9_e4dxj")
 theme_override_font_sizes/font_size = 100
 text = "10.0"
 horizontal_alignment = 1
+
+[node name="vignette_fuel" type="TextureRect" parent="ui"]
+modulate = Color(0.30110535, 1.714658e-07, 2.4065375e-08, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("11_vsqks")
 
 [node name="death_ui" type="Control" parent="ui"]
 visible = false
@@ -1130,6 +1134,25 @@ theme_override_fonts/font = ExtResource("9_e4dxj")
 theme_override_font_sizes/font_size = 100
 text = "[R] to restart"
 horizontal_alignment = 1
+
+[node name="debug" type="Control" parent="ui"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="fps" type="Label" parent="ui/debug"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("9_e4dxj")
+theme_override_font_sizes/font_size = 40
 
 [node name="debug" type="Node3D" parent="."]
 visible = false

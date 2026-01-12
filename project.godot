@@ -24,6 +24,7 @@ window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/mode=3
 window/stretch/mode="canvas_items"
+window/vsync/vsync_mode=0
 
 [editor]
 
@@ -32,7 +33,7 @@ version_control/autoload_on_startup=true
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/csg_converter/plugin.cfg", "res://addons/suntiger_shake/plugin.cfg")
+enabled=PackedStringArray("res://addons/csg_converter/plugin.cfg")
 
 [input]
 

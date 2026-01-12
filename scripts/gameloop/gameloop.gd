@@ -19,7 +19,9 @@ func _ready() -> void:
 func restart():
 	hihat_juice = 0.5
 	hihat_count = 2
+	$map/settings/song.stop()
 	$spawn_timer.start()
+	
 	
 	# RESET PLAYER VARIABLES #
 	
@@ -30,6 +32,8 @@ func restart():
 	ani.play("RESET")
 	player.velocity = Vector3.ZERO
 	player.fuel = float($map/settings/fuel.editor_description)
+	$player/ui/fuel.text = str(player.fuel)
+	$"player/ui/vignette_fuel".modulate.a = 0
 	
 	player.speed = 20.0
 	player.jump_power = 60.0
@@ -49,3 +53,4 @@ func _process(delta: float) -> void:
 
 func _on_spawn_timer_timeout() -> void:
 	playing = true
+	$map/settings/song.play()

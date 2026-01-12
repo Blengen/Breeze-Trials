@@ -29,8 +29,10 @@ var airtime: float = 0
 var coyote: float = 0
 var jump_check: bool = false
 var tsla: float = 1 # Time Since Last Ability
-var fuel = 1
-var restart_juice = 0
+var fuel: float = 1
+var restart_juice: float = 0
+var ability_buffered: bool = false
+var ability_buffer_active: bool = false
 
 var ability_list: Array = []
 var delta_slow: float = 0
@@ -44,6 +46,14 @@ const rotation_speed = 15
 const rotation_threshold = 0.1  # Snap when within 0.1 degrees
 var target_angle = 0.0
 var offset = 0 # Offset when holding WASD
+
+# DEBUG #
+
+var fps_list = []
+var fps_average: float = 0
+
+
+
 #endregion
 
 # Setup, callables, and other functions
@@ -101,8 +111,14 @@ func death(type):
 	root.playing = false
 	$"../ui/death_ui/cover".color = Color(1.0, 1.0, 1.0, 0.75)
 	$"../cam_rig/cam/shake".shake_node = true
-	if type == "fuel":
-		$"../ui/death_ui/reason".text = "You ran out of fuel"
+	ani.stop()
+	$"../../sfx/death".play()
+	$"../../map/settings/song".stop()
+	$"../ui/vignette_fuel".modulate.a = 0
+	if type is float: $"../ui/death_ui/reason".text = "Late by " + str(abs(snappedf(fuel, 0.001))) + "s"
+	else:
+		if type == "fuel": $"../ui/death_ui/reason".text = "Ran out of fuel"
+	
 
 
 
@@ -116,6 +132,7 @@ func _process(delta: float) -> void: # Runs every frame
 	camera()
 	set_variables(delta)
 	handle_restart(delta)
+	debug(delta)
 	
 	if root.playing: # Only runs after spawn
 		get_input_vector()
@@ -125,7 +142,7 @@ func _process(delta: float) -> void: # Runs every frame
 		animation()
 		handle_fuel(delta)
 		move_and_slide()
-	#debug()
+	
 	
 func vertical_movement(delta: float) -> void:
 	gravity(delta)
@@ -141,12 +158,12 @@ func movement(delta: float) -> void:
 
 # Functions
 #region functions
-func move(delta):
+func move(delta: float):
 	var normalized_input_vector = input_vector.normalized() # Corrects speed if you go diagonally
 	var current_speed = Vector2(velocity.x, velocity.z).length()
 	
-	$"../ui/debug".text = str(snapped(current_speed, 0.1))
-	if current_speed >= speed + 0.1:
+	
+	if current_speed >= speed:# + 0.05:
 		velocity += get_rig_basis() * Vector3(normalized_input_vector.x * speed * air_control, 0, normalized_input_vector.y * speed * air_control)
 		delta_slow += delta # Checks how much time has passed to determine how many slow passes to do.
 		while delta_slow > 0: # Probably unoptimized since it does 2k multiplications per second.
@@ -154,7 +171,7 @@ func move(delta):
 			velocity.z *= air_multiplier
 			delta_slow -= 0.001
 		
-	if not current_speed >= speed + 0.05:
+	if not current_speed >= speed + 0.25:
 		velocity = get_rig_basis() * Vector3(normalized_input_vector.x * speed, velocity.y, normalized_input_vector.y * speed)
 		delta_slow = 0
 	
@@ -240,10 +257,10 @@ func player_rotation(delta):
 	
 func handle_fuel(delta):
 	fuel -= delta
-	if fuel < 0: death("fuel")
-	
-	
-	fuel_label.text = str(snappedf(fuel, 0.1))
+	if fuel < -0.25: death("fuel")
+	else:
+		$"../ui/vignette_fuel".modulate.a = 1 - abs(fuel * 0.333)
+		fuel_label.text = str(snappedf(clamp(fuel, 0.0, 9999), 0.1))
 	
 func set_variables(delta):
 	rig.position = position + Vector3(0, 1.5, 0)
@@ -262,8 +279,17 @@ func handle_restart(delta):
 # ABILITIES #
 
 func do_ability():
-	if tsla < 0.1 or ability_list.is_empty() or not Input.is_action_just_pressed("ability"): return
 	
+	if ability_buffered and not Input.is_action_pressed("ability"):
+		ability_buffered = false
+		ability_buffer_active = false
+	elif not ability_buffered and Input.is_action_pressed("ability"):
+		ability_buffered = true
+		ability_buffer_active = true
+	
+	if ability_buffer_active == false or tsla < 0.04 or ability_list.is_empty(): return
+	
+	ability_buffer_active = false
 	var ability = ability_list[0]
 	
 	var type = ability[0]
@@ -297,17 +323,31 @@ func orb_hit(area):
 	if area.type == "dash" or area.type == "jump":
 		ability_list.append([area.type, area.value, area])
 	
-	elif area.type == "stat_speed":
-		speed = area.value
-	elif area.type == "stat_jump":
-		jump_power = area.value
+	elif area.type == "stat_speed": speed = area.value
+	elif area.type == "stat_jump": jump_power = area.value
+	elif area.type == "fuel":
+		if fuel >= 0:
+			fuel += area.value
+		else: death(fuel)
 		
 	disable_orb(area)
 
 	
 # DEBUG #
 
-func debug():
+func debug(delta):
 	$"../debug/target_angle".rotation_degrees.y = target_angle
 	$"../debug/target_angle".position = position + Vector3(0, 1.5, 0)
+	
+	# Handle FPS counter #
+	
+	fps_list.append(1 / delta)
+	
+	if fps_list.size() == 200:
+		fps_average = 0
+		for value in fps_list:
+			fps_average += value
+		fps_average = fps_average / 200
+		$"../ui/debug/fps".text = str(int(fps_average))
+		fps_list = []
 #endregion
