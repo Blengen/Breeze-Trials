@@ -9,30 +9,35 @@ extends CharacterBody3D
 @onready var ani = $visual/ani
 @onready var camlock_ui = $"../ui/camlock"
 @onready var visual = $visual
+@onready var root = $"../.."
+@onready var fuel_label = $"../ui/fuel"
 
 # From Global
-var sensitivity = global.sens
+var sensitivity: float = global.sens
 
 # Player Stats
-var speed = 20
-var jump_power = 60
-var grav = 250
-const coyotetime = 0.15
-const air_control = 0.05
-const air_multiplier = 0.95
+var speed: float = 20
+var jump_power: float = 60
+var grav: float = 250
+const coyotetime: float = 0.1
+const air_control: float = 0.05
+const air_multiplier: float = 0.99
 
 # Player state variables
 var input_vector: Vector2 = Vector2.ZERO
-var airtime = 0
-var coyote = 0
-var jump_check = false
-var tsla = 1 # Time Since Last Ability
+var airtime: float = 0
+var coyote: float = 0
+var jump_check: bool = false
+var tsla: float = 1 # Time Since Last Ability
+var fuel = 1
+var restart_juice = 0
 
 var ability_list: Array = []
+var delta_slow: float = 0
 
 # Camera variables
-var cam_mode = "none"
-var zoom = 12.5
+var cam_mode: String = "none"
+var zoom: float = 12.5
 
 # Smooth Rotation
 const rotation_speed = 15
@@ -70,7 +75,7 @@ func vector2_to_deg(value):
 	match value:
 		Vector2(0, 1): return 180
 		Vector2(1, 0): return 270
-		Vector2(0, -1): return 0
+		#Vector2(0, -1): return 0
 		Vector2(-1, 0): return 90
 		
 	if value == Vector2(1, 1).normalized(): return 235
@@ -91,23 +96,36 @@ func find_shortest_turn():
 		target_angle -= 360
 	target_angle = best_angle
 
+func death(type):
+	$"../ui/death_ui".visible = true
+	root.playing = false
+	$"../ui/death_ui/cover".color = Color(1.0, 1.0, 1.0, 0.75)
+	$"../cam_rig/cam/shake".shake_node = true
+	if type == "fuel":
+		$"../ui/death_ui/reason".text = "You ran out of fuel"
+
+
+
 #endregion
 
 # Function Groups & Process
 #region groups
 func _process(delta: float) -> void: # Runs every frame
 	
-	# Run each part of the script
-	get_input_vector()
+	# Runs all the time
 	camera()
-	do_ability()
-	movement(delta)
-	player_rotation(delta)
-	animation()
-	move_and_slide()
-	rig.position = position + Vector3(0, 1.5, 0)
-	#debug()
+	set_variables(delta)
+	handle_restart(delta)
 	
+	if root.playing: # Only runs after spawn
+		get_input_vector()
+		do_ability()
+		movement(delta)
+		player_rotation(delta)
+		animation()
+		handle_fuel(delta)
+		move_and_slide()
+	#debug()
 	
 func vertical_movement(delta: float) -> void:
 	gravity(delta)
@@ -116,26 +134,31 @@ func vertical_movement(delta: float) -> void:
 	
 func movement(delta: float) -> void:
 	get_input_vector()
-	move() # WASD movement
+	move(delta) # WASD movement
 	vertical_movement(delta)
-	
-
 	
 #endregion
 
 # Functions
 #region functions
-func move():
+func move(delta):
 	var normalized_input_vector = input_vector.normalized() # Corrects speed if you go diagonally
+	var current_speed = Vector2(velocity.x, velocity.z).length()
 	
-	var bs = Vector2(abs(velocity.x), abs(velocity.z)).normalized()
-	if bs.x + bs.y <= speed:
+	$"../ui/debug".text = str(snapped(current_speed, 0.1))
+	if current_speed >= speed + 0.1:
 		velocity += get_rig_basis() * Vector3(normalized_input_vector.x * speed * air_control, 0, normalized_input_vector.y * speed * air_control)
-		velocity.x *= air_multiplier
-		velocity.z *= air_multiplier
+		delta_slow += delta # Checks how much time has passed to determine how many slow passes to do.
+		while delta_slow > 0: # Probably unoptimized since it does 2k multiplications per second.
+			velocity.x *= air_multiplier
+			velocity.z *= air_multiplier
+			delta_slow -= 0.001
 		
-	if not bs.x + bs.y >= speed:
+	if not current_speed >= speed + 0.05:
 		velocity = get_rig_basis() * Vector3(normalized_input_vector.x * speed, velocity.y, normalized_input_vector.y * speed)
+		delta_slow = 0
+	
+	#velocity = get_rig_basis() * Vector3(normalized_input_vector.x * speed, velocity.y, normalized_input_vector.y * speed) # Temp fix
 
 func jump(delta):
 	if is_on_floor():
@@ -207,6 +230,7 @@ func camera():
 	else: visual.show()
 	
 	cam.position.z = zoom
+	
 func player_rotation(delta):
 	if cam_mode == "camlock": return
 	offset = vector2_to_deg(input_vector)
@@ -214,6 +238,27 @@ func player_rotation(delta):
 	find_shortest_turn()
 	if input_vector != Vector2.ZERO: rotation_degrees.y = lerp(rotation_degrees.y, target_angle, rotation_speed * delta)
 	
+func handle_fuel(delta):
+	fuel -= delta
+	if fuel < 0: death("fuel")
+	
+	
+	fuel_label.text = str(snappedf(fuel, 0.1))
+	
+func set_variables(delta):
+	rig.position = position + Vector3(0, 1.5, 0)
+	$"../ui/death_ui/cover".color.r -= delta * 2
+	$"../ui/death_ui/cover".color.g -= delta * 2
+	$"../ui/death_ui/cover".color.b -= delta * 2
+
+func handle_restart(delta):
+	if Input.is_action_pressed("restart"): restart_juice += delta 
+	else: restart_juice = 0
+	
+	if restart_juice > 0.5:
+		root.restart()
+		restart_juice = -9999
+
 # ABILITIES #
 
 func do_ability():
@@ -227,11 +272,15 @@ func do_ability():
 	
 	if type == "dash":
 		var normalized_input_vector = get_input_vector()
+		if normalized_input_vector == Vector2.ZERO: normalized_input_vector = Vector2(0, -1)
 		velocity += get_rig_basis() * Vector3(normalized_input_vector.x * value, 0, normalized_input_vector.y * value)
 		if velocity.y <= 1: velocity.y = 1
 
 	elif type == "jump":
-		pass
+		coyote = 1
+		velocity.y = value
+		ani.play("jump")
+		jump_check = true
 
 	orb.timer.start()
 	ability_list.pop_front()
@@ -239,14 +288,22 @@ func do_ability():
 func _on_area_entered(area: Area3D) -> void:
 	if area.editor_description == "orb": orb_hit(area)
 
+func disable_orb(orb):
+	orb.visible = false
+	orb.collider.call_deferred("set", "disabled", true)
+
 func orb_hit(area):
 	
 	if area.type == "dash" or area.type == "jump":
-		ability_list.append([area.type, float(area.value), area])
+		ability_list.append([area.type, area.value, area])
+	
+	elif area.type == "stat_speed":
+		speed = area.value
+	elif area.type == "stat_jump":
+		jump_power = area.value
 		
-		area.visible = false
-		area.collider.call_deferred("set", "disabled", true)
-		# area.timer.start()
+	disable_orb(area)
+
 	
 # DEBUG #
 

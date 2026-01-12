@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://oxe8jwuvwwl"
-path="res://.godot/imported/occlusion.jpg-55a4f78ab7ea498d2f5217d4ce6082c6.ctex"
+uid="uid://kqqiuhiajnkr"
+path="res://.godot/imported/NodeShaker3D.png-5db9955f5b1367890133d2170daaa455.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://materials/textures/assets/mossy_rock/occlusion.jpg"
-dest_files=["res://.godot/imported/occlusion.jpg-55a4f78ab7ea498d2f5217d4ce6082c6.ctex"]
+source_file="res://addons/NodeShaker3D/NodeShaker3D.png"
+dest_files=["res://.godot/imported/NodeShaker3D.png-5db9955f5b1367890133d2170daaa455.ctex"]
 
 [params]
 

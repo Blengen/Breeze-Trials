@@ -6,7 +6,7 @@ var map_dir
 var music_dir
 
 # SETTINGS VARIABLES
-var sens = 0.1
+var sens: float = 0.1
 
 func _ready() -> void:
 	paths()

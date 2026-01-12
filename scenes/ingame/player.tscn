@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://weodvb5mj5gd"]
+[gd_scene load_steps=32 format=4 uid="uid://weodvb5mj5gd"]
 
 [ext_resource type="Script" uid="uid://cp4ou55srs6m5" path="res://scripts/gameloop/player.gd" id="1_scncy"]
 [ext_resource type="Material" uid="uid://dsjpvs82c5e7l" path="res://materials/player/left_leg.tres" id="1_ykxoq"]
@@ -7,7 +7,9 @@
 [ext_resource type="Material" uid="uid://dle3lysvqe5ej" path="res://materials/player/crystal.tres" id="4_e4dxj"]
 [ext_resource type="Material" uid="uid://drfwc5h4ws4gk" path="res://materials/player/left_arm.tres" id="5_7l42e"]
 [ext_resource type="Material" uid="uid://b8n25gbq88fcf" path="res://materials/player/right_arm.tres" id="6_vsqks"]
+[ext_resource type="Script" uid="uid://dm8elje78q73t" path="res://addons/NodeShaker3D/Scripts/NodeShaker3D.gd" id="8_7l42e"]
 [ext_resource type="Texture2D" uid="uid://o7mhsfqkkcdh" path="res://images/cam_lock.png" id="8_say45"]
+[ext_resource type="FontFile" uid="uid://cixohe42kxmvu" path="res://themes/fonts/league_spartan_bold.ttf" id="9_e4dxj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_80fua"]
 
@@ -995,6 +997,14 @@ transform = Transform3D(1, 0, 0, 0, 0.7071066, 0.7071066, 0, -0.7071066, 0.70710
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
 fov = 90.0
 
+[node name="shake" type="Node3D" parent="cam_rig/cam" node_paths=PackedStringArray("target")]
+script = ExtResource("8_7l42e")
+disable_positional_shake = true
+target = NodePath("..")
+frequency = 50.0
+positional_scaler = Vector3(0.1, 0.1, 0.1)
+rotational_scaler = Vector3(0.07, 0.07, 0.07)
+
 [node name="ui" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
@@ -1019,6 +1029,107 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("8_say45")
 expand_mode = 1
+
+[node name="debug" type="Label" parent="ui"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("9_e4dxj")
+theme_override_font_sizes/font_size = 40
+
+[node name="fuel" type="Label" parent="ui"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -165.0
+offset_top = 24.0
+offset_right = 165.0
+offset_bottom = 116.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 1, 0.6156863, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.23137255)
+theme_override_colors/font_outline_color = Color(0, 0.25882354, 0.20784314, 1)
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 15
+theme_override_constants/shadow_outline_size = 20
+theme_override_fonts/font = ExtResource("9_e4dxj")
+theme_override_font_sizes/font_size = 100
+text = "10.0"
+horizontal_alignment = 1
+
+[node name="death_ui" type="Control" parent="ui"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="cover" type="ColorRect" parent="ui/death_ui"]
+z_index = 5
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.627451)
+
+[node name="reason" type="Label" parent="ui/death_ui"]
+z_index = 6
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -404.5
+offset_top = -164.0
+offset_right = 404.5
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.77254903, 0.9137255, 0.92156863, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.23137255)
+theme_override_colors/font_outline_color = Color(0, 0.09019608, 0.18039216, 1)
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 15
+theme_override_constants/shadow_outline_size = 20
+theme_override_fonts/font = ExtResource("9_e4dxj")
+theme_override_font_sizes/font_size = 200
+horizontal_alignment = 1
+
+[node name="restart" type="Label" parent="ui/death_ui"]
+z_index = 7
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -291.5
+offset_top = 35.0
+offset_right = 291.5
+offset_bottom = 127.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.30863148, 0.37247184, 0.38839453, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.23137255)
+theme_override_colors/font_outline_color = Color(0.10989245, 0.15691602, 0.20068336, 1)
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 15
+theme_override_constants/shadow_outline_size = 20
+theme_override_fonts/font = ExtResource("9_e4dxj")
+theme_override_font_sizes/font_size = 100
+text = "[R] to restart"
+horizontal_alignment = 1
 
 [node name="debug" type="Node3D" parent="."]
 visible = false

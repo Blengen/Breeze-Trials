@@ -1,11 +1,15 @@
-[gd_scene load_steps=14 format=4 uid="uid://b16x3mwm7e4h2"]
+[gd_scene load_steps=18 format=4 uid="uid://b16x3mwm7e4h2"]
 
 [ext_resource type="Script" uid="uid://7h3heuyotj4m" path="res://scripts/gameloop/gameloop.gd" id="1_cnm17"]
 [ext_resource type="AudioStream" uid="uid://bx2y80ikp0wxa" path="res://audio/hihat.mp3" id="2_3e8ec"]
 [ext_resource type="Texture2D" uid="uid://beso2ar0bymhc" path="res://images/skies/sky1.hdr" id="2_e2h46"]
 [ext_resource type="PackedScene" uid="uid://weodvb5mj5gd" path="res://scenes/ingame/player.tscn" id="3_dpktk"]
 [ext_resource type="Material" uid="uid://cyocxa5e6jrq0" path="res://materials/textures/grass.tres" id="4_cla3i"]
+[ext_resource type="Material" uid="uid://t0s66optasyd" path="res://materials/textures/mossy_rock.tres" id="5_i8owm"]
 [ext_resource type="PackedScene" uid="uid://87fjtv3ojqjl" path="res://scenes/ingame/orb.tscn" id="6_5g6bt"]
+[ext_resource type="Material" uid="uid://mmdhmvoyyxwk" path="res://materials/textures/sand.tres" id="9_s1dsy"]
+[ext_resource type="Material" uid="uid://olrdtthvg6qk" path="res://materials/textures/unpolished_wood.tres" id="9_s2i10"]
+[ext_resource type="Material" uid="uid://dvvcnaa7p074n" path="res://materials/textures/ground.tres" id="10_1bb0j"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_jjr68"]
 panorama = ExtResource("2_e2h46")
@@ -66,37 +70,102 @@ directional_shadow_pancake_size = 0.0
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_jjr68")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_3e8ec")
+[node name="map" type="Node3D" parent="."]
 
-[node name="Map" type="Node3D" parent="."]
-
-[node name="CSGBox" type="StaticBody3D" parent="Map"]
+[node name="CSGBox" type="StaticBody3D" parent="map"]
 metadata/_edit_group_ = true
 
-[node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="Map/CSGBox"]
+[node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="map/CSGBox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3000002, 0)
 shape = SubResource("ConcavePolygonShape3D_5g6bt")
 
-[node name="CSGBakedMeshInstance3D" type="MeshInstance3D" parent="Map/CSGBox"]
+[node name="CSGBakedMeshInstance3D" type="MeshInstance3D" parent="map/CSGBox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3000002, 0)
 material_override = ExtResource("4_cla3i")
 mesh = SubResource("ArrayMesh_p12a3")
 skeleton = NodePath("../../..")
 
-[node name="CSGBox3D5" type="StaticBody3D" parent="Map"]
+[node name="CSGBox3D5" type="StaticBody3D" parent="map"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.7, 0)
 metadata/_edit_group_ = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/CSGBox3D5"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="map/CSGBox3D5"]
 shape = SubResource("ConcavePolygonShape3D_cla3i")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/CSGBox3D5"]
-material_override = ExtResource("4_cla3i")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="map/CSGBox3D5"]
+material_override = ExtResource("5_i8owm")
 mesh = SubResource("ArrayMesh_5g6bt")
+
+[node name="orbs" type="Node3D" parent="map"]
+
+[node name="orb" parent="map/orbs" instance=ExtResource("6_5g6bt")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -5, 8, -11)
+
+[node name="type" parent="map/orbs/orb" index="3"]
+editor_description = "jump"
+
+[node name="value" parent="map/orbs/orb" index="4"]
+editor_description = "100"
+
+[node name="orb2" parent="map/orbs" instance=ExtResource("6_5g6bt")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 8, -11)
+
+[node name="type" parent="map/orbs/orb2" index="3"]
+editor_description = "stat_speed"
+
+[node name="value" parent="map/orbs/orb2" index="4"]
+editor_description = "35"
+
+[node name="orb3" parent="map/orbs" instance=ExtResource("6_5g6bt")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 5, 8, -11)
+
+[node name="type" parent="map/orbs/orb3" index="3"]
+editor_description = "fuel"
+
+[node name="value" parent="map/orbs/orb3" index="4"]
+editor_description = "300 "
+
+[node name="CSGBox3D" type="CSGBox3D" parent="map"]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -9.121321, 4, 8.5)
+material_override = ExtResource("9_s2i10")
+use_collision = true
+size = Vector3(8, 7, 7)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="map"]
+transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, -0.00083351135, -2.6999998, 9.536743e-07)
+material_override = ExtResource("10_1bb0j")
+use_collision = true
+size = Vector3(30, 5, 30)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="map"]
+transform = Transform3D(-0.032509737, 0, -0.99947137, 0, 1, 0, 0.99947137, 0, -0.032509737, -0.00083351135, -4.2, 9.536743e-07)
+material_override = ExtResource("9_s1dsy")
+use_collision = true
+size = Vector3(33, 2, 33)
+
+[node name="settings" type="Node" parent="map"]
+
+[node name="fuel" type="Node" parent="map/settings"]
+editor_description = "5"
+
+[node name="spawn" type="Node3D" parent="map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 
 [node name="player" parent="." instance=ExtResource("3_dpktk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 
-[node name="orb" parent="." instance=ExtResource("6_5g6bt")]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 8, -11)
+[node name="sfx" type="Node" parent="."]
+
+[node name="hihat" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource("2_3e8ec")
+
+[node name="spawn_timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="spawn_timer" to="." method="_on_spawn_timer_timeout"]
+
+[editable path="map/orbs/orb"]
+[editable path="map/orbs/orb2"]
+[editable path="map/orbs/orb3"]
+[editable path="player"]

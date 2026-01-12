@@ -38,7 +38,7 @@ func _main_maps() -> void: menu(maps)
 func _main_custom() -> void: menu(custom)
 func _main_settings() -> void: menu(settings)
 func _main_credits() -> void: menu(credits)
-#func _main_quit() -> void: get_tree().quit()
+func _main_quit() -> void: get_tree().quit()
 
 # Returns
 func _maps_main() -> void:menu(main)
