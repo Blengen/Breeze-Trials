@@ -20,7 +20,8 @@ volume_db = -10.0
 
 [node name="death" type="AudioStreamPlayer" parent="sfx"]
 stream = ExtResource("11_s1dsy")
-volume_db = -15.0
+volume_db = -25.0
+pitch_scale = 0.85
 
 [node name="spawn_timer" type="Timer" parent="."]
 wait_time = 0.5
@@ -28,18 +29,10 @@ one_shot = true
 
 [node name="map" parent="." instance=ExtResource("5_cla3i")]
 
-[node name="spawn" parent="map" index="3"]
+[node name="spawn" parent="map" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -3)
 
-[node name="CSGBox3D2" parent="map" index="9"]
-transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, -0.00083351135, -2.6999998, -2.4999988)
-size = Vector3(35, 5, 45)
-
-[node name="CSGBox3D4" parent="map" index="10"]
-transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, -0.00083351135, 0.3000002, -2.4999988)
-size = Vector3(35, 1, 45)
-
-[node name="CSGBox3D3" parent="map" index="11"]
+[node name="CSGBox3D3" parent="map" index="23"]
 transform = Transform3D(-0.032509737, 0, -0.99947137, 0, 1, 0, 0.99947137, 0, -0.032509737, 0.080440834, -4.2, -2.4986775)
 size = Vector3(38, 2, 48)
 
@@ -47,9 +40,9 @@ size = Vector3(38, 2, 48)
 
 [editable path="player"]
 [editable path="map"]
-[editable path="map/orb"]
-[editable path="map/orb4"]
-[editable path="map/orb2"]
-[editable path="map/orb5"]
-[editable path="map/orb3"]
-[editable path="map/orb6"]
+[editable path="map/orbs/orb"]
+[editable path="map/orbs/orb2"]
+[editable path="map/orbs/orb3"]
+[editable path="map/orbs/orb4"]
+[editable path="map/orbs/orb5"]
+[editable path="map/orbs/orb6"]

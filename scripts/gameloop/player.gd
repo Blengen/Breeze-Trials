@@ -20,8 +20,9 @@ var speed: float = 20
 var jump_power: float = 60
 var grav: float = 250
 const coyotetime: float = 0.1
-const air_control: float = 0.05
-const air_multiplier: float = 0.99
+const air_control: float = 0.4
+#const deceleration: int = 500
+const air_multiplier = 0.99
 
 # Player state variables
 var input_vector: Vector2 = Vector2.ZERO
@@ -118,6 +119,7 @@ func death(type):
 	if type is float: $"../ui/death_ui/reason".text = "Late by " + str(abs(snappedf(fuel, 0.001))) + "s"
 	else:
 		if type == "fuel": $"../ui/death_ui/reason".text = "Ran out of fuel"
+		elif type == "win": $"../ui/death_ui/reason".text = "GG! " + str(abs(snappedf(fuel, 0.001))) + "s left"
 	
 
 
@@ -130,19 +132,20 @@ func _process(delta: float) -> void: # Runs every frame
 	
 	# Runs all the time
 	camera()
-	set_variables(delta)
 	handle_restart(delta)
 	debug(delta)
 	
 	if root.playing: # Only runs after spawn
 		get_input_vector()
-		do_ability()
-		movement(delta)
 		player_rotation(delta)
 		animation()
 		handle_fuel(delta)
+		do_ability()
+		movement(delta)
 		move_and_slide()
 	
+	# Runs all the time. After ingame ones #
+	set_variables(delta)
 	
 func vertical_movement(delta: float) -> void:
 	gravity(delta)
@@ -159,17 +162,27 @@ func movement(delta: float) -> void:
 # Functions
 #region functions
 func move(delta: float):
+	
 	var normalized_input_vector = input_vector.normalized() # Corrects speed if you go diagonally
 	var current_speed = Vector2(velocity.x, velocity.z).length()
 	
 	
-	if current_speed >= speed:# + 0.05:
-		velocity += get_rig_basis() * Vector3(normalized_input_vector.x * speed * air_control, 0, normalized_input_vector.y * speed * air_control)
-		delta_slow += delta # Checks how much time has passed to determine how many slow passes to do.
-		while delta_slow > 0: # Probably unoptimized since it does 2k multiplications per second.
-			velocity.x *= air_multiplier
-			velocity.z *= air_multiplier
-			delta_slow -= 0.001
+	#if current_speed >= speed + 0.05:
+	velocity += get_rig_basis() * Vector3(normalized_input_vector.x * air_control * delta, 0, normalized_input_vector.y * air_control * delta)
+		
+	# Old decelleration code
+	delta_slow += delta * 1000 # Checks how much time has passed to determine how many slow passes to do.
+	var floored_delta_slow: float = floor(delta_slow)
+	velocity.x *= air_multiplier**floored_delta_slow
+	velocity.z *= air_multiplier**floored_delta_slow
+	delta_slow -= floored_delta_slow
+	
+	# New Move-toward code suggested by AI (DeepSeek)
+	
+	#var vel = Vector2(velocity.x, velocity.z)
+	#vel = vel.move_toward(Vector2.ZERO, delta * deceleration)
+	#velocity.x = vel.x
+	#velocity.z = vel.y
 		
 	if not current_speed >= speed + 0.25:
 		velocity = get_rig_basis() * Vector3(normalized_input_vector.x * speed, velocity.y, normalized_input_vector.y * speed)
@@ -202,6 +215,7 @@ func gravity(delta):
 	else:
 		velocity.y -= grav * delta # Speed up vertical fall speed when airborne, multiplied by framerate.
 		airtime += delta
+	velocity.y = clamp(velocity.y, -grav, 9999999)
 		
 func animation():
 	if is_on_floor():
@@ -303,11 +317,11 @@ func do_ability():
 		if velocity.y <= 1: velocity.y = 1
 
 	elif type == "jump":
-		coyote = 1
 		velocity.y = value
 		ani.play("jump")
 		jump_check = true
-
+		coyote = 1
+		
 	orb.timer.start()
 	ability_list.pop_front()
 
@@ -326,10 +340,12 @@ func orb_hit(area):
 	elif area.type == "stat_speed": speed = area.value
 	elif area.type == "stat_jump": jump_power = area.value
 	elif area.type == "fuel":
-		if fuel >= 0:
-			fuel += area.value
+		if fuel >= 0: fuel += area.value
 		else: death(fuel)
 		
+	elif area.type == "end":
+		if fuel >= 0: death("win")
+		else: death(fuel)
 	disable_orb(area)
 
 	
@@ -338,6 +354,8 @@ func orb_hit(area):
 func debug(delta):
 	$"../debug/target_angle".rotation_degrees.y = target_angle
 	$"../debug/target_angle".position = position + Vector3(0, 1.5, 0)
+	
+	$"../ui/debug/speed".text = "Speed: " + str(snappedf(Vector2(velocity.x, velocity.z).length(), 0.1))
 	
 	# Handle FPS counter #
 	
@@ -348,6 +366,6 @@ func debug(delta):
 		for value in fps_list:
 			fps_average += value
 		fps_average = fps_average / 200
-		$"../ui/debug/fps".text = str(int(fps_average))
+		$"../ui/debug/fps".text = "FPS: " + str(int(fps_average))
 		fps_list = []
 #endregion

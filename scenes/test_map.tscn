@@ -43,6 +43,28 @@ uv1_triplanar = true
 
 [node name="map" type="Node3D"]
 
+[node name="settings" type="Node" parent="."]
+
+[node name="song" type="AudioStreamPlayer" parent="settings"]
+stream = ExtResource("8_pw728")
+volume_db = -5.0
+
+[node name="fuel" type="Node" parent="settings"]
+editor_description = "5"
+
+[node name="light" type="DirectionalLight3D" parent="settings"]
+transform = Transform3D(0.8660254, 0.43301284, -0.25, 2.7805951e-08, 0.49999988, 0.8660255, 0.5000001, -0.75000006, 0.43301257, 0, 0, 0)
+light_volumetric_fog_energy = 0.0
+shadow_enabled = true
+shadow_transmittance_bias = 0.0
+shadow_opacity = 0.5
+shadow_blur = 0.0
+directional_shadow_mode = 0
+directional_shadow_pancake_size = 0.0
+
+[node name="environment" type="WorldEnvironment" parent="settings"]
+environment = SubResource("Environment_u56q5")
+
 [node name="orbs" type="Node3D" parent="."]
 
 [node name="orb" parent="orbs" instance=ExtResource("3_pw728")]
@@ -53,7 +75,7 @@ metadata/_edit_group_ = true
 editor_description = "dash"
 
 [node name="value" parent="orbs/orb" index="4"]
-editor_description = "300"
+editor_description = "400"
 
 [node name="orb2" parent="orbs" instance=ExtResource("3_pw728")]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -7.5, 8, -16)
@@ -101,28 +123,6 @@ metadata/_edit_group_ = true
 
 [node name="type" parent="orbs/orb6" index="3"]
 editor_description = "end"
-
-[node name="settings" type="Node" parent="."]
-
-[node name="song" type="AudioStreamPlayer" parent="settings"]
-stream = ExtResource("8_pw728")
-volume_db = -20.0
-
-[node name="fuel" type="Node" parent="settings"]
-editor_description = "5"
-
-[node name="light" type="DirectionalLight3D" parent="settings"]
-transform = Transform3D(0.8660254, 0.43301284, -0.25, 2.7805951e-08, 0.49999988, 0.8660255, 0.5000001, -0.75000006, 0.43301257, 0, 0, 0)
-light_volumetric_fog_energy = 0.0
-shadow_enabled = true
-shadow_transmittance_bias = 0.0
-shadow_opacity = 0.5
-shadow_blur = 0.0
-directional_shadow_mode = 0
-directional_shadow_pancake_size = 0.0
-
-[node name="environment" type="WorldEnvironment" parent="settings"]
-environment = SubResource("Environment_u56q5")
 
 [node name="spawn" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
