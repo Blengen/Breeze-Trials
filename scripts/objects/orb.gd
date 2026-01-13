@@ -1,14 +1,16 @@
 extends Area3D
 
+const group: String = "orb"
+
 @onready var collider = $collider
 @onready var timer = $timer
 
-var type
-var value
+@export var type: String = "none"
+@export var value: float = 0
+
+const type_orb: bool = true
 
 func _ready() -> void:
-	type = $type.editor_description
-	value = float($value.editor_description)
 	match type:
 		"dash": $icon.texture = load("res://images/orb_icons/dash.png")
 		"jump": $icon.texture = load("res://images/orb_icons/jump.png")

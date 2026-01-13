@@ -973,9 +973,6 @@ transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0.3, -0.19999999, 0)
 shape = SubResource("CylinderShape3D_say45")
 debug_color = Color(0.76862746, 0.15294118, 1, 1)
 
-[node name="type" type="Node" parent="body"]
-editor_description = "play"
-
 [node name="area" type="Area3D" parent="body"]
 
 [node name="collider_main" type="CollisionShape3D" parent="body/area"]

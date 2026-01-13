@@ -28,11 +28,6 @@ shape = SubResource("SphereShape3D_u70sm")
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 billboard = 1
 
-[node name="type" type="Node" parent="."]
-editor_description = "none"
-
-[node name="value" type="Node" parent="."]
-
 [node name="timer" type="Timer" parent="."]
 one_shot = true
 

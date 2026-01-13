@@ -29,10 +29,15 @@ one_shot = true
 
 [node name="map" parent="." instance=ExtResource("5_cla3i")]
 
+[node name="orb7" parent="map/orbs" index="2"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -15.9, 36.6, -6)
+type = "jump"
+value = 75.0
+
 [node name="spawn" parent="map" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -3)
 
-[node name="CSGBox3D3" parent="map" index="23"]
+[node name="CSGBox3D3" parent="map" index="33"]
 transform = Transform3D(-0.032509737, 0, -0.99947137, 0, 1, 0, 0.99947137, 0, -0.032509737, 0.080440834, -4.2, -2.4986775)
 size = Vector3(38, 2, 48)
 
@@ -42,6 +47,7 @@ size = Vector3(38, 2, 48)
 [editable path="map"]
 [editable path="map/orbs/orb"]
 [editable path="map/orbs/orb2"]
+[editable path="map/orbs/orb7"]
 [editable path="map/orbs/orb3"]
 [editable path="map/orbs/orb4"]
 [editable path="map/orbs/orb5"]

@@ -1,7 +1,11 @@
 extends CharacterBody3D
 
+const group: String = "player"
+
 # Variables
 #region variables
+
+const type_player: bool = true
 
 # Nodes
 @onready var rig = $"../cam_rig"
@@ -13,7 +17,7 @@ extends CharacterBody3D
 @onready var fuel_label = $"../ui/fuel"
 
 # From Global
-var sensitivity: float = global.sens
+var sens: float = global.sens
 
 # Player Stats
 var speed: float = 20
@@ -23,6 +27,8 @@ const coyotetime: float = 0.1
 const air_control: float = 0.4
 #const deceleration: int = 500
 const air_multiplier = 0.99
+
+@export var type = "play"
 
 # Player state variables
 var input_vector: Vector2 = Vector2.ZERO
@@ -65,9 +71,9 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
-		if cam_mode == "none": return
-		rig.rotation_degrees.y -= event.relative.x * sensitivity
-		rig.rotation_degrees.x -= event.relative.y * sensitivity
+		if cam_mode == "none" and zoom !=0: return
+		rig.rotation_degrees.y -= event.relative.x * sens
+		rig.rotation_degrees.x -= event.relative.y * sens
 		rig.rotation_degrees.x = clamp(rig.rotation_degrees.x, -90, 90)
 	
 
@@ -107,19 +113,19 @@ func find_shortest_turn():
 		target_angle -= 360
 	target_angle = best_angle
 
-func death(type):
+func death(death_type):
 	$"../ui/death_ui".visible = true
 	root.playing = false
 	$"../ui/death_ui/cover".color = Color(1.0, 1.0, 1.0, 0.75)
 	$"../cam_rig/cam/shake".shake_node = true
 	ani.stop()
 	$"../../sfx/death".play()
-	$"../../map/settings/song".stop()
+	$"../../map/settings/music".stop()
 	$"../ui/vignette_fuel".modulate.a = 0
-	if type is float: $"../ui/death_ui/reason".text = "Late by " + str(abs(snappedf(fuel, 0.001))) + "s"
+	if death_type is float: $"../ui/death_ui/reason".text = "Late by " + str(abs(snappedf(fuel, 0.001))) + "s"
 	else:
-		if type == "fuel": $"../ui/death_ui/reason".text = "Ran out of fuel"
-		elif type == "win": $"../ui/death_ui/reason".text = "GG! " + str(abs(snappedf(fuel, 0.001))) + "s left"
+		if death_type == "fuel": $"../ui/death_ui/reason".text = "Ran out of fuel"
+		elif death_type == "win": $"../ui/death_ui/reason".text = "GG! " + str(abs(snappedf(fuel, 0.001))) + "s left"
 	
 
 
@@ -249,7 +255,7 @@ func camera():
 		camlock_ui.hide()
 	else: cam.position.x = 1 if zoom != 0 else 0
 	
-	if cam_mode == "camlock": rotation.y = rig.rotation.y
+	if cam_mode == "camlock" or zoom == 0: rotation.y = rig.rotation.y
 	
 	# Handle zoom
 	
@@ -306,17 +312,17 @@ func do_ability():
 	ability_buffer_active = false
 	var ability = ability_list[0]
 	
-	var type = ability[0]
+	var ability_type = ability[0]
 	var value = ability[1]
 	var orb = ability[2]
 	
-	if type == "dash":
+	if ability_type == "dash":
 		var normalized_input_vector = get_input_vector()
 		if normalized_input_vector == Vector2.ZERO: normalized_input_vector = Vector2(0, -1)
 		velocity += get_rig_basis() * Vector3(normalized_input_vector.x * value, 0, normalized_input_vector.y * value)
 		if velocity.y <= 1: velocity.y = 1
 
-	elif type == "jump":
+	elif ability_type == "jump":
 		velocity.y = value
 		ani.play("jump")
 		jump_check = true
@@ -326,7 +332,7 @@ func do_ability():
 	ability_list.pop_front()
 
 func _on_area_entered(area: Area3D) -> void:
-	if area.editor_description == "orb": orb_hit(area)
+	if area.group == "orb": orb_hit(area)
 
 func disable_orb(orb):
 	orb.visible = false
