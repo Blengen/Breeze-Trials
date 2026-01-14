@@ -122,7 +122,7 @@ type = "end"
 metadata/_edit_group_ = true
 
 [node name="spawn" type="Node3D" parent="."]
-transform = Transform3D(-0.50000006, 0, 0.8660254, 0, 1, 0, -0.8660254, 0, -0.50000006, 0, 3, 0)
+transform = Transform3D(-0.50000006, 0, 0.8660254, 0, 1, 0, -0.8660254, 0, -0.50000006, 0, 3, -8)
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="."]
 transform = Transform3D(1.3909063e-08, 0, -0.99999976, 0, 1, 0, 0.99999976, 0, 1.3909063e-08, 8.311664, 4.3, 7.566178)
