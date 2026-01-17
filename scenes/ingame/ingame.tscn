@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cpda6ehi6dk37" path="res://scenes/test_map.tscn" id="5_cla3i"]
 [ext_resource type="FontFile" uid="uid://cixohe42kxmvu" path="res://themes/fonts/league_spartan_bold.ttf" id="6_5g6bt"]
 [ext_resource type="Theme" uid="uid://bvyertuunhye7" path="res://themes/main_menu.tres" id="7_p12a3"]
-[ext_resource type="Script" uid="uid://bwu04ovuy2fe3" path="res://scripts/pause.gd" id="8_e2h46"]
+[ext_resource type="Script" uid="uid://bwu04ovuy2fe3" path="res://scripts/gameloop/pause.gd" id="8_e2h46"]
 [ext_resource type="AudioStream" uid="uid://btu2pr86gkymn" path="res://audio/death.mp3" id="11_s1dsy"]
 
 [node name="game" type="Node3D"]
