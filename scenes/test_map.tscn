@@ -91,7 +91,9 @@ metadata/_edit_group_ = true
 
 [node name="orb7" parent="orbs" instance=ExtResource("3_pw728")]
 editor_description = ""
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -15.9, 33.6, -6)
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -15.9, 35.6, -6)
+type = "jump"
+value = 70.0
 metadata/_edit_group_ = true
 
 [node name="orb3" parent="orbs" instance=ExtResource("3_pw728")]
