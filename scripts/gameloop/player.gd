@@ -8,13 +8,21 @@ const group: String = "player"
 const type_player: bool = true
 
 # Nodes
-@onready var rig = $"../cam_rig"
-@onready var cam = $"../cam_rig/cam"
-@onready var ani = $visual/ani
-@onready var camlock_ui = $"../ui/camlock"
-@onready var visual = $visual
-@onready var root = $"../.."
-@onready var fuel_label = $"../ui/fuel"
+@onready var rig: Node3D = $"../cam_rig"
+@onready var cam: Camera3D = $"../cam_rig/cam"
+@onready var ani: AnimationPlayer = $visual/ani
+@onready var camlock_ui: TextureRect = $"../ui/camlock"
+@onready var visual: Node3D = $visual # Responsible for playes meshes (arms legs, head, and crystal)
+@onready var root: Node3D = $"../.." # Gameloop node
+@onready var fuel_label: Label = $"../ui/fuel"
+
+# Debug nodes
+@onready var debug_speed: Label = $"../ui/debug/speed"
+@onready var debug_fps: Label = $"../ui/debug/fps"
+
+# UI nodes
+@onready var ui_death_cover: ColorRect = $"../ui/death_ui/cover"
+
 
 # From Global
 var sens: float = global.sens
@@ -26,7 +34,7 @@ var grav: float = 250
 const coyotetime: float = 0.1
 const air_control: float = 0.4
 #const deceleration: int = 500
-const air_multiplier = 0.99
+const air_multiplier: float = 0.99
 
 @export var type = "play"
 
@@ -49,14 +57,14 @@ var cam_mode: String = "none"
 var zoom: float = 12.5
 
 # Smooth Rotation
-const rotation_speed = 15
-const rotation_threshold = 0.1  # Snap when within 0.1 degrees
-var target_angle = 0.0
-var offset = 0 # Offset when holding WASD
+const rotation_speed: int = 15
+const rotation_threshold: float = 0.1  # Snap when within 0.1 degrees
+var target_angle: float = 0.0
+var offset: int = 0 # Offset when holding WASD
 
 # DEBUG #
 
-var fps_list = []
+var fps_list: Array = []
 var fps_average: float = 0
 
 
@@ -284,9 +292,10 @@ func handle_fuel(delta):
 	
 func set_variables(delta):
 	rig.position = position + Vector3(0, 1.5, 0)
-	$"../ui/death_ui/cover".color.r -= delta * 2
-	$"../ui/death_ui/cover".color.g -= delta * 2
-	$"../ui/death_ui/cover".color.b -= delta * 2
+	#ui_death_cover.color.r -= delta * 2
+	#ui_death_cover.color.g -= delta * 2
+	#ui_death_cover.color.b -= delta * 2
+	ui_death_cover.color -= Color(2*delta, 2*delta, 2*delta, 0)
 
 func handle_restart(delta):
 	if Input.is_action_pressed("restart"): restart_juice += delta 
@@ -358,10 +367,10 @@ func orb_hit(area):
 # DEBUG #
 
 func debug(delta):
-	$"../debug/target_angle".rotation_degrees.y = target_angle
-	$"../debug/target_angle".position = position + Vector3(0, 1.5, 0)
+	#$"../debug/target_angle".rotation_degrees.y = target_angle
+	#$"../debug/target_angle".position = position + Vector3(0, 1.5, 0)
 	
-	$"../ui/debug/speed".text = "Speed: " + str(snappedf(Vector2(velocity.x, velocity.z).length(), 0.1))
+	debug_speed.text = "Speed: " + str(snappedf(Vector2(velocity.x, velocity.z).length(), 0.1))
 	
 	# Handle FPS counter #
 	
@@ -372,6 +381,6 @@ func debug(delta):
 		for value in fps_list:
 			fps_average += value
 		fps_average = fps_average / 200
-		$"../ui/debug/fps".text = "FPS: " + str(int(fps_average))
+		debug_fps.text = "FPS: " + str(int(fps_average))
 		fps_list = []
 #endregion

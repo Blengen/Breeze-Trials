@@ -19,7 +19,6 @@ var type_player = true
 
 func _ready() -> void:
 	restart()
-	pass
 
 func restart():
 	hihat_juice = 0.5
@@ -32,7 +31,7 @@ func restart():
 	
 	player.position = spawn.position
 	player.rotation_degrees.y = spawn.rotation_degrees.y
-	print(spawn.rotation_degrees.y)
+	#print(spawn.rotation_degrees.y)
 	
 	
 	playing = false

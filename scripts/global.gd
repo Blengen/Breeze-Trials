@@ -33,8 +33,9 @@ func _process(delta: float) -> void:
 	check_exit(delta)
 
 func check_exit(delta):
-	if Input.is_action_pressed("esc"): exit_juice += delta
-	else: exit_juice = 0
-	if exit_juice > 0.5:
-		get_tree().change_scene_to_file("res://scenes/menu/main_menu.tscn")
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	if not Input.is_action_pressed("esc"): exit_juice = 0
+	else: 
+		exit_juice += delta
+		if exit_juice > 0.5:
+			get_tree().change_scene_to_file("res://scenes/menu/main_menu.tscn")
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
