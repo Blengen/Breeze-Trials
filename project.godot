@@ -8,11 +8,15 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="Breeze Trials Remake"
 run/main_scene="uid://bj6yss6l653qa"
-config/features=PackedStringArray("4.5", "Forward Plus")
+config/features=PackedStringArray("4.6", "Forward Plus")
 
 [autoload]
 
@@ -115,6 +119,8 @@ restart={
 [physics]
 
 common/physics_ticks_per_second=165
+common/max_physics_steps_per_frame=4
+common/physics_interpolation=true
 
 [rendering]
 
@@ -122,6 +128,7 @@ textures/canvas_textures/default_texture_filter=0
 textures/canvas_textures/default_texture_repeat=1
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_s3tc_bptc=true
 lights_and_shadows/directional_shadow/soft_shadow_filter_quality=0
 lights_and_shadows/positional_shadow/soft_shadow_filter_quality=0
 reflections/sky_reflections/texture_array_reflections=false
@@ -129,6 +136,7 @@ reflections/specular_occlusion/enabled=false
 textures/default_filters/anisotropic_filtering_level=0
 environment/ssao/quality=0
 environment/ssil/quality=0
+textures/default_filters/texture_mipmap_bias=-0.5
 textures/decals/filter=1
 environment/glow/upscale_mode=0
 environment/screen_space_reflection/roughness_quality=0

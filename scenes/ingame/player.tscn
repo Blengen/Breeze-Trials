@@ -1052,6 +1052,7 @@ text = "10.0"
 horizontal_alignment = 1
 
 [node name="vignette_fuel" type="TextureRect" parent="ui"]
+visible = false
 modulate = Color(0.30110535, 1.714658e-07, 2.4065375e-08, 0)
 layout_mode = 1
 anchors_preset = 15
@@ -1168,4 +1169,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
 mesh = SubResource("BoxMesh_say45")
 
+[node name="update_timer" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true
+
 [connection signal="area_entered" from="body/area" to="body" method="_on_area_entered"]
+[connection signal="timeout" from="update_timer" to="body" method="_on_update_timer_timeout"]
