@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://15fwuiiv78vf"
-path.s3tc="res://.godot/imported/none.png-149d214835e15f7df8ff9f1478b32212.s3tc.ctex"
+uid="uid://7etwwa6vokku"
+path.s3tc="res://.godot/imported/cobble.png-1f4befd53b55f337a81f4489118d8639.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://images/orb_icons/none.png"
-dest_files=["res://.godot/imported/none.png-149d214835e15f7df8ff9f1478b32212.s3tc.ctex"]
+source_file="res://materials/textures/assets/cobble.png"
+dest_files=["res://.godot/imported/cobble.png-1f4befd53b55f337a81f4489118d8639.s3tc.ctex"]
 
 [params]
 

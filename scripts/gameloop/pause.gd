@@ -9,12 +9,12 @@ func _process(_delta: float) -> void:
 
 func _on_continue_pressed() -> void: unpause()
 
-func pause():
+func pause() -> void:
 	$"../pause_menu".show()
 	get_tree().paused = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
-func unpause():
+func unpause() -> void:
 	$"../pause_menu".hide()
 	get_tree().paused = false
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

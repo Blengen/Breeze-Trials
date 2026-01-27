@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dh8rk450440bi"]
+
+[ext_resource type="Texture2D" uid="uid://btqqsusxqkbic" path="res://materials/textures/assets/metal_plate.png" id="1_77nnl"]
+
+[resource]
+albedo_color = Color(0.5330367, 0.5330367, 0.5330366, 1)
+albedo_texture = ExtResource("1_77nnl")
+uv1_scale = Vector3(0.4, 0.4, 0.4)
+uv1_triplanar = true

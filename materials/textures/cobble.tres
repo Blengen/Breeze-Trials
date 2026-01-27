@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cwv8y2orbm2l8"]
+
+[ext_resource type="Texture2D" uid="uid://7etwwa6vokku" path="res://materials/textures/assets/cobble.png" id="1_bi8gh"]
+
+[resource]
+albedo_color = Color(0.70796657, 0.7079665, 0.7079665, 1)
+albedo_texture = ExtResource("1_bi8gh")
+uv1_scale = Vector3(0.15, 0.15, 0.15)
+uv1_triplanar = true

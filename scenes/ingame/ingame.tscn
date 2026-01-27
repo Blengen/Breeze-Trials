@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b16x3mwm7e4h2"]
+[gd_scene format=3 uid="uid://b16x3mwm7e4h2"]
 
 [ext_resource type="Script" uid="uid://7h3heuyotj4m" path="res://scripts/gameloop/gameloop.gd" id="1_cnm17"]
 [ext_resource type="AudioStream" uid="uid://bx2y80ikp0wxa" path="res://audio/hihat.mp3" id="2_3e8ec"]
@@ -9,29 +9,29 @@
 [ext_resource type="Script" uid="uid://bwu04ovuy2fe3" path="res://scripts/gameloop/pause.gd" id="8_e2h46"]
 [ext_resource type="AudioStream" uid="uid://btu2pr86gkymn" path="res://audio/death.mp3" id="11_s1dsy"]
 
-[node name="game" type="Node3D"]
+[node name="game" type="Node3D" unique_id=1497687083]
 script = ExtResource("1_cnm17")
 
-[node name="player" parent="." instance=ExtResource("3_dpktk")]
+[node name="player" parent="." unique_id=1393978771 instance=ExtResource("3_dpktk")]
 
-[node name="sfx" type="Node" parent="."]
+[node name="sfx" type="Node" parent="." unique_id=1601465940]
 
-[node name="hihat" type="AudioStreamPlayer" parent="sfx"]
+[node name="hihat" type="AudioStreamPlayer" parent="sfx" unique_id=197669818]
 stream = ExtResource("2_3e8ec")
 volume_db = -10.0
 
-[node name="death" type="AudioStreamPlayer" parent="sfx"]
+[node name="death" type="AudioStreamPlayer" parent="sfx" unique_id=269086712]
 stream = ExtResource("11_s1dsy")
 volume_db = -25.0
 pitch_scale = 0.85
 
-[node name="spawn_timer" type="Timer" parent="."]
+[node name="spawn_timer" type="Timer" parent="." unique_id=1624493375]
 wait_time = 0.5
 one_shot = true
 
-[node name="map" parent="." instance=ExtResource("5_cla3i")]
+[node name="map" parent="." unique_id=1154728041 instance=ExtResource("5_cla3i")]
 
-[node name="pause_menu" type="Control" parent="."]
+[node name="pause_menu" type="Control" parent="." unique_id=449964422]
 process_mode = 2
 visible = false
 z_index = 30
@@ -43,7 +43,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="cover" type="ColorRect" parent="pause_menu"]
+[node name="cover" type="ColorRect" parent="pause_menu" unique_id=654685404]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -53,7 +53,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.7254902)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="pause_menu"]
+[node name="VBoxContainer" type="VBoxContainer" parent="pause_menu" unique_id=742497510]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -63,7 +63,7 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="paused" type="Label" parent="pause_menu/VBoxContainer"]
+[node name="paused" type="Label" parent="pause_menu/VBoxContainer" unique_id=1615520822]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.7019608, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0.1218, 0.20029333, 0.29, 1)
@@ -73,25 +73,25 @@ theme_override_font_sizes/font_size = 200
 text = "Paused"
 horizontal_alignment = 1
 
-[node name="continue" type="Button" parent="pause_menu/VBoxContainer"]
+[node name="continue" type="Button" parent="pause_menu/VBoxContainer" unique_id=1149258458]
 layout_mode = 2
 theme = ExtResource("7_p12a3")
 theme_override_font_sizes/font_size = 100
 text = "Continue"
 
-[node name="settings" type="Button" parent="pause_menu/VBoxContainer"]
+[node name="settings" type="Button" parent="pause_menu/VBoxContainer" unique_id=1513490838]
 layout_mode = 2
 theme = ExtResource("7_p12a3")
 theme_override_font_sizes/font_size = 100
 text = "Settings"
 
-[node name="exit" type="Button" parent="pause_menu/VBoxContainer"]
+[node name="exit" type="Button" parent="pause_menu/VBoxContainer" unique_id=461900396]
 layout_mode = 2
 theme = ExtResource("7_p12a3")
 theme_override_font_sizes/font_size = 100
 text = "Exit"
 
-[node name="pause_handler" type="Node" parent="."]
+[node name="pause_handler" type="Node" parent="." unique_id=346000614]
 process_mode = 3
 script = ExtResource("8_e2h46")
 

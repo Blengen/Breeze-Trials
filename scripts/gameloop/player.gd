@@ -108,9 +108,9 @@ func movement(delta: float) -> void:
 	move(delta)
 	vertical_movement(delta)
 
-func move(delta: float):
-	var normalized_input_vector = input_vector.normalized()
-	var current_speed = Vector2(velocity.x, velocity.z).length()
+func move(delta: float) -> void:
+	var normalized_input_vector: Vector2 = input_vector.normalized()
+	var current_speed: float = Vector2(velocity.x, velocity.z).length()
 
 	# Apply air control input
 	velocity += get_rig_basis() * Vector3(normalized_input_vector.x * air_control * delta, 0, normalized_input_vector.y * air_control * delta)
@@ -132,7 +132,7 @@ func vertical_movement(delta: float) -> void:
 	jump(delta)
 	quick_drop()
 
-func jump(delta):
+func jump(delta: float) -> void:
 	if is_on_floor():
 		coyote = 0
 		if Input.is_action_pressed("jump"):
@@ -148,7 +148,7 @@ func jump(delta):
 			jump_check = true
 			coyote = 1
 
-func gravity(delta):
+func gravity(delta: float) -> void:
 	if is_on_floor():
 		velocity.y = 0
 		airtime = 0
@@ -157,7 +157,7 @@ func gravity(delta):
 		airtime += delta
 	velocity.y = clamp(velocity.y, -grav, 9999999)
 
-func quick_drop():
+func quick_drop() -> void:
 	if Input.is_action_just_pressed("quick_drop") and !is_on_floor():
 		velocity.y = -grav / 2.0
 #endregion
@@ -166,7 +166,7 @@ func quick_drop():
 # CAMERA & ROTATION
 # ============================================================
 #region Camera
-func camera():
+func camera() -> void:
 	# Handle camlock toggle
 	if Input.is_action_just_pressed("camlock"):
 		if cam_mode != "camlock":
@@ -205,7 +205,7 @@ func camera():
 
 	cam.position.z = zoom
 
-func player_rotation(delta):
+func player_rotation(delta: float) -> void:
 	if cam_mode == "camlock":
 		return
 
@@ -216,14 +216,14 @@ func player_rotation(delta):
 	if input_vector != Vector2.ZERO:
 		rotation_degrees.y = lerp(rotation_degrees.y, target_angle, rotation_speed * delta)
 
-func get_rig_basis():
-	var old_rotation_x = rig.rotation_degrees.x
+func get_rig_basis() -> Basis:
+	var old_rotation_x: float = rig.rotation_degrees.x
 	rig.rotation_degrees.x = 0
-	var rig_basis = rig.transform.basis
+	var rig_basis: Basis = rig.transform.basis
 	rig.rotation_degrees.x = old_rotation_x
 	return rig_basis
 
-func vector2_to_deg(value):
+func vector2_to_deg(value: Vector2) -> int:
 	match value:
 		Vector2(0, 1):
 			return 180
@@ -243,14 +243,14 @@ func vector2_to_deg(value):
 
 	return 0
 
-func find_shortest_turn():
+func find_shortest_turn() -> void:
 	# Normalize target angle to 0-360 range
 	target_angle = fmod(target_angle, 360.0)
 	if target_angle < 0:
 		target_angle += 360.0
 
-	var current_angle = fmod(rotation_degrees.y, 360.0)
-	var diff = target_angle - current_angle
+	var current_angle: float = fmod(rotation_degrees.y, 360.0)
+	var diff: float = target_angle - current_angle
 
 	# Adjust for shortest rotation path (-180 to 180 degrees)
 	if diff > 180:
@@ -263,7 +263,7 @@ func find_shortest_turn():
 # ABILITIES & INTERACTION
 # ============================================================
 #region Abilities
-func do_ability():
+func do_ability() -> void:
 	if ability_buffered and not Input.is_action_pressed("ability"):
 		ability_buffered = false
 		ability_buffer_active = false
@@ -275,13 +275,13 @@ func do_ability():
 		return
 
 	ability_buffer_active = false
-	var ability = ability_list[0]
-	var ability_type = ability[0]
-	var value = ability[1]
-	var orb = ability[2]
+	var ability: Array = ability_list[0]
+	var ability_type: String = ability[0]
+	var value: float = ability[1]
+	var orb: Area3D = ability[2]
 
 	if ability_type == "dash":
-		var normalized_input_vector = get_input_vector()
+		var normalized_input_vector: Vector2 = get_input_vector()
 		if normalized_input_vector == Vector2.ZERO:
 			normalized_input_vector = Vector2(0, -1)
 		velocity += get_rig_basis() * Vector3(normalized_input_vector.x * value, 0, normalized_input_vector.y * value)
@@ -300,7 +300,7 @@ func _on_area_entered(area: Area3D) -> void:
 	if area.group == "orb":
 		orb_hit(area)
 
-func orb_hit(area):
+func orb_hit(area: Area3D) -> void:
 	if area.type == "dash" or area.type == "jump":
 		ability_list.append([area.type, area.value, area])
 	elif area.type == "stat_speed":
@@ -320,7 +320,7 @@ func orb_hit(area):
 
 	disable_orb(area)
 
-func disable_orb(orb):
+func disable_orb(orb: Area3D) -> void:
 	orb.visible = false
 	orb.collider.call_deferred("set", "disabled", true)
 #endregion
@@ -329,12 +329,12 @@ func disable_orb(orb):
 # GAME STATE & UI
 # ============================================================
 #region Game State
-func handle_fuel(delta):
+func handle_fuel(delta: float) -> void:
 	fuel -= delta
 	if fuel < -0.25:
 		death("fuel")
 
-func handle_restart(delta):
+func handle_restart(delta: float) -> void:
 	if Input.is_action_pressed("restart"):
 		restart_juice += delta
 	else:
@@ -344,12 +344,12 @@ func handle_restart(delta):
 		root.restart()
 		restart_juice = -9999
 
-func set_variables(delta):
+func set_variables(delta: float) -> void:
 	rig.position = position + Vector3(0, 1.5, 0)
 	if root.playing == false:
 		ui_death_cover.color -= Color(2 * delta, 2 * delta, 2 * delta, 0)
 
-func death(death_type):
+func death(death_type: Variant) -> void:
 	$"../ui/death_ui".visible = true
 	root.playing = false
 	$"../ui/death_ui/cover".color = Color(1.0, 1.0, 1.0, 0.75)
@@ -368,7 +368,7 @@ func death(death_type):
 			"win":
 				$"../ui/death_ui/reason".text = "GG! " + str(abs(snappedf(fuel, 0.001))) + "s left"
 
-func animation():
+func animation() -> void:
 	if is_on_floor():
 		if not is_equal_approx(abs(input_vector.x) + abs(input_vector.y), 0):
 			ani.play("walk")
@@ -397,7 +397,7 @@ func _on_update_timer_timeout() -> void:
 # UTILITY
 # ============================================================
 #region Utility
-func get_input_vector():
+func get_input_vector() -> Vector2:
 	input_vector = Input.get_vector("left", "right", "front", "back")
 	return input_vector
 #endregion

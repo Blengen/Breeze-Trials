@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bj6yss6l653qa"]
+[gd_scene format=3 uid="uid://bj6yss6l653qa"]
 
 [ext_resource type="Texture2D" uid="uid://bra3hwb1lnjvu" path="res://images/vignette.png" id="1_3rkf3"]
 [ext_resource type="Script" uid="uid://b1flga8wtbld1" path="res://scripts/menu/menu.gd" id="1_247la"]
@@ -13,13 +13,14 @@
 [ext_resource type="Texture2D" uid="uid://bs2tavlqjv86f" path="res://images/difficulties/hard.png" id="7_p1nwe"]
 [ext_resource type="Texture2D" uid="uid://dg25ddk3nfee7" path="res://images/difficulties/legendary.png" id="8_prbor"]
 
-[node name="menu" type="Control"]
+[node name="menu" type="Control" unique_id=681409378]
 layout_mode = 3
 anchors_preset = 0
 mouse_filter = 2
 script = ExtResource("1_247la")
 
-[node name="main_menu" type="TextureRect" parent="."]
+[node name="main_menu" type="TextureRect" parent="." unique_id=70350032]
+visible = false
 z_index = -99
 layout_mode = 1
 anchors_preset = 15
@@ -32,7 +33,7 @@ grow_vertical = 2
 mouse_filter = 0
 texture = ExtResource("2_hj162")
 
-[node name="vbox" type="VBoxContainer" parent="main_menu"]
+[node name="vbox" type="VBoxContainer" parent="main_menu" unique_id=2071970611]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -49,7 +50,7 @@ mouse_filter = 0
 theme = ExtResource("2_247la")
 alignment = 1
 
-[node name="title" type="Label" parent="main_menu/vbox"]
+[node name="title" type="Label" parent="main_menu/vbox" unique_id=253568751]
 z_index = 2
 layout_mode = 2
 mouse_filter = 0
@@ -63,7 +64,7 @@ theme_override_font_sizes/font_size = 250
 text = "Breeze Trials"
 horizontal_alignment = 1
 
-[node name="main_maps" type="Button" parent="main_menu/vbox"]
+[node name="main_maps" type="Button" parent="main_menu/vbox" unique_id=71921992]
 z_index = 2
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -73,7 +74,7 @@ theme_override_constants/outline_size = 15
 theme_override_font_sizes/font_size = 100
 text = "Main Maps"
 
-[node name="custom_maps" type="Button" parent="main_menu/vbox"]
+[node name="custom_maps" type="Button" parent="main_menu/vbox" unique_id=7770294]
 z_index = 2
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -83,7 +84,7 @@ theme_override_constants/outline_size = 15
 theme_override_font_sizes/font_size = 100
 text = "Custom Maps"
 
-[node name="settings" type="Button" parent="main_menu/vbox"]
+[node name="settings" type="Button" parent="main_menu/vbox" unique_id=92460817]
 z_index = 2
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -93,7 +94,7 @@ theme_override_constants/outline_size = 15
 theme_override_font_sizes/font_size = 100
 text = "Settings"
 
-[node name="credits" type="Button" parent="main_menu/vbox"]
+[node name="credits" type="Button" parent="main_menu/vbox" unique_id=1807586510]
 z_index = 2
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -103,7 +104,7 @@ theme_override_constants/outline_size = 15
 theme_override_font_sizes/font_size = 100
 text = "Credits"
 
-[node name="quit" type="Button" parent="main_menu/vbox"]
+[node name="quit" type="Button" parent="main_menu/vbox" unique_id=1989005677]
 z_index = 2
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -113,7 +114,7 @@ theme_override_constants/outline_size = 15
 theme_override_font_sizes/font_size = 100
 text = "Quit"
 
-[node name="maps" type="TextureRect" parent="."]
+[node name="maps" type="TextureRect" parent="." unique_id=476587427]
 visible = false
 z_index = -99
 layout_mode = 1
@@ -127,7 +128,7 @@ grow_vertical = 2
 mouse_filter = 0
 texture = ExtResource("5_bbqo6")
 
-[node name="vbox" type="VBoxContainer" parent="maps"]
+[node name="vbox" type="VBoxContainer" parent="maps" unique_id=1370541722]
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
@@ -141,7 +142,7 @@ mouse_filter = 0
 theme = ExtResource("2_247la")
 alignment = 1
 
-[node name="title" type="Label" parent="maps/vbox"]
+[node name="title" type="Label" parent="maps/vbox" unique_id=1650658268]
 z_index = 2
 layout_mode = 2
 size_flags_vertical = 1
@@ -156,7 +157,7 @@ theme_override_font_sizes/font_size = 250
 text = "Main maps"
 horizontal_alignment = 1
 
-[node name="ItemList" type="ItemList" parent="maps/vbox"]
+[node name="ItemList" type="ItemList" parent="maps/vbox" unique_id=995269782]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -174,7 +175,7 @@ item_2/icon = ExtResource("8_prbor")
 item_3/text = "Test Scene (clickable)"
 item_3/icon = ExtResource("7_d4hu8")
 
-[node name="back" type="Button" parent="maps/vbox"]
+[node name="back" type="Button" parent="maps/vbox" unique_id=191135961]
 z_index = 5
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -184,8 +185,7 @@ theme_override_constants/outline_size = 15
 theme_override_font_sizes/font_size = 100
 text = "Back"
 
-[node name="custom" type="TextureRect" parent="."]
-visible = false
+[node name="custom" type="TextureRect" parent="." unique_id=1593867107]
 z_index = -99
 layout_mode = 1
 anchors_preset = 15
@@ -198,7 +198,7 @@ grow_vertical = 2
 mouse_filter = 0
 texture = ExtResource("5_1k4da")
 
-[node name="vbox" type="VBoxContainer" parent="custom"]
+[node name="vbox" type="VBoxContainer" parent="custom" unique_id=1908760605]
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
@@ -212,7 +212,7 @@ mouse_filter = 0
 theme = ExtResource("2_247la")
 alignment = 1
 
-[node name="title" type="Label" parent="custom/vbox"]
+[node name="title" type="Label" parent="custom/vbox" unique_id=753691692]
 z_index = 2
 layout_mode = 2
 size_flags_vertical = 1
@@ -227,7 +227,7 @@ theme_override_font_sizes/font_size = 250
 text = "Custom Maps"
 horizontal_alignment = 1
 
-[node name="ItemList" type="ItemList" parent="custom/vbox"]
+[node name="ItemList" type="ItemList" parent="custom/vbox" unique_id=248733751]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -241,7 +241,7 @@ item_0/icon = ExtResource("6_bbqo6")
 item_1/text = "+ New Map"
 item_1/icon = ExtResource("7_d4hu8")
 
-[node name="back" type="Button" parent="custom/vbox"]
+[node name="back" type="Button" parent="custom/vbox" unique_id=261656604]
 z_index = 5
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -251,7 +251,7 @@ theme_override_constants/outline_size = 15
 theme_override_font_sizes/font_size = 100
 text = "Back"
 
-[node name="credits" type="TextureRect" parent="."]
+[node name="credits" type="TextureRect" parent="." unique_id=590577484]
 visible = false
 z_index = -100
 layout_mode = 1
@@ -265,7 +265,7 @@ grow_vertical = 2
 mouse_filter = 0
 texture = ExtResource("4_xn6kt")
 
-[node name="vbox" type="VBoxContainer" parent="credits"]
+[node name="vbox" type="VBoxContainer" parent="credits" unique_id=428279587]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -282,7 +282,7 @@ mouse_filter = 0
 theme = ExtResource("2_247la")
 alignment = 1
 
-[node name="title" type="Label" parent="credits/vbox"]
+[node name="title" type="Label" parent="credits/vbox" unique_id=1885492094]
 layout_mode = 2
 mouse_filter = 0
 theme_override_colors/font_color = Color(0.9917378, 0.42157233, 1, 1)
@@ -295,7 +295,7 @@ theme_override_font_sizes/font_size = 250
 text = "Credits"
 horizontal_alignment = 1
 
-[node name="text_1" type="Label" parent="credits/vbox"]
+[node name="text_1" type="Label" parent="credits/vbox" unique_id=296173971]
 layout_mode = 2
 mouse_filter = 0
 theme_override_colors/font_color = Color(0.96368617, 0.9494793, 0.8079109, 1)
@@ -308,7 +308,7 @@ theme_override_font_sizes/font_size = 100
 text = "Assets"
 horizontal_alignment = 1
 
-[node name="text_2" type="Label" parent="credits/vbox"]
+[node name="text_2" type="Label" parent="credits/vbox" unique_id=222322879]
 layout_mode = 2
 mouse_filter = 0
 theme_override_colors/font_color = Color(0.96368617, 0.9494793, 0.8079109, 1)
@@ -322,7 +322,7 @@ text = "Materials from AmbientCG.com & cc0-textures.com
 "
 horizontal_alignment = 1
 
-[node name="text_3" type="Label" parent="credits/vbox"]
+[node name="text_3" type="Label" parent="credits/vbox" unique_id=1950666818]
 layout_mode = 2
 mouse_filter = 0
 theme_override_colors/font_color = Color(0.96368617, 0.9494793, 0.8079109, 1)
@@ -335,7 +335,7 @@ theme_override_font_sizes/font_size = 100
 text = "Tools"
 horizontal_alignment = 1
 
-[node name="text_4" type="Label" parent="credits/vbox"]
+[node name="text_4" type="Label" parent="credits/vbox" unique_id=1487787499]
 layout_mode = 2
 mouse_filter = 0
 theme_override_colors/font_color = Color(0.96368617, 0.9494793, 0.8079109, 1)
@@ -352,7 +352,7 @@ AI: Deepseek (troubleshooting & brainstorming), Copilot (logo)
 "
 horizontal_alignment = 1
 
-[node name="back" type="Button" parent="credits/vbox"]
+[node name="back" type="Button" parent="credits/vbox" unique_id=1407752272]
 z_index = 5
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -362,7 +362,7 @@ theme_override_constants/outline_size = 15
 theme_override_font_sizes/font_size = 100
 text = "Back"
 
-[node name="settings" type="TextureRect" parent="."]
+[node name="settings" type="TextureRect" parent="." unique_id=2102410986]
 visible = false
 z_index = -100
 layout_mode = 1
@@ -376,7 +376,7 @@ grow_vertical = 2
 mouse_filter = 0
 texture = ExtResource("6_xn6kt")
 
-[node name="vbox" type="VBoxContainer" parent="settings"]
+[node name="vbox" type="VBoxContainer" parent="settings" unique_id=1790245783]
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
@@ -390,7 +390,7 @@ mouse_filter = 0
 theme = ExtResource("2_247la")
 alignment = 1
 
-[node name="title" type="Label" parent="settings/vbox"]
+[node name="title" type="Label" parent="settings/vbox" unique_id=33270713]
 layout_mode = 2
 mouse_filter = 0
 theme_override_colors/font_color = Color(0.9946844, 0.6768414, 0.5794238, 1)
@@ -403,7 +403,7 @@ theme_override_font_sizes/font_size = 250
 text = "Settings"
 horizontal_alignment = 1
 
-[node name="sens" type="Label" parent="settings/vbox"]
+[node name="sens" type="Label" parent="settings/vbox" unique_id=394518823]
 layout_mode = 2
 mouse_filter = 0
 theme_override_colors/font_color = Color(0.99668926, 0.7210396, 0.63583964, 1)
@@ -415,24 +415,24 @@ theme_override_font_sizes/font_size = 50
 text = "Sensitivity"
 horizontal_alignment = 1
 
-[node name="sens_box" type="LineEdit" parent="settings/vbox"]
+[node name="sens_box" type="LineEdit" parent="settings/vbox" unique_id=1389611533]
 layout_mode = 2
 theme_override_font_sizes/font_size = 35
 placeholder_text = "Default: 0.1"
 alignment = 1
 context_menu_enabled = false
 emoji_menu_enabled = false
-virtual_keyboard_type = 3
 shortcut_keys_enabled = false
+virtual_keyboard_type = 3
 secret_character = ""
 
-[node name="CheckBox" type="CheckBox" parent="settings/vbox"]
+[node name="CheckBox" type="CheckBox" parent="settings/vbox" unique_id=997255344]
 layout_mode = 2
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 50
 text = "V-Sync"
 
-[node name="back" type="Button" parent="settings/vbox"]
+[node name="back" type="Button" parent="settings/vbox" unique_id=1302974468]
 z_index = 5
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -442,7 +442,7 @@ theme_override_constants/outline_size = 15
 theme_override_font_sizes/font_size = 100
 text = "Back"
 
-[node name="vignette" type="TextureRect" parent="."]
+[node name="vignette" type="TextureRect" parent="." unique_id=2044094381]
 modulate = Color(0, 0, 0, 0.5882353)
 z_index = 1
 layout_mode = 0

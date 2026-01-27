@@ -1,14 +1,14 @@
 extends Node
 
 # FOLDERS
-var save_dir
-var map_dir
-var music_dir
+var save_dir: String
+var map_dir: String
+var music_dir: String
 
 # SETTINGS VARIABLES
 var sens: float = 0.1
 
-var exit_juice = 0 # Time counter for exiting
+var exit_juice: float = 0 # Time counter for exiting
 
 func _ready() -> void:
 	paths()
@@ -21,9 +21,9 @@ func paths() -> void:
 	map_dir = save_dir.path_join("maps")
 	music_dir = save_dir.path_join("music")
 
-func fix_paths(): # Deepseek Code
+func fix_paths() -> void: # Deepseek Code
 	# Create directories if they don't exist
-	var dir = DirAccess.open(save_dir)
+	var dir: DirAccess = DirAccess.open(save_dir)
 	if not dir.dir_exists(map_dir):
 		dir.make_dir_recursive(map_dir)
 	if not dir.dir_exists(music_dir):
@@ -32,7 +32,7 @@ func fix_paths(): # Deepseek Code
 func _process(delta: float) -> void:
 	check_exit(delta)
 
-func check_exit(delta):
+func check_exit(delta: float) -> void:
 	if not Input.is_action_pressed("esc"): exit_juice = 0
 	else: 
 		exit_juice += delta

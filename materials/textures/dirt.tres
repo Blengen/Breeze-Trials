@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://i6psjriy2r4p"]
+
+[ext_resource type="Texture2D" uid="uid://ciwa7xgwmd8w7" path="res://materials/textures/assets/dirt.png" id="1_xgbid"]
+
+[resource]
+albedo_color = Color(1, 0.87016666, 0.81, 1)
+albedo_texture = ExtResource("1_xgbid")
+uv1_scale = Vector3(0.075, 0.075, 0.075)
+uv1_triplanar = true

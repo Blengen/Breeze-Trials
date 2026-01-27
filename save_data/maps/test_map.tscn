@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://cpda6ehi6dk37"]
+[gd_scene format=3 uid="uid://b5cpyukjrv3kd"]
 
 [ext_resource type="Script" uid="uid://cr2dgvo33htij" path="res://scripts/gameloop/map_settings.gd" id="1_34ald"]
 [ext_resource type="Material" uid="uid://do6njjm35omxb" path="res://materials/textures/grass.tres" id="1_ss0f2"]

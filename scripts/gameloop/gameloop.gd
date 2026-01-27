@@ -1,26 +1,26 @@
 extends Node3D
 
-@onready var player = $player/body
-@onready var hihat = $sfx/hihat
-@onready var map = $map
-@onready var music = $map/settings/music
-@onready var spawn = $map/spawn
-@onready var settings = $map/settings
-@onready var ani = $player/body/visual/ani # Player AnimationPlayer
-@onready var death_ui = $player/ui/death_ui
-@onready var spawn_timer = $spawn_timer
+@onready var player: CharacterBody3D = $player/body
+@onready var hihat: AudioStreamPlayer = $sfx/hihat
+@onready var map: Node3D = $map
+@onready var music: AudioStreamPlayer = $map/settings/music
+@onready var spawn: Node3D = $map/spawn
+@onready var settings: Node = $map/settings
+@onready var ani: AnimationPlayer = $player/body/visual/ani # Player AnimationPlayer
+@onready var death_ui: Control = $player/ui/death_ui
+@onready var spawn_timer: Timer = $spawn_timer
 
 
-var playing = false
-var hihat_juice = -1 # Acts like a timer for hihats. When it crosses a threshold, the audio plays.
+var playing: bool = false
+var hihat_juice: float = -1 # Acts like a timer for hihats. When it crosses a threshold, the audio plays.
 var hihat_count: int = -1
 
-var type_player = true
+var type_player: bool = true
 
 func _ready() -> void:
 	restart()
 
-func restart():
+func restart() -> void:
 	hihat_juice = 0.5
 	hihat_count = 2
 	music.stop()

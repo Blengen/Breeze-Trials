@@ -2,8 +2,8 @@ extends Area3D
 
 const group: String = "orb"
 
-@onready var collider = $collider
-@onready var timer = $timer
+@onready var collider: CollisionShape3D = $collider
+@onready var timer: Timer = $timer
 
 @export var type: String = "none"
 @export var value: float = 0
@@ -18,14 +18,6 @@ func _ready() -> void:
 		"stat_jump": $icon.texture = load("res://images/orb_icons/stat_jump.png")
 		"fuel": $icon.texture = load("res://images/orb_icons/fuel.png")
 		"end": $icon.texture = load("res://images/orb_icons/end.png")
-
-	
-	#else:
-		#$mesh.material_overlay = load("res://materials/orb/white_outline.tres")
-		#print("failsafe triggered")
-
-
-
 
 func _on_timer_timeout() -> void:
 	visible = true

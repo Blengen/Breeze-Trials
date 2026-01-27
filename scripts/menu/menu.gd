@@ -1,14 +1,14 @@
 extends Control
 
-var exitjuice = 0
+var exitjuice: float = 0
 
-@onready var scene = $"main_menu"
+@onready var scene: Control = $"main_menu"
 
-@onready var main = $"main_menu"
-@onready var maps = $"maps"
-@onready var credits = $"credits"
-@onready var settings = $"settings"
-@onready var custom = $"custom"
+@onready var main: Control = $"main_menu"
+@onready var maps: Control = $"maps"
+@onready var credits: Control = $"credits"
+@onready var settings: Control = $"settings"
+@onready var custom: Control = $"custom"
 
 
 func _process(delta: float) -> void:
@@ -27,7 +27,7 @@ func _process(delta: float) -> void:
 # Syntax: _oldmenu_newmenu():
 # menu() argument is the node of the new menu.
 
-func menu(new: Node):
+func menu(new: Node) -> void:
 	scene.hide()
 	new.show()
 	scene = new

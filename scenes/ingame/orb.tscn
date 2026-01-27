@@ -1,24 +1,26 @@
-[gd_scene load_steps=3 format=3 uid="uid://87fjtv3ojqjl"]
+[gd_scene format=3 uid="uid://87fjtv3ojqjl"]
 
 [ext_resource type="Script" uid="uid://diot23mtupmso" path="res://scripts/objects/orb.gd" id="1_sdddm"]
+[ext_resource type="Texture2D" uid="uid://15fwuiiv78vf" path="res://images/orb_icons/none.png" id="2_02j23"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_u70sm"]
 
-[node name="orb" type="Area3D"]
+[node name="orb" type="Area3D" unique_id=168920587]
 editor_description = "orb"
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 script = ExtResource("1_sdddm")
 
-[node name="collider" type="CollisionShape3D" parent="."]
+[node name="collider" type="CollisionShape3D" parent="." unique_id=1222115818]
 shape = SubResource("SphereShape3D_u70sm")
 
-[node name="icon" type="Sprite3D" parent="."]
+[node name="icon" type="Sprite3D" parent="." unique_id=1254964751]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 cast_shadow = 0
 billboard = 1
 shaded = true
+texture = ExtResource("2_02j23")
 
-[node name="timer" type="Timer" parent="."]
+[node name="timer" type="Timer" parent="." unique_id=1600799431]
 one_shot = true
 
 [connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]
