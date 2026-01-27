@@ -1,8 +1,0 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bs6qfl5s76vpo"]
-
-[ext_resource type="Shader" uid="uid://jmxejqx73w1f" path="res://materials/orb/white_outline.gdshader" id="1_fe2f8"]
-
-[resource]
-render_priority = 0
-shader = ExtResource("1_fe2f8")
-shader_parameter/thickness = 0.02
