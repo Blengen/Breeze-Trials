@@ -156,7 +156,7 @@ theme_override_font_sizes/font_size = 250
 text = "Main maps"
 horizontal_alignment = 1
 
-[node name="ItemList" type="ItemList" parent="maps/vbox" unique_id=995269782]
+[node name="list" type="ItemList" parent="maps/vbox" unique_id=995269782]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -227,19 +227,21 @@ theme_override_font_sizes/font_size = 250
 text = "Custom Maps"
 horizontal_alignment = 1
 
-[node name="ItemList" type="ItemList" parent="custom/vbox" unique_id=248733751]
+[node name="list" type="ItemList" parent="custom/vbox" unique_id=248733751]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 55
 auto_height = true
-item_count = 2
+item_count = 3
 icon_scale = 0.3
 item_0/text = "Play Map"
 item_0/icon = ExtResource("7_d4hu8")
 item_1/text = "Edit Map"
 item_1/icon = ExtResource("7_d4hu8")
+item_2/text = "New Map"
+item_2/icon = ExtResource("7_d4hu8")
 
 [node name="back" type="Button" parent="custom/vbox" unique_id=261656604]
 z_index = 5
@@ -251,16 +253,17 @@ theme_override_constants/outline_size = 15
 theme_override_font_sizes/font_size = 100
 text = "Back"
 
-[node name="FileDialog" type="FileDialog" parent="custom" unique_id=3056271]
+[node name="files" type="FileDialog" parent="custom" unique_id=3056271]
 oversampling_override = 1.0
 mode = 2
 title = "Open a File"
 position = Vector2i(0, 36)
 size = Vector2i(1920, 1080)
 min_size = Vector2i(1920, 1080)
+ok_button_text = "Load"
 file_mode = 0
 access = 2
-filters = PackedStringArray(".tscn")
+filters = PackedStringArray("*.tscn")
 hidden_files_toggle_enabled = false
 file_filter_toggle_enabled = false
 
@@ -285,12 +288,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -712.0
-offset_top = -459.5
-offset_right = 672.0
-offset_bottom = 419.5
+offset_left = -681.0
+offset_top = -437.0
+offset_right = 681.0
+offset_bottom = 330.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 mouse_filter = 0
 theme = ExtResource("2_247la")
 alignment = 1
@@ -331,7 +336,7 @@ theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 3
 theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 50
-text = "Materials from AmbientCG.com & cc0-textures.com
+text = "OpenGameArt.org
 "
 horizontal_alignment = 1
 
@@ -361,13 +366,24 @@ theme_override_font_sizes/font_size = 50
 text = "Game Engine: Godot Engine (v4.5)
 3D-Modeling: Blender
 2D Assets and Drawing: Krita
-AI: Deepseek (troubleshooting & brainstorming), Copilot (logo)
-"
+Artificial Intellegence: DeepSeek (Coding help & refactoring)"
 horizontal_alignment = 1
 
-[node name="back" type="Button" parent="credits/vbox" unique_id=1407752272]
+[node name="back" type="Button" parent="credits" unique_id=1407752272]
 z_index = 5
-layout_mode = 2
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -681.0
+offset_top = -138.0
+offset_right = 681.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
 mouse_default_cursor_shape = 2
 theme = ExtResource("2_247la")
 theme_override_colors/font_color = Color(0.59285295, 0.8405803, 0.7143255, 1)
@@ -470,8 +486,9 @@ metadata/_edit_use_anchors_ = true
 [connection signal="pressed" from="main_menu/vbox/settings" to="." method="_main_settings"]
 [connection signal="pressed" from="main_menu/vbox/credits" to="." method="_main_credits"]
 [connection signal="pressed" from="main_menu/vbox/quit" to="." method="_main_quit"]
-[connection signal="item_clicked" from="maps/vbox/ItemList" to="." method="_main_maps_list_click"]
+[connection signal="item_clicked" from="maps/vbox/list" to="." method="_main_maps_list_click"]
 [connection signal="pressed" from="maps/vbox/back" to="." method="_maps_main"]
+[connection signal="item_clicked" from="custom/vbox/list" to="." method="_on_custom_maps_list_item_clicked"]
 [connection signal="pressed" from="custom/vbox/back" to="." method="_cm_main"]
-[connection signal="pressed" from="credits/vbox/back" to="." method="_credits_exit"]
+[connection signal="pressed" from="credits/back" to="." method="_credits_exit"]
 [connection signal="pressed" from="settings/vbox/back" to="." method="_settings_exit"]

@@ -8,8 +8,14 @@ var exitjuice: float = 0
 @onready var maps: Control = $"maps"
 @onready var credits: Control = $"credits"
 @onready var settings: Control = $"settings"
-@onready var custom: Control = $"custom"
 
+@onready var custom: Control = $"custom"
+@onready var files: FileDialog = $custom/files
+
+var load_mode: String = "play"
+
+func _ready() -> void:
+	global.entered_from_editor = false
 
 func _process(delta: float) -> void:
 	# Exit
@@ -33,7 +39,6 @@ func menu(new: Node) -> void:
 	scene = new
 	
 # From Main Menu
-
 func _main_maps() -> void: menu(maps)
 func _main_custom() -> void: menu(custom)
 func _main_settings() -> void: menu(settings)
@@ -41,13 +46,22 @@ func _main_credits() -> void: menu(credits)
 func _main_quit() -> void: get_tree().quit()
 
 # Returns
-func _maps_main() -> void:menu(main)
+func _maps_main() -> void: menu(main)
 func _cm_main() -> void: menu(main)
 func _settings_exit() -> void: menu(main)
 func _credits_exit() -> void: menu(main)
 
 # --- # --- # --- # --- # --- # --- # --- #
 
-
 func _main_maps_list_click(index: int, _at_position: Vector2, _mouse_button_index: int) -> void:
 	if index == 3: get_tree().change_scene_to_file("res://scenes/ingame/ingame.tscn")
+
+func _on_custom_maps_list_item_clicked(index: int, _at_position: Vector2, _mouse_button_index: int) -> void:
+	if index == 0: load_mode = "play"
+	if index == 1: load_mode = "edit"
+	if index == 2:
+		load_mode = "new"
+		# Insert thingies
+		return
+	
+	files.show()

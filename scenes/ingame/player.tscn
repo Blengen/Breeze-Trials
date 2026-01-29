@@ -10,7 +10,9 @@
 [ext_resource type="Script" uid="uid://dm8elje78q73t" path="res://addons/NodeShaker3D/Scripts/NodeShaker3D.gd" id="8_7l42e"]
 [ext_resource type="Texture2D" uid="uid://o7mhsfqkkcdh" path="res://images/cam_lock.png" id="8_say45"]
 [ext_resource type="FontFile" uid="uid://cixohe42kxmvu" path="res://themes/fonts/league_spartan_bold.ttf" id="9_e4dxj"]
+[ext_resource type="StyleBox" uid="uid://ck7h6pvkjopdi" path="res://themes/fuel.tres" id="11_bcjk2"]
 [ext_resource type="Texture2D" uid="uid://bra3hwb1lnjvu" path="res://images/vignette.png" id="11_vsqks"]
+[ext_resource type="StyleBox" uid="uid://xlsjm0sl4uam" path="res://themes/debug.tres" id="12_uolup"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_80fua"]
 
@@ -1014,6 +1016,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="camlock" type="TextureRect" parent="ui" unique_id=1170878781]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1034,10 +1037,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -165.0
+offset_left = -112.0
 offset_top = 24.0
-offset_right = 165.0
-offset_bottom = 116.0
+offset_right = 112.0
+offset_bottom = 122.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0, 1, 0.6156863, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.23137255)
@@ -1047,6 +1050,7 @@ theme_override_constants/outline_size = 15
 theme_override_constants/shadow_outline_size = 20
 theme_override_fonts/font = ExtResource("9_e4dxj")
 theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = ExtResource("11_bcjk2")
 text = "10.0"
 horizontal_alignment = 1
 
@@ -1129,7 +1133,7 @@ theme_override_constants/outline_size = 15
 theme_override_constants/shadow_outline_size = 20
 theme_override_fonts/font = ExtResource("9_e4dxj")
 theme_override_font_sizes/font_size = 100
-text = "[R] to restart"
+text = "Hold [R] to restart"
 horizontal_alignment = 1
 
 [node name="debug" type="Control" parent="ui" unique_id=1652189249]
@@ -1143,20 +1147,25 @@ mouse_filter = 2
 
 [node name="fps" type="Label" parent="ui/debug" unique_id=748754994]
 layout_mode = 1
-offset_right = 184.0
-offset_bottom = 37.0
+offset_right = 81.0
+offset_bottom = 43.0
 theme_override_fonts/font = ExtResource("9_e4dxj")
 theme_override_font_sizes/font_size = 40
-text = "FPS: Value"
+theme_override_styles/normal = ExtResource("12_uolup")
+theme_override_styles/focus = ExtResource("12_uolup")
+text = "FPS:"
 
 [node name="speed" type="Label" parent="ui/debug" unique_id=1961375430]
+visible = false
 layout_mode = 1
-offset_top = 37.0
-offset_right = 184.0
-offset_bottom = 74.0
+offset_top = 42.0
+offset_right = 113.0
+offset_bottom = 85.0
 theme_override_fonts/font = ExtResource("9_e4dxj")
 theme_override_font_sizes/font_size = 40
-text = "Speed: Value Units/s"
+theme_override_styles/normal = ExtResource("12_uolup")
+theme_override_styles/focus = ExtResource("12_uolup")
+text = "Speed"
 
 [node name="debug" type="Node3D" parent="." unique_id=1169470971]
 visible = false

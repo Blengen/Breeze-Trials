@@ -1,9 +1,7 @@
 extends Node
 
-# FOLDERS
-var save_dir: String
-var map_dir: String
-var music_dir: String
+var selected_map: String = "res://scenes/test_map.tscn"
+var entered_from_editor: bool = false
 
 # SETTINGS VARIABLES
 var sens: float = 0.1

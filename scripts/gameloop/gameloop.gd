@@ -1,24 +1,38 @@
 extends Node3D
 
-@onready var player: CharacterBody3D = $player/body
-@onready var hihat: AudioStreamPlayer = $sfx/hihat
-@onready var map: Node3D = $map
-@onready var music: AudioStreamPlayer = $map/settings/music
-@onready var spawn: Node3D = $map/spawn
-@onready var settings: Node = $map/settings
-@onready var ani: AnimationPlayer = $player/body/visual/ani # Player AnimationPlayer
-@onready var death_ui: Control = $player/ui/death_ui
-@onready var spawn_timer: Timer = $spawn_timer
+@onready var player: CharacterBody3D
+@onready var hihat: AudioStreamPlayer
+@onready var map: Node3D
+@onready var music: AudioStreamPlayer
+@onready var spawn: Node3D
+@onready var settings: Node
+@onready var ani: AnimationPlayer # Player AnimationPlayer
+@onready var death_ui: Control
+@onready var spawn_timer: Timer
 
 
 var playing: bool = false
 var hihat_juice: float = -1 # Acts like a timer for hihats. When it crosses a threshold, the audio plays.
 var hihat_count: int = -1
 
-var type_player: bool = true
+#var type_player: bool = true
+
+func fix_variables() -> void:
+	player = $player/body
+	hihat = $sfx/hihat
+	map = $map
+	music = $map/settings/music
+	spawn = $map/spawn
+	settings = $map/settings
+	ani = $player/body/visual/ani # Player AnimationPlayer
+	death_ui = $player/ui/death_ui
+	spawn_timer = $spawn_timer
 
 func _ready() -> void:
+	add_child(load(global.selected_map).instantiate())
+	fix_variables()
 	restart()
+	
 
 func restart() -> void:
 	hihat_juice = 0.5

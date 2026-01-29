@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://7h3heuyotj4m" path="res://scripts/gameloop/gameloop.gd" id="1_cnm17"]
 [ext_resource type="AudioStream" uid="uid://bx2y80ikp0wxa" path="res://audio/hihat.mp3" id="2_3e8ec"]
 [ext_resource type="PackedScene" uid="uid://weodvb5mj5gd" path="res://scenes/ingame/player.tscn" id="3_dpktk"]
-[ext_resource type="PackedScene" uid="uid://cpda6ehi6dk37" path="res://scenes/test_map.tscn" id="5_cla3i"]
 [ext_resource type="FontFile" uid="uid://cixohe42kxmvu" path="res://themes/fonts/league_spartan_bold.ttf" id="6_5g6bt"]
 [ext_resource type="Theme" uid="uid://bvyertuunhye7" path="res://themes/main_menu.tres" id="7_p12a3"]
 [ext_resource type="Script" uid="uid://bwu04ovuy2fe3" path="res://scripts/gameloop/pause.gd" id="8_e2h46"]
@@ -28,8 +27,6 @@ pitch_scale = 0.85
 [node name="spawn_timer" type="Timer" parent="." unique_id=1624493375]
 wait_time = 0.5
 one_shot = true
-
-[node name="map" parent="." unique_id=1154728041 instance=ExtResource("5_cla3i")]
 
 [node name="pause_menu" type="Control" parent="." unique_id=449964422]
 process_mode = 2

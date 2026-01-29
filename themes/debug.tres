@@ -1,0 +1,11 @@
+[gd_resource type="StyleBoxFlat" format=3 uid="uid://xlsjm0sl4uam"]
+
+[resource]
+bg_color = Color(0.098942526, 0.18927479, 0.23738152, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.20458335, 0.34949175, 0.4590516, 1)
+corner_detail = 1
+anti_aliasing = false
