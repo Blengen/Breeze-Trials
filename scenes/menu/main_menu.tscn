@@ -236,9 +236,9 @@ theme_override_font_sizes/font_size = 55
 auto_height = true
 item_count = 2
 icon_scale = 0.3
-item_0/text = "Hello"
-item_0/icon = ExtResource("6_bbqo6")
-item_1/text = "+ New Map"
+item_0/text = "Play Map"
+item_0/icon = ExtResource("7_d4hu8")
+item_1/text = "Edit Map"
 item_1/icon = ExtResource("7_d4hu8")
 
 [node name="back" type="Button" parent="custom/vbox" unique_id=261656604]
@@ -250,6 +250,20 @@ theme_override_colors/font_color = Color(0.59285295, 0.8405803, 0.7143255, 1)
 theme_override_constants/outline_size = 15
 theme_override_font_sizes/font_size = 100
 text = "Back"
+
+[node name="FileDialog" type="FileDialog" parent="custom" unique_id=3056271]
+oversampling_override = 1.0
+mode = 2
+title = "Open a File"
+position = Vector2i(0, 36)
+size = Vector2i(1920, 1080)
+visible = true
+min_size = Vector2i(1920, 1080)
+file_mode = 0
+access = 2
+filters = PackedStringArray(".tscn")
+hidden_files_toggle_enabled = false
+file_filter_toggle_enabled = false
 
 [node name="credits" type="TextureRect" parent="." unique_id=590577484]
 visible = false

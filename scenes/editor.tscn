@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c7fiseun6045s"]
 
-[ext_resource type="Script" uid="uid://bsee77p85qluf" path="res://scripts/editor.gd" id="1_ba0ut"]
+[ext_resource type="Script" uid="uid://bsee77p85qluf" path="res://scripts/gameloop/editor.gd" id="1_ba0ut"]
 [ext_resource type="PackedScene" uid="uid://weodvb5mj5gd" path="res://scenes/ingame/player.tscn" id="1_pxqd5"]
 [ext_resource type="FontFile" uid="uid://cixohe42kxmvu" path="res://themes/fonts/league_spartan_bold.ttf" id="2_ba0ut"]
 
