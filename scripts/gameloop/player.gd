@@ -33,9 +33,11 @@ var sens: float = global.sens
 var speed: float = 20
 var jump_power: float = 60
 var grav: float = 250
+
 const coyotetime: float = 0.1
 const air_control: float = 0.4
 const air_multiplier: float = 0.99
+const max_fall_speed = -150
 
 # Rotation
 const rotation_speed: int = 15
@@ -69,7 +71,12 @@ var zoom: float = 12.5
 var target_angle: float = 0.0
 var offset: int = 0
 
+# Debug
 var debug: bool = false
+var flying: bool = false
+var fly_speed: int = 50
+var fly_jump: int = 60
+var debug_buffered: bool = false
 #endregion
 
 # ============================================================
@@ -102,6 +109,35 @@ func _unhandled_input(event: InputEvent) -> void:
 		rig.rotation_degrees.y -= event.relative.x * sens
 		rig.rotation_degrees.x -= event.relative.y * sens
 		rig.rotation_degrees.x = clamp(rig.rotation_degrees.x, -90, 90)
+	
+	if Input.is_action_pressed("debug") or type == "editor": debug = true
+	
+	if debug:
+		if Input.is_action_just_pressed("fly_slow"):
+			if flying and fly_speed == 25: flying = false
+			else:
+				flying = true
+				fly_speed = 25
+				fly_jump = 30
+		if Input.is_action_just_pressed("fly"):
+			if flying and fly_speed == 50: flying = false
+			else:
+				flying = true
+				fly_speed = 50
+				fly_jump = 60
+		elif Input.is_action_just_pressed("fly_fast"):
+			if flying and fly_speed == 100: flying = false
+			else:
+				flying = true
+				fly_speed = 100
+				fly_jump = 120
+		elif Input.is_action_just_pressed("noclip"):
+			$collider_main.disabled = !$collider_main.disabled
+			$collider_left.disabled = !$collider_left.disabled
+			$collider_right.disabled = !$collider_right.disabled
+		elif Input.is_action_just_pressed("back_to_spawn"):
+			position = $"../../map/spawn".position
+		else: debug_buffered = false
 #endregion
 
 # ============================================================
@@ -114,12 +150,16 @@ func movement(delta: float) -> void:
 	vertical_movement(delta)
 
 func move(delta: float) -> void:
+	
+	if flying: return
+	
 	var normalized_input_vector: Vector2 = input_vector.normalized()
 	var current_speed: float = Vector2(velocity.x, velocity.z).length()
 
 	# Apply air control input
 	velocity += get_rig_basis() * Vector3(normalized_input_vector.x * air_control * delta, 0, normalized_input_vector.y * air_control * delta)
-
+	
+		
 	# Deceleration
 	delta_slow += delta * 1000
 	var floored_delta_slow: float = floor(delta_slow)
@@ -136,8 +176,12 @@ func vertical_movement(delta: float) -> void:
 	gravity(delta)
 	jump(delta)
 	quick_drop()
+	if flying: flying_physics()
 
 func jump(delta: float) -> void:
+	
+	if flying: return
+	
 	if is_on_floor():
 		coyote = 0
 		if Input.is_action_pressed("jump"):
@@ -161,11 +205,25 @@ func gravity(delta: float) -> void:
 		velocity.y -= grav * delta
 		airtime += delta
 	velocity.y = clamp(velocity.y, -grav, 9999999)
+	
+	if velocity.y < max_fall_speed: velocity.y = max_fall_speed
 
 func quick_drop() -> void:
 	if Input.is_action_just_pressed("quick_drop") and !is_on_floor():
 		velocity.y = -grav / 2.0
 #endregion
+
+func flying_physics() -> void:
+	
+	get_input_vector()
+	var normalized_input_vector: Vector2 = input_vector.normalized()
+	velocity = get_rig_basis() * Vector3(normalized_input_vector.x * fly_speed, velocity.y, normalized_input_vector.y * fly_speed)
+	delta_slow = 0
+	
+	velocity.y = 0
+	if Input.is_action_pressed("jump"): velocity.y += fly_jump
+	if Input.is_action_pressed("sink"): velocity.y -= fly_jump
+
 
 # ============================================================
 # CAMERA & ROTATION
@@ -309,11 +367,11 @@ func orb_hit(area: Area3D) -> void:
 	elif area.type == "stat_jump":
 		jump_power = area.value
 	elif area.type == "fuel":
-		if fuel >= 0:
+		if debug or fuel >= 0:
 			fuel += area.value
 		else:
 			death(fuel)
-	elif area.type == "end":
+	elif area.type == "end" and type == "play":
 		if fuel >= 0:
 			death("win")
 		else:
@@ -332,8 +390,7 @@ func disable_orb(orb: Area3D) -> void:
 #region Game State
 func handle_fuel(delta: float) -> void:
 	fuel -= delta
-	if fuel < -0.25:
-		death("fuel")
+	if fuel < -0.25 and !debug: death("fuel")
 
 func handle_restart(delta: float) -> void:
 	if Input.is_action_pressed("restart"):
@@ -341,7 +398,7 @@ func handle_restart(delta: float) -> void:
 	else:
 		restart_juice = 0
 
-	if restart_juice > 0.5:
+	if restart_juice > 0.5 and type == "play":
 		root.restart()
 		restart_juice = -9999
 
@@ -391,8 +448,6 @@ func _on_update_timer_timeout() -> void:
 	# Debug Updates
 	#debug_speed.text = "Speed: " + str(snappedf(Vector2(velocity.x, velocity.z).length(), 0.1))
 	debug_fps.text = "FPS: " + str(Engine.get_frames_per_second())
-	
-	if Input.is_action_pressed("debug") or type == "editor": debug = true
 
 # ============================================================
 # UTILITY

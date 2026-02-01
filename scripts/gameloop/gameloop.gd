@@ -60,6 +60,8 @@ func restart() -> void:
 	player.jump_power = 60.0
 	
 	player.ability_list = []
+	player.debug = false
+	player.flying = false
 	
 	$sfx/hihat.play()
 	$"2nd_hihat_timer".start()

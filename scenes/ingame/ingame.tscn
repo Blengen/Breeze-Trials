@@ -13,6 +13,9 @@ script = ExtResource("1_cnm17")
 
 [node name="player" parent="." unique_id=1393978771 instance=ExtResource("3_dpktk")]
 
+[node name="body" parent="player" index="0" unique_id=1074058138]
+type = "play"
+
 [node name="sfx" type="Node" parent="." unique_id=1601465940]
 
 [node name="hihat" type="AudioStreamPlayer" parent="sfx" unique_id=197669818]

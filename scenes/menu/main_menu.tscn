@@ -63,9 +63,24 @@ theme_override_font_sizes/font_size = 250
 text = "Breeze Trials"
 horizontal_alignment = 1
 
+[node name="version" type="Label" parent="main_menu/vbox" unique_id=1297986335]
+z_index = 2
+layout_mode = 2
+mouse_filter = 0
+theme_override_colors/font_color = Color(0.73333335, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.19607843, 0.19607843, 0.19607843, 0.58431375)
+theme_override_colors/font_outline_color = Color(0.16899684, 0.40683764, 0.27268642, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 75
+text = "v0.1 WIP"
+horizontal_alignment = 1
+
 [node name="main_maps" type="Button" parent="main_menu/vbox" unique_id=71921992]
 z_index = 2
 layout_mode = 2
+focus_mode = 0
 mouse_default_cursor_shape = 2
 theme = ExtResource("2_247la")
 theme_override_colors/font_color = Color(0.59285295, 0.8405803, 0.7143255, 1)
@@ -77,6 +92,7 @@ text = "Main Maps"
 [node name="custom_maps" type="Button" parent="main_menu/vbox" unique_id=7770294]
 z_index = 2
 layout_mode = 2
+focus_mode = 0
 mouse_default_cursor_shape = 2
 theme = ExtResource("2_247la")
 theme_override_colors/font_color = Color(0.59285295, 0.8405803, 0.7143255, 1)
@@ -87,6 +103,7 @@ text = "Custom Maps"
 [node name="settings" type="Button" parent="main_menu/vbox" unique_id=92460817]
 z_index = 2
 layout_mode = 2
+focus_mode = 0
 mouse_default_cursor_shape = 2
 theme = ExtResource("2_247la")
 theme_override_colors/font_color = Color(0.59285295, 0.8405803, 0.7143255, 1)
@@ -97,6 +114,7 @@ text = "Settings"
 [node name="credits" type="Button" parent="main_menu/vbox" unique_id=1807586510]
 z_index = 2
 layout_mode = 2
+focus_mode = 0
 mouse_default_cursor_shape = 2
 theme = ExtResource("2_247la")
 theme_override_colors/font_color = Color(0.59285295, 0.8405803, 0.7143255, 1)
@@ -107,6 +125,7 @@ text = "Credits"
 [node name="quit" type="Button" parent="main_menu/vbox" unique_id=1989005677]
 z_index = 2
 layout_mode = 2
+focus_mode = 0
 mouse_default_cursor_shape = 2
 theme = ExtResource("2_247la")
 theme_override_colors/font_color = Color(0.59285295, 0.8405803, 0.7143255, 1)
@@ -178,6 +197,7 @@ item_3/icon = ExtResource("7_d4hu8")
 [node name="back" type="Button" parent="maps/vbox" unique_id=191135961]
 z_index = 5
 layout_mode = 2
+focus_mode = 0
 mouse_default_cursor_shape = 2
 theme = ExtResource("2_247la")
 theme_override_colors/font_color = Color(0.59285295, 0.8405803, 0.7143255, 1)
@@ -247,12 +267,28 @@ item_2/icon = ExtResource("7_d4hu8")
 [node name="back" type="Button" parent="custom/vbox" unique_id=261656604]
 z_index = 5
 layout_mode = 2
+focus_mode = 0
 mouse_default_cursor_shape = 2
 theme = ExtResource("2_247la")
 theme_override_colors/font_color = Color(0.59285295, 0.8405803, 0.7143255, 1)
 theme_override_constants/outline_size = 15
 theme_override_font_sizes/font_size = 100
 text = "Back"
+
+[node name="notice" type="Label" parent="custom/vbox" unique_id=444297547]
+z_index = 2
+layout_mode = 2
+mouse_filter = 0
+theme_override_colors/font_color = Color(0.73333335, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.19607843, 0.19607843, 0.19607843, 0.58431375)
+theme_override_colors/font_outline_color = Color(0.16899684, 0.40683764, 0.27268642, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 40
+text = "By sharing your maps, you are responsible for making
+sure you have permission to use your music of choice."
+horizontal_alignment = 1
 
 [node name="files" type="FileDialog" parent="custom" unique_id=3056271]
 oversampling_override = 1.0
@@ -385,6 +421,7 @@ offset_right = 681.0
 offset_bottom = -30.0
 grow_horizontal = 2
 grow_vertical = 0
+focus_mode = 0
 mouse_default_cursor_shape = 2
 theme = ExtResource("2_247la")
 theme_override_colors/font_color = Color(0.59285295, 0.8405803, 0.7143255, 1)
@@ -458,6 +495,7 @@ secret_character = ""
 
 [node name="CheckBox" type="CheckBox" parent="settings/vbox" unique_id=997255344]
 layout_mode = 2
+focus_mode = 0
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 50
 text = "V-Sync"
@@ -465,6 +503,7 @@ text = "V-Sync"
 [node name="back" type="Button" parent="settings/vbox" unique_id=1302974468]
 z_index = 5
 layout_mode = 2
+focus_mode = 0
 mouse_default_cursor_shape = 2
 theme = ExtResource("2_247la")
 theme_override_colors/font_color = Color(0.59285295, 0.8405803, 0.7143255, 1)
