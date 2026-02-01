@@ -1,9 +1,8 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bjyfv1y18bnjs"]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bjyfv1y18bnjs"]
 
 [ext_resource type="Texture2D" uid="uid://we31qepfv5rd" path="res://materials/textures/assets/brick.png" id="1_qcesu"]
 
 [resource]
-shading_mode = 2
 diffuse_mode = 3
 specular_mode = 2
 albedo_color = Color(1, 0.528, 0.52, 1)

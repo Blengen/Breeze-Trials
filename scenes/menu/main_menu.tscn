@@ -71,6 +71,7 @@ theme = ExtResource("2_247la")
 theme_override_colors/font_color = Color(0.59285295, 0.8405803, 0.7143255, 1)
 theme_override_constants/outline_size = 15
 theme_override_font_sizes/font_size = 100
+disabled = true
 text = "Main Maps"
 
 [node name="custom_maps" type="Button" parent="main_menu/vbox" unique_id=7770294]
@@ -490,5 +491,6 @@ metadata/_edit_use_anchors_ = true
 [connection signal="pressed" from="maps/vbox/back" to="." method="_maps_main"]
 [connection signal="item_clicked" from="custom/vbox/list" to="." method="_on_custom_maps_list_item_clicked"]
 [connection signal="pressed" from="custom/vbox/back" to="." method="_cm_main"]
+[connection signal="file_selected" from="custom/files" to="." method="_on_files_file_selected"]
 [connection signal="pressed" from="credits/back" to="." method="_credits_exit"]
 [connection signal="pressed" from="settings/vbox/back" to="." method="_settings_exit"]

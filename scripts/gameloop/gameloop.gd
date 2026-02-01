@@ -45,7 +45,6 @@ func restart() -> void:
 	
 	player.position = spawn.position
 	player.rotation_degrees.y = spawn.rotation_degrees.y
-	#print(spawn.rotation_degrees.y)
 	
 	
 	playing = false
@@ -62,19 +61,17 @@ func restart() -> void:
 	
 	player.ability_list = []
 	
+	$sfx/hihat.play()
+	$"2nd_hihat_timer".start()
+	
 	for node in $map/orbs.get_children():
 		node.visible = true
 		node.collider.disabled = false
-	
-func _process(delta: float) -> void:
-	hihat_juice -= delta
-	if hihat_count != 0 and hihat_count * 0.25 > hihat_juice:
-		hihat_count -= 1
-		$sfx/hihat.play()
-	
-
 
 func _on_spawn_timer_timeout() -> void:
 	playing = true
 	music.play()
 	
+
+func _on_2nd_hihat_timer_timeout() -> void:
+	$sfx/hihat.play()

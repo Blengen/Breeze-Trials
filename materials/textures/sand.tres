@@ -3,6 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://1c1vac4ost86" path="res://materials/textures/assets/sand.png" id="1_5jwam"]
 
 [resource]
+diffuse_mode = 3
+specular_mode = 2
 albedo_texture = ExtResource("1_5jwam")
 uv1_scale = Vector3(0.1, 0.1, 0.1)
 uv1_triplanar = true

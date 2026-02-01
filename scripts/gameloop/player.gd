@@ -13,10 +13,12 @@ const group: String = "player"
 @onready var root: Node3D = $"../.."
 @onready var camlock_ui: TextureRect = $"../ui/camlock"
 @onready var fuel_label: Label = $"../ui/fuel"
-@onready var fuel_vignette: TextureRect = $"../ui/vignette_fuel"
 @onready var ui_death_cover: ColorRect = $"../ui/death_ui/cover"
 @onready var debug_speed: Label = $"../ui/debug/speed"
 @onready var debug_fps: Label = $"../ui/debug/fps"
+
+@onready var vignette_fuel: TextureRect = $"../ui/vignette_fuel"
+#var vignette: ShaderMaterial = preload("res://materials/shaders/vignette.tres")
 #endregion
 
 # ============================================================
@@ -66,6 +68,8 @@ var zoom: float = 12.5
 # Rotation
 var target_angle: float = 0.0
 var offset: int = 0
+
+var debug: bool = false
 #endregion
 
 # ============================================================
@@ -73,14 +77,15 @@ var offset: int = 0
 # ============================================================
 #region Core Process
 func _ready() -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	if type == "play": Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	vignette_fuel.show()
 
 func _physics_process(delta: float) -> void:
 	if root.playing:
 		get_input_vector()
 		player_rotation(delta)
 		animation()
-		handle_fuel(delta)
+		if type == "play": handle_fuel(delta)
 		do_ability()
 		movement(delta)
 		move_and_slide()
@@ -225,23 +230,19 @@ func get_rig_basis() -> Basis:
 
 func vector2_to_deg(value: Vector2) -> int:
 	match value:
-		Vector2(0, 1):
-			return 180
-		Vector2(1, 0):
-			return 270
-		Vector2(-1, 0):
-			return 90
+		Vector2(0, 1): return 180
+		Vector2(1, 0): return 270
+		Vector2(-1, 0):return 90
 
-	if value == Vector2(1, 1).normalized():
-		return 235
-	elif value == Vector2(-1, 1).normalized():
-		return 135
-	elif value == Vector2(-1, -1).normalized():
-		return 45
-	elif value == Vector2(1, -1).normalized():
-		return 315
-
+	if value.x > 0.5 and value.y > 0.5: return 235
+	elif value.x < -0.5 and value.y > 0.5: return 135
+	elif value.x < -0.5 and value.y < -0.5: return 45
+	elif value.x > 0.5 and value.y < -0.5: return 315
+		
 	return 0
+
+
+	
 
 func find_shortest_turn() -> void:
 	# Normalize target angle to 0-360 range
@@ -351,22 +352,20 @@ func set_variables(delta: float) -> void:
 
 func death(death_type: Variant) -> void:
 	$"../ui/death_ui".visible = true
-	root.playing = false
 	$"../ui/death_ui/cover".color = Color(1.0, 1.0, 1.0, 0.75)
 	$"../cam_rig/cam/shake".shake_node = true
-	ani.stop()
 	$"../../sfx/death".play()
 	$"../../map/settings/music".stop()
-	$"../ui/vignette_fuel".modulate.a = 0
-
+	vignette_fuel.hide()
+	root.playing = false
+	ani.stop()
+	
 	if death_type is float:
 		$"../ui/death_ui/reason".text = "Late by " + str(abs(snappedf(fuel, 0.001))) + "s"
 	else:
 		match death_type:
-			"fuel":
-				$"../ui/death_ui/reason".text = "Ran out of fuel"
-			"win":
-				$"../ui/death_ui/reason".text = "GG! " + str(abs(snappedf(fuel, 0.001))) + "s left"
+			"fuel": $"../ui/death_ui/reason".text = "Ran out of fuel"
+			"win": $"../ui/death_ui/reason".text = "GG! " + str(abs(snappedf(fuel, 0.001))) + "s left"
 
 func animation() -> void:
 	if is_on_floor():
@@ -387,11 +386,13 @@ func animation() -> void:
 func _on_update_timer_timeout() -> void:
 	# UI Updates
 	fuel_label.text = str(snappedf(clamp(fuel, 0.0, 9999), 0.1))
-	fuel_vignette.modulate.a = 1 - abs(fuel * 0.333)
+	vignette_fuel.modulate.a = 1 - abs(fuel * 0.333)
 
 	# Debug Updates
-	debug_speed.text = "Speed: " + str(snappedf(Vector2(velocity.x, velocity.z).length(), 0.1))
+	#debug_speed.text = "Speed: " + str(snappedf(Vector2(velocity.x, velocity.z).length(), 0.1))
 	debug_fps.text = "FPS: " + str(Engine.get_frames_per_second())
+	
+	if Input.is_action_pressed("debug") or type == "editor": debug = true
 
 # ============================================================
 # UTILITY

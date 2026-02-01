@@ -60,8 +60,16 @@ func _on_custom_maps_list_item_clicked(index: int, _at_position: Vector2, _mouse
 	if index == 0: load_mode = "play"
 	if index == 1: load_mode = "edit"
 	if index == 2:
-		load_mode = "new"
-		# Insert thingies
+		#load_mode = "new"
+		global.selected_map = "res://scenes/map_template.tscn"
+		get_tree().change_scene_to_file("res://scenes/ingame/editor.tscn")
 		return
-	
+		
 	files.show()
+
+
+func _on_files_file_selected(path: String) -> void:
+	global.selected_map = path
+	if load_mode == "play": get_tree().change_scene_to_file("res://scenes/ingame/ingame.tscn")
+	#elif load_mode == "edit":
+	else: get_tree().change_scene_to_file("res://scenes/ingame/editor.tscn")

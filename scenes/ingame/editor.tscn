@@ -1,14 +1,16 @@
 [gd_scene format=3 uid="uid://c7fiseun6045s"]
 
-[ext_resource type="Script" uid="uid://bsee77p85qluf" path="res://scripts/gameloop/editor.gd" id="1_ba0ut"]
-[ext_resource type="PackedScene" uid="uid://weodvb5mj5gd" path="res://scenes/ingame/player.tscn" id="1_pxqd5"]
-[ext_resource type="FontFile" uid="uid://cixohe42kxmvu" path="res://themes/fonts/league_spartan_bold.ttf" id="2_ba0ut"]
+[ext_resource type="Script" uid="uid://bsee77p85qluf" path="res://scripts/gameloop/editor.gd" id="1_g4u4a"]
+[ext_resource type="PackedScene" uid="uid://weodvb5mj5gd" path="res://scenes/ingame/player.tscn" id="2_uwsws"]
+[ext_resource type="FontFile" uid="uid://cixohe42kxmvu" path="res://themes/fonts/league_spartan_bold.ttf" id="3_bfmew"]
+[ext_resource type="Texture2D" uid="uid://o7mhsfqkkcdh" path="res://images/cam_lock.png" id="4_uwsws"]
 
 [sub_resource type="Gradient" id="Gradient_pxqd5"]
-colors = PackedColorArray(0, 0.32343522, 0.081484355, 1, 0.20784314, 0.2901961, 0, 1)
+colors = PackedColorArray(5.2943824e-07, 0.5193118, 0.15212819, 1, 0.31924888, 0.43650743, 9.62615e-08, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_q68jb"]
 gradient = SubResource("Gradient_pxqd5")
+width = 20
 
 [sub_resource type="Gradient" id="Gradient_xg7d5"]
 offsets = PackedFloat32Array(0, 0.48, 1)
@@ -35,13 +37,16 @@ expand_margin_right = 5.0
 anti_aliasing = false
 
 [node name="root" type="Node3D" unique_id=469681779]
-script = ExtResource("1_ba0ut")
+script = ExtResource("1_g4u4a")
 
-[node name="player" parent="." unique_id=1257681076 instance=ExtResource("1_pxqd5")]
+[node name="player" parent="." unique_id=1257681076 instance=ExtResource("2_uwsws")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 0)
 
 [node name="body" parent="player" index="0" unique_id=1074058138]
 type = "editor"
+
+[node name="ui" parent="player" index="2" unique_id=775674146]
+visible = false
 
 [node name="ui" type="Control" parent="." unique_id=1033926218]
 layout_mode = 3
@@ -50,6 +55,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="top_bar" type="Control" parent="ui" unique_id=1850166459]
 layout_mode = 1
@@ -80,16 +86,18 @@ offset_bottom = 60.0
 
 [node name="1" type="Button" parent="ui/top_bar/items_left" unique_id=1205695188]
 layout_mode = 2
+focus_mode = 1
 theme_override_constants/outline_size = 2
-theme_override_fonts/font = ExtResource("2_ba0ut")
+theme_override_fonts/font = ExtResource("3_bfmew")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_5lcyj")
 text = "Add Cube"
 
 [node name="2" type="Button" parent="ui/top_bar/items_left" unique_id=963695540]
 layout_mode = 2
+focus_mode = 1
 theme_override_constants/outline_size = 2
-theme_override_fonts/font = ExtResource("2_ba0ut")
+theme_override_fonts/font = ExtResource("3_bfmew")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_5lcyj")
 text = "Add Other"
@@ -106,11 +114,23 @@ grow_horizontal = 2
 
 [node name="1" type="Button" parent="ui/top_bar/items_middle" unique_id=444796145]
 layout_mode = 2
+focus_mode = 1
 theme_override_constants/outline_size = 2
-theme_override_fonts/font = ExtResource("2_ba0ut")
+theme_override_fonts/font = ExtResource("3_bfmew")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_5lcyj")
 text = "Show Properties"
+
+[node name="2" type="Button" parent="ui/top_bar/items_middle" unique_id=1904607853]
+layout_mode = 2
+focus_mode = 1
+theme_override_constants/outline_size = 2
+theme_override_constants/icon_max_width = 40
+theme_override_fonts/font = ExtResource("3_bfmew")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_5lcyj")
+text = "Lock Cursor"
+icon = ExtResource("4_uwsws")
 
 [node name="items_right" type="HBoxContainer" parent="ui/top_bar" unique_id=406293966]
 layout_mode = 1
@@ -123,18 +143,37 @@ grow_horizontal = 0
 
 [node name="1" type="Button" parent="ui/top_bar/items_right" unique_id=750758883]
 layout_mode = 2
+focus_mode = 1
 theme_override_constants/outline_size = 2
-theme_override_fonts/font = ExtResource("2_ba0ut")
+theme_override_fonts/font = ExtResource("3_bfmew")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_5lcyj")
-text = "Save Project"
+text = "Save"
 
 [node name="2" type="Button" parent="ui/top_bar/items_right" unique_id=1987703931]
 layout_mode = 2
+focus_mode = 1
 theme_override_constants/outline_size = 2
-theme_override_fonts/font = ExtResource("2_ba0ut")
+theme_override_fonts/font = ExtResource("3_bfmew")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_5lcyj")
-text = "Load Project"
+text = "Playtest"
+
+[node name="3" type="Button" parent="ui/top_bar/items_right" unique_id=1578248655]
+layout_mode = 2
+focus_mode = 1
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("3_bfmew")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_5lcyj")
+text = "Exit"
+
+[connection signal="focus_entered" from="ui/top_bar/items_left/1" to="." method="_unfocus"]
+[connection signal="focus_entered" from="ui/top_bar/items_left/2" to="." method="_unfocus"]
+[connection signal="focus_entered" from="ui/top_bar/items_middle/1" to="." method="_unfocus"]
+[connection signal="focus_entered" from="ui/top_bar/items_middle/2" to="." method="_unfocus"]
+[connection signal="focus_entered" from="ui/top_bar/items_right/1" to="." method="_unfocus"]
+[connection signal="focus_entered" from="ui/top_bar/items_right/2" to="." method="_unfocus"]
+[connection signal="focus_entered" from="ui/top_bar/items_right/3" to="." method="_unfocus"]
 
 [editable path="player"]

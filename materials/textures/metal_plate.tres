@@ -3,6 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://btqqsusxqkbic" path="res://materials/textures/assets/metal_plate.png" id="1_77nnl"]
 
 [resource]
+diffuse_mode = 3
+specular_mode = 2
 albedo_color = Color(0.5330367, 0.5330367, 0.5330366, 1)
 albedo_texture = ExtResource("1_77nnl")
 uv1_scale = Vector3(0.4, 0.4, 0.4)

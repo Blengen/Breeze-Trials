@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://o7mhsfqkkcdh" path="res://images/cam_lock.png" id="8_say45"]
 [ext_resource type="FontFile" uid="uid://cixohe42kxmvu" path="res://themes/fonts/league_spartan_bold.ttf" id="9_e4dxj"]
 [ext_resource type="StyleBox" uid="uid://ck7h6pvkjopdi" path="res://themes/fuel.tres" id="11_bcjk2"]
-[ext_resource type="Texture2D" uid="uid://bra3hwb1lnjvu" path="res://images/vignette.png" id="11_vsqks"]
+[ext_resource type="Texture2D" uid="uid://bra3hwb1lnjvu" path="res://images/vignette.png" id="12_bcjk2"]
 [ext_resource type="StyleBox" uid="uid://xlsjm0sl4uam" path="res://themes/debug.tres" id="12_uolup"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_80fua"]
@@ -909,7 +909,7 @@ size = Vector3(0.1, 0.1, 8)
 [node name="player" type="Node3D" unique_id=325942831]
 
 [node name="body" type="CharacterBody3D" parent="." unique_id=1074058138]
-wall_min_slide_angle = 0.017453292
+wall_min_slide_angle = 0.0
 floor_constant_speed = true
 script = ExtResource("1_scncy")
 
@@ -1054,9 +1054,11 @@ theme_override_styles/normal = ExtResource("11_bcjk2")
 text = "10.0"
 horizontal_alignment = 1
 
-[node name="vignette_fuel" type="TextureRect" parent="ui" unique_id=593084209]
+[node name="vignette_fuel" type="TextureRect" parent="ui" unique_id=1172075527]
 visible = false
-modulate = Color(0.30110535, 1.714658e-07, 2.4065375e-08, 0)
+modulate = Color(0.53986263, 1.0348111e-06, 2.8878452e-07, 1)
+z_index = 50
+z_as_relative = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1064,7 +1066,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("11_vsqks")
+texture = ExtResource("12_bcjk2")
 
 [node name="death_ui" type="Control" parent="ui" unique_id=73713722]
 visible = false
