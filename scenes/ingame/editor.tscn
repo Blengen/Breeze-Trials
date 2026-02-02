@@ -120,7 +120,16 @@ theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_5lcyj")
 text = "Show Properties"
 
-[node name="2" type="Button" parent="ui/top_bar/items_middle" unique_id=1904607853]
+[node name="2" type="Button" parent="ui/top_bar/items_middle" unique_id=482374375]
+layout_mode = 2
+focus_mode = 0
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("3_bfmew")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_5lcyj")
+text = "Map Settings"
+
+[node name="3" type="Button" parent="ui/top_bar/items_middle" unique_id=1904607853]
 layout_mode = 2
 focus_mode = 0
 theme_override_constants/outline_size = 2
