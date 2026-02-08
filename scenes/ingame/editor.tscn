@@ -19,22 +19,33 @@ colors = PackedColorArray(0, 0.16470589, 0, 1, 0.099429525, 0.21266606, 0.132569
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_eqbpn"]
 gradient = SubResource("Gradient_xg7d5")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5lcyj"]
-bg_color = Color(0.1335352, 0.28513026, 0.17816582, 1)
-border_width_left = 10
-border_width_top = 10
-border_width_right = 10
-border_width_bottom = 10
-border_color = Color(0, 0, 0, 0)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-corner_detail = 3
-expand_margin_left = 5.0
-expand_margin_top = 5.0
-expand_margin_right = 5.0
-anti_aliasing = false
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uwsws"]
+bg_color = Color(0.16468778, 0.39063218, 0.04004392, 1)
+draw_center = false
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fpa18"]
+bg_color = Color(0.11686418, 0.29418546, 0.02232829, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bfmew"]
+bg_color = Color(0.16470589, 0.39215687, 0.039215688, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_detail = 1
 
 [node name="root" type="Node3D" unique_id=469681779]
 script = ExtResource("1_g4u4a")
@@ -89,7 +100,9 @@ focus_mode = 0
 theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("3_bfmew")
 theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_5lcyj")
+theme_override_styles/normal = SubResource("StyleBoxFlat_uwsws")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fpa18")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bfmew")
 text = "Add Cube"
 
 [node name="2" type="Button" parent="ui/top_bar/items_left" unique_id=963695540]
@@ -98,7 +111,8 @@ focus_mode = 0
 theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("3_bfmew")
 theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_5lcyj")
+theme_override_styles/normal = SubResource("StyleBoxFlat_uwsws")
+theme_override_styles/hover = SubResource("StyleBoxFlat_uwsws")
 text = "Add Other"
 
 [node name="items_middle" type="HBoxContainer" parent="ui/top_bar" unique_id=354623542]
@@ -117,7 +131,9 @@ focus_mode = 0
 theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("3_bfmew")
 theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_5lcyj")
+theme_override_styles/normal = SubResource("StyleBoxFlat_uwsws")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fpa18")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bfmew")
 text = "Show Properties"
 
 [node name="2" type="Button" parent="ui/top_bar/items_middle" unique_id=482374375]
@@ -126,7 +142,8 @@ focus_mode = 0
 theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("3_bfmew")
 theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_5lcyj")
+theme_override_styles/normal = SubResource("StyleBoxFlat_uwsws")
+theme_override_styles/hover = SubResource("StyleBoxFlat_uwsws")
 text = "Map Settings"
 
 [node name="3" type="Button" parent="ui/top_bar/items_middle" unique_id=1904607853]
@@ -136,7 +153,8 @@ theme_override_constants/outline_size = 2
 theme_override_constants/icon_max_width = 40
 theme_override_fonts/font = ExtResource("3_bfmew")
 theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_5lcyj")
+theme_override_styles/normal = SubResource("StyleBoxFlat_uwsws")
+theme_override_styles/hover = SubResource("StyleBoxFlat_uwsws")
 text = "Lock Cursor"
 icon = ExtResource("4_uwsws")
 
@@ -155,7 +173,8 @@ focus_mode = 0
 theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("3_bfmew")
 theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_5lcyj")
+theme_override_styles/normal = SubResource("StyleBoxFlat_uwsws")
+theme_override_styles/hover = SubResource("StyleBoxFlat_uwsws")
 text = "Save"
 
 [node name="2" type="Button" parent="ui/top_bar/items_right" unique_id=1987703931]
@@ -164,7 +183,8 @@ focus_mode = 0
 theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("3_bfmew")
 theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_5lcyj")
+theme_override_styles/normal = SubResource("StyleBoxFlat_uwsws")
+theme_override_styles/hover = SubResource("StyleBoxFlat_uwsws")
 text = "Playtest"
 
 [node name="3" type="Button" parent="ui/top_bar/items_right" unique_id=1578248655]
@@ -173,7 +193,8 @@ focus_mode = 0
 theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("3_bfmew")
 theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_5lcyj")
+theme_override_styles/normal = SubResource("StyleBoxFlat_uwsws")
+theme_override_styles/hover = SubResource("StyleBoxFlat_uwsws")
 text = "Exit"
 
 [connection signal="pressed" from="ui/top_bar/items_left/1" to="." method="_on_add_cube_pressed"]

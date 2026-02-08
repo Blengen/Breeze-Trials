@@ -15,6 +15,8 @@ var playing: bool = false
 var hihat_juice: float = -1 # Acts like a timer for hihats. When it crosses a threshold, the audio plays.
 var hihat_count: int = -1
 
+var music_dir: String = "res://scenes/Whimsical Ahh Belenge beat.mp3"
+
 #var type_player: bool = true
 
 func fix_variables() -> void:
@@ -28,9 +30,14 @@ func fix_variables() -> void:
 	death_ui = $player/ui/death_ui
 	spawn_timer = $spawn_timer
 
+func get_song() -> void:
+	music_dir = global.selected_map.get_base_dir().path_join(settings.song_file)
+	music.stream = load(music_dir)
+
 func _ready() -> void:
 	add_child(load(global.selected_map).instantiate())
 	fix_variables()
+	get_song()
 	restart()
 	
 

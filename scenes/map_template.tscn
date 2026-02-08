@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://5cesnqa6khps"]
 
 [ext_resource type="Script" uid="uid://cr2dgvo33htij" path="res://scripts/gameloop/map_settings.gd" id="1_vvwyf"]
-[ext_resource type="AudioStream" uid="uid://bw60ieetwjgvg" path="res://audio/map_music/Whimsical Ahh Belenge beat.mp3" id="2_24haj"]
+[ext_resource type="AudioStream" uid="uid://bw60ieetwjgvg" path="res://scenes/Whimsical Ahh Belenge beat.mp3" id="2_24haj"]
 [ext_resource type="Texture2D" uid="uid://drfcef03hc8mr" path="res://images/skies/pink_sunset.png" id="3_fjhfp"]
 [ext_resource type="Material" uid="uid://do6njjm35omxb" path="res://materials/textures/grass.tres" id="4_xd6eh"]
+
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_eukwx"]
 panorama = ExtResource("3_fjhfp")

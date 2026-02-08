@@ -8,7 +8,6 @@
 [ext_resource type="Material" uid="uid://bjyfv1y18bnjs" path="res://materials/textures/brick.tres" id="6_36mki"]
 [ext_resource type="Material" uid="uid://dh8rk450440bi" path="res://materials/textures/metal_plate.tres" id="7_o5gif"]
 [ext_resource type="Material" uid="uid://ojolesk2qori" path="res://materials/transparent.tres" id="8_36mki"]
-[ext_resource type="AudioStream" uid="uid://bw60ieetwjgvg" path="res://audio/map_music/Whimsical Ahh Belenge beat.mp3" id="8_pw728"]
 [ext_resource type="Material" uid="uid://bdbw3v14jkbli" path="res://materials/textures/wood_rough.tres" id="9_4mr4y"]
 [ext_resource type="Texture2D" uid="uid://bycnoo1e8w5ve" path="res://materials/textures/assets/grass.jpg" id="10_36mki"]
 [ext_resource type="Material" uid="uid://qcoxisoe1yse" path="res://materials/textures/stone_brick.tres" id="10_o5gif"]
@@ -67,13 +66,10 @@ adjustment_enabled = true
 adjustment_contrast = 1.1
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pw728"]
-load_path = "res://.godot/imported/1.png-34b2f09f60fd0522e92494889bfba6eb.s3tc.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6gsqv"]
-load_path = "res://.godot/imported/2.png-6a635633e0d870b01763289cce0a1968.s3tc.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_u56q5"]
-load_path = "res://.godot/imported/3.png-7e7a96d33e4d9fcfaa996d6d7a6847fd.s3tc.ctex"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o5gif"]
 albedo_texture = ExtResource("10_36mki")
@@ -91,7 +87,6 @@ script = ExtResource("1_34ald")
 fuel = 5.0
 
 [node name="music" type="AudioStreamPlayer" parent="settings" unique_id=2103185888]
-stream = ExtResource("8_pw728")
 volume_db = -5.0
 
 [node name="light" type="DirectionalLight3D" parent="settings" unique_id=317809873]
