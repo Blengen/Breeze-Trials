@@ -31,8 +31,11 @@ func fix_variables() -> void:
 	spawn_timer = $spawn_timer
 
 func get_song() -> void:
-	music_dir = global.selected_map.get_base_dir().path_join(settings.song_file)
-	music.stream = load(music_dir)
+	music_dir = global.selected_map.get_base_dir().path_join(settings.music_file)
+	if music_dir != global.selected_map.get_base_dir() + "/": music.stream = load(music_dir)
+	
+	music.volume_linear = 1.0
+	music.volume_linear *= (settings.music_volume / 100.0) * (global.music_volume / 100.0)
 
 func _ready() -> void:
 	add_child(load(global.selected_map).instantiate())
@@ -46,6 +49,7 @@ func restart() -> void:
 	hihat_count = 2
 	music.stop()
 	spawn_timer.start()
+	$"player/ui/vignette_fuel".show()
 	
 	
 	# RESET PLAYER VARIABLES #

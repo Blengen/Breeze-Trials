@@ -12,8 +12,10 @@
 [ext_resource type="Texture2D" uid="uid://r8sxn1yp2etk" path="res://images/difficulties/unknown.png" id="7_d4hu8"]
 [ext_resource type="Texture2D" uid="uid://bs2tavlqjv86f" path="res://images/difficulties/hard.png" id="7_p1nwe"]
 [ext_resource type="Texture2D" uid="uid://dg25ddk3nfee7" path="res://images/difficulties/legendary.png" id="8_prbor"]
+[ext_resource type="Script" uid="uid://bl21uuma35gwr" path="res://scripts/settings_menu.gd" id="12_p1nwe"]
 
 [node name="menu" type="Control" unique_id=681409378]
+z_as_relative = false
 layout_mode = 3
 anchors_preset = 0
 mouse_filter = 2
@@ -21,6 +23,7 @@ script = ExtResource("1_247la")
 
 [node name="main_menu" type="TextureRect" parent="." unique_id=70350032]
 z_index = -99
+z_as_relative = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,6 +36,7 @@ mouse_filter = 0
 texture = ExtResource("2_hj162")
 
 [node name="vbox" type="VBoxContainer" parent="main_menu" unique_id=2071970611]
+z_as_relative = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -51,6 +55,7 @@ alignment = 1
 
 [node name="title" type="Label" parent="main_menu/vbox" unique_id=253568751]
 z_index = 2
+z_as_relative = false
 layout_mode = 2
 mouse_filter = 0
 theme_override_colors/font_color = Color(0.73333335, 1, 1, 1)
@@ -65,6 +70,7 @@ horizontal_alignment = 1
 
 [node name="version" type="Label" parent="main_menu/vbox" unique_id=1297986335]
 z_index = 2
+z_as_relative = false
 layout_mode = 2
 mouse_filter = 0
 theme_override_colors/font_color = Color(0.73333335, 1, 1, 1)
@@ -79,6 +85,7 @@ horizontal_alignment = 1
 
 [node name="main_maps" type="Button" parent="main_menu/vbox" unique_id=71921992]
 z_index = 2
+z_as_relative = false
 layout_mode = 2
 focus_mode = 0
 mouse_default_cursor_shape = 2
@@ -91,6 +98,7 @@ text = "Main Maps"
 
 [node name="custom_maps" type="Button" parent="main_menu/vbox" unique_id=7770294]
 z_index = 2
+z_as_relative = false
 layout_mode = 2
 focus_mode = 0
 mouse_default_cursor_shape = 2
@@ -102,6 +110,7 @@ text = "Custom Maps"
 
 [node name="settings" type="Button" parent="main_menu/vbox" unique_id=92460817]
 z_index = 2
+z_as_relative = false
 layout_mode = 2
 focus_mode = 0
 mouse_default_cursor_shape = 2
@@ -113,6 +122,7 @@ text = "Settings"
 
 [node name="credits" type="Button" parent="main_menu/vbox" unique_id=1807586510]
 z_index = 2
+z_as_relative = false
 layout_mode = 2
 focus_mode = 0
 mouse_default_cursor_shape = 2
@@ -124,6 +134,7 @@ text = "Credits"
 
 [node name="quit" type="Button" parent="main_menu/vbox" unique_id=1989005677]
 z_index = 2
+z_as_relative = false
 layout_mode = 2
 focus_mode = 0
 mouse_default_cursor_shape = 2
@@ -136,6 +147,7 @@ text = "Quit"
 [node name="maps" type="TextureRect" parent="." unique_id=476587427]
 visible = false
 z_index = -99
+z_as_relative = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -148,6 +160,7 @@ mouse_filter = 0
 texture = ExtResource("5_bbqo6")
 
 [node name="vbox" type="VBoxContainer" parent="maps" unique_id=1370541722]
+z_as_relative = false
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
@@ -163,6 +176,7 @@ alignment = 1
 
 [node name="title" type="Label" parent="maps/vbox" unique_id=1650658268]
 z_index = 2
+z_as_relative = false
 layout_mode = 2
 size_flags_vertical = 1
 mouse_filter = 0
@@ -177,6 +191,7 @@ text = "Main maps"
 horizontal_alignment = 1
 
 [node name="list" type="ItemList" parent="maps/vbox" unique_id=995269782]
+z_as_relative = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -196,6 +211,7 @@ item_3/icon = ExtResource("7_d4hu8")
 
 [node name="back" type="Button" parent="maps/vbox" unique_id=191135961]
 z_index = 5
+z_as_relative = false
 layout_mode = 2
 focus_mode = 0
 mouse_default_cursor_shape = 2
@@ -208,6 +224,7 @@ text = "Back"
 [node name="custom" type="TextureRect" parent="." unique_id=1593867107]
 visible = false
 z_index = -99
+z_as_relative = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -220,6 +237,7 @@ mouse_filter = 0
 texture = ExtResource("5_1k4da")
 
 [node name="vbox" type="VBoxContainer" parent="custom" unique_id=1908760605]
+z_as_relative = false
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
@@ -235,6 +253,7 @@ alignment = 1
 
 [node name="title" type="Label" parent="custom/vbox" unique_id=753691692]
 z_index = 2
+z_as_relative = false
 layout_mode = 2
 size_flags_vertical = 1
 mouse_filter = 0
@@ -249,6 +268,7 @@ text = "Custom Maps"
 horizontal_alignment = 1
 
 [node name="list" type="ItemList" parent="custom/vbox" unique_id=248733751]
+z_as_relative = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -266,6 +286,7 @@ item_2/icon = ExtResource("7_d4hu8")
 
 [node name="back" type="Button" parent="custom/vbox" unique_id=261656604]
 z_index = 5
+z_as_relative = false
 layout_mode = 2
 focus_mode = 0
 mouse_default_cursor_shape = 2
@@ -277,6 +298,7 @@ text = "Back"
 
 [node name="notice" type="Label" parent="custom/vbox" unique_id=444297547]
 z_index = 2
+z_as_relative = false
 layout_mode = 2
 mouse_filter = 0
 theme_override_colors/font_color = Color(0.73333335, 1, 1, 1)
@@ -307,6 +329,7 @@ file_filter_toggle_enabled = false
 [node name="credits" type="TextureRect" parent="." unique_id=590577484]
 visible = false
 z_index = -100
+z_as_relative = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -432,6 +455,7 @@ text = "Back"
 [node name="settings" type="TextureRect" parent="." unique_id=2102410986]
 visible = false
 z_index = -100
+z_as_relative = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -442,22 +466,43 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 0
 texture = ExtResource("6_xn6kt")
+script = ExtResource("12_p1nwe")
 
-[node name="vbox" type="VBoxContainer" parent="settings" unique_id=1790245783]
+[node name="back" type="Button" parent="settings" unique_id=1302974468]
+z_index = 2
+z_as_relative = false
+layout_mode = 0
+offset_left = 512.0
+offset_top = 950.0
+offset_right = 1408.0
+offset_bottom = 1058.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_247la")
+theme_override_colors/font_color = Color(0.59285295, 0.8405803, 0.7143255, 1)
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 100
+text = "Back"
+
+[node name="scroll_box" type="ScrollContainer" parent="settings" unique_id=241147661]
+z_as_relative = false
 layout_mode = 1
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -448.0
-offset_right = 448.0
+offset_left = 516.0
+offset_right = -492.0
+offset_bottom = -134.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 0
+
+[node name="vbox" type="VBoxContainer" parent="settings/scroll_box" unique_id=1790245783]
+z_as_relative = false
+layout_mode = 2
 theme = ExtResource("2_247la")
 alignment = 1
 
-[node name="title" type="Label" parent="settings/vbox" unique_id=33270713]
+[node name="title" type="Label" parent="settings/scroll_box/vbox" unique_id=33270713]
 layout_mode = 2
 mouse_filter = 0
 theme_override_colors/font_color = Color(0.9946844, 0.6768414, 0.5794238, 1)
@@ -470,7 +515,20 @@ theme_override_font_sizes/font_size = 250
 text = "Settings"
 horizontal_alignment = 1
 
-[node name="sens" type="Label" parent="settings/vbox" unique_id=394518823]
+[node name="controls" type="Label" parent="settings/scroll_box/vbox" unique_id=42644232]
+layout_mode = 2
+mouse_filter = 0
+theme_override_colors/font_color = Color(0.9946844, 0.6768414, 0.5794238, 1)
+theme_override_colors/font_shadow_color = Color(0.19607843, 0.19607843, 0.19607843, 0.58431375)
+theme_override_colors/font_outline_color = Color(0.67829865, 0.3635711, 0.3214071, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 125
+text = "Controls"
+horizontal_alignment = 1
+
+[node name="sens" type="Label" parent="settings/scroll_box/vbox" unique_id=394518823]
 layout_mode = 2
 mouse_filter = 0
 theme_override_colors/font_color = Color(0.99668926, 0.7210396, 0.63583964, 1)
@@ -482,8 +540,9 @@ theme_override_font_sizes/font_size = 50
 text = "Sensitivity"
 horizontal_alignment = 1
 
-[node name="sens_box" type="LineEdit" parent="settings/vbox" unique_id=1389611533]
+[node name="sens_box" type="LineEdit" parent="settings/scroll_box/vbox" unique_id=1389611533]
 layout_mode = 2
+tooltip_text = "Measured in degrees per pixel, meaning if sens = 1, then moving your mouse one pixel moves the camera one degree."
 theme_override_font_sizes/font_size = 35
 placeholder_text = "Default: 0.1"
 alignment = 1
@@ -493,27 +552,106 @@ shortcut_keys_enabled = false
 virtual_keyboard_type = 3
 secret_character = ""
 
-[node name="CheckBox" type="CheckBox" parent="settings/vbox" unique_id=997255344]
+[node name="audio" type="Label" parent="settings/scroll_box/vbox" unique_id=90423002]
 layout_mode = 2
-focus_mode = 0
+mouse_filter = 0
+theme_override_colors/font_color = Color(0.9946844, 0.6768414, 0.5794238, 1)
+theme_override_colors/font_shadow_color = Color(0.19607843, 0.19607843, 0.19607843, 0.58431375)
+theme_override_colors/font_outline_color = Color(0.67829865, 0.3635711, 0.3214071, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 125
+text = "Audio"
+horizontal_alignment = 1
+
+[node name="music_volume" type="Label" parent="settings/scroll_box/vbox" unique_id=1461999053]
+layout_mode = 2
+mouse_filter = 0
+theme_override_colors/font_color = Color(0.99668926, 0.7210396, 0.63583964, 1)
+theme_override_colors/font_shadow_color = Color(0.19607843, 0.19607843, 0.19607843, 0.58431375)
+theme_override_colors/font_outline_color = Color(0.67829865, 0.3635711, 0.3214071, 1)
+theme_override_constants/shadow_offset_y = 5
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 50
-text = "V-Sync"
+text = "Music Volume"
+horizontal_alignment = 1
 
-[node name="back" type="Button" parent="settings/vbox" unique_id=1302974468]
-z_index = 5
+[node name="music_volume_slider" type="HSlider" parent="settings/scroll_box/vbox" unique_id=1115378861]
 layout_mode = 2
-focus_mode = 0
-mouse_default_cursor_shape = 2
-theme = ExtResource("2_247la")
-theme_override_colors/font_color = Color(0.59285295, 0.8405803, 0.7143255, 1)
-theme_override_constants/outline_size = 15
-theme_override_font_sizes/font_size = 100
-text = "Back"
+tooltip_text = "Middle is 100%. Anything over that can may traumatize your ears .-.
+Note: Godot works with decibels, so conversion may not be perfect."
+max_value = 200.0
+step = 5.0
+value = 100.0
+rounded = true
+tick_count = 41
+
+[node name="visuals" type="Label" parent="settings/scroll_box/vbox" unique_id=933821150]
+layout_mode = 2
+mouse_filter = 0
+theme_override_colors/font_color = Color(0.9946844, 0.6768414, 0.5794238, 1)
+theme_override_colors/font_shadow_color = Color(0.19607843, 0.19607843, 0.19607843, 0.58431375)
+theme_override_colors/font_outline_color = Color(0.67829865, 0.3635711, 0.3214071, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 125
+text = "Visuals"
+horizontal_alignment = 1
+
+[node name="fps_cap" type="Label" parent="settings/scroll_box/vbox" unique_id=620375972]
+layout_mode = 2
+mouse_filter = 0
+theme_override_colors/font_color = Color(0.99668926, 0.7210396, 0.63583964, 1)
+theme_override_colors/font_shadow_color = Color(0.19607843, 0.19607843, 0.19607843, 0.58431375)
+theme_override_colors/font_outline_color = Color(0.67829865, 0.3635711, 0.3214071, 1)
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 50
+text = "FPS Cap"
+horizontal_alignment = 1
+
+[node name="fps_cap_box" type="LineEdit" parent="settings/scroll_box/vbox" unique_id=508210304]
+layout_mode = 2
+tooltip_text = "Set to your monitors refresh rate to get VSync."
+theme_override_font_sizes/font_size = 35
+placeholder_text = "0 for uncapped FPS"
+alignment = 1
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+virtual_keyboard_type = 3
+secret_character = ""
+
+[node name="fov" type="Label" parent="settings/scroll_box/vbox" unique_id=517963361]
+layout_mode = 2
+mouse_filter = 0
+theme_override_colors/font_color = Color(0.99668926, 0.7210396, 0.63583964, 1)
+theme_override_colors/font_shadow_color = Color(0.19607843, 0.19607843, 0.19607843, 0.58431375)
+theme_override_colors/font_outline_color = Color(0.67829865, 0.3635711, 0.3214071, 1)
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 50
+text = "FOV (Field of Vision/View)"
+horizontal_alignment = 1
+
+[node name="fov_box" type="LineEdit" parent="settings/scroll_box/vbox" unique_id=2130817112]
+layout_mode = 2
+tooltip_text = "Set to your monitors refresh rate to get VSync."
+theme_override_font_sizes/font_size = 35
+placeholder_text = "Default: 90"
+alignment = 1
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+virtual_keyboard_type = 3
+secret_character = ""
 
 [node name="vignette" type="TextureRect" parent="." unique_id=2044094381]
 modulate = Color(0, 0, 0, 0.5882353)
 z_index = 1
+z_as_relative = false
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
@@ -532,4 +670,8 @@ metadata/_edit_use_anchors_ = true
 [connection signal="pressed" from="custom/vbox/back" to="." method="_cm_main"]
 [connection signal="file_selected" from="custom/files" to="." method="_on_files_file_selected"]
 [connection signal="pressed" from="credits/back" to="." method="_credits_exit"]
-[connection signal="pressed" from="settings/vbox/back" to="." method="_settings_exit"]
+[connection signal="pressed" from="settings/back" to="." method="_settings_exit"]
+[connection signal="text_changed" from="settings/scroll_box/vbox/sens_box" to="settings" method="_on_sens_box_text_changed"]
+[connection signal="value_changed" from="settings/scroll_box/vbox/music_volume_slider" to="settings" method="_on_music_volume_slider_value_changed"]
+[connection signal="text_changed" from="settings/scroll_box/vbox/fps_cap_box" to="settings" method="_on_fps_cap_box_text_changed"]
+[connection signal="text_changed" from="settings/scroll_box/vbox/fov_box" to="settings" method="_on_fov_box_text_changed"]

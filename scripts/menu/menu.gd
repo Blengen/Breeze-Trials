@@ -41,7 +41,9 @@ func menu(new: Node) -> void:
 # From Main Menu
 func _main_maps() -> void: menu(maps)
 func _main_custom() -> void: menu(custom)
-func _main_settings() -> void: menu(settings)
+func _main_settings() -> void:
+	menu(settings)
+	$settings.load_settings_in_boxes()
 func _main_credits() -> void: menu(credits)
 func _main_quit() -> void: get_tree().quit()
 
@@ -69,6 +71,7 @@ func _on_custom_maps_list_item_clicked(index: int, _at_position: Vector2, _mouse
 
 
 func _on_files_file_selected(path: String) -> void:
+	if not path.ends_with(".tscn"): return
 	global.selected_map = path
 	if load_mode == "play": get_tree().change_scene_to_file("res://scenes/ingame/ingame.tscn")
 	#elif load_mode == "edit":

@@ -29,7 +29,10 @@ func _ready() -> void:
 
 func _on_add_cube_pressed() -> void:
 	var cube_instance: CSGBox3D = cube.instantiate()
-	cube_instance.position = player.position + Vector3(0, 0, -5)
-	cube_instance.position = snapped(cube_instance.position, Vector3(0.25, 0.25, 0.25))
+	cube_instance.position = player.position + Vector3(0, -1, -5)
+	cube_instance.position = snapped(cube_instance.position, Vector3(1, 1, 1))
 	cube_instance.size = Vector3(3, 3, 3)
 	map.add_child(cube_instance)
+	
+func _unhandled_input(event: InputEvent) -> void:
+	pass

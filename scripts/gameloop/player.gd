@@ -76,7 +76,6 @@ var debug: bool = false
 var flying: bool = false
 var fly_speed: int = 50
 var fly_jump: int = 60
-var debug_buffered: bool = false
 #endregion
 
 # ============================================================
@@ -131,13 +130,24 @@ func _unhandled_input(event: InputEvent) -> void:
 				flying = true
 				fly_speed = 100
 				fly_jump = 120
-		elif Input.is_action_just_pressed("noclip"):
-			$collider_main.disabled = !$collider_main.disabled
-			$collider_left.disabled = !$collider_left.disabled
-			$collider_right.disabled = !$collider_right.disabled
+	
 		elif Input.is_action_just_pressed("back_to_spawn"):
 			position = $"../../map/spawn".position
-		else: debug_buffered = false
+			
+		if flying: noclip(true)
+		else: noclip(false)			
+			
+		
+func noclip(value: bool) -> void:
+	if value:
+		$collider_main.disabled = true
+		$collider_left.disabled = true
+		$collider_right.disabled = true
+	else:
+		$collider_main.disabled = false
+		$collider_left.disabled = false
+		$collider_right.disabled = false
+	
 #endregion
 
 # ============================================================

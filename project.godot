@@ -161,6 +161,8 @@ sink={
 [physics]
 
 common/physics_ticks_per_second=165
+common/max_physics_steps_per_frame=100
+common/physics_jitter_fix=0.0
 
 [rendering]
 

@@ -84,6 +84,7 @@ uv1_triplanar = true
 
 [node name="settings" type="Node" parent="." unique_id=932642946]
 script = ExtResource("1_34ald")
+music_file = "Whimsical Ahh Belenge Beat.mp3"
 fuel = 5.0
 
 [node name="music" type="AudioStreamPlayer" parent="settings" unique_id=2103185888]
