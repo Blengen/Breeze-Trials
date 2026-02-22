@@ -37,11 +37,18 @@ func get_song() -> void:
 	music.volume_linear = 1.0
 	music.volume_linear *= (settings.music_volume / 100.0) * (global.music_volume / 100.0)
 
+func fix_pause_menu() -> void:
+	$pause_menu/VBoxContainer/music.text = "Music: " + settings.music_name
+	$pause_menu/VBoxContainer/composer.text = "By " + settings.composer
+	$pause_menu/VBoxContainer/license.text = "License: " + settings.license
+
 func _ready() -> void:
 	add_child(load(global.selected_map).instantiate())
 	fix_variables()
 	get_song()
+	fix_pause_menu()
 	restart()
+	
 	
 
 func restart() -> void:

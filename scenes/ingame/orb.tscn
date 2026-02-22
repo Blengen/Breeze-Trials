@@ -5,7 +5,7 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_u70sm"]
 
-[node name="orb" type="Area3D" unique_id=168920587]
+[node name="orb" type="Area3D" unique_id=168920587 groups=["orb"]]
 editor_description = "orb"
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 script = ExtResource("1_sdddm")
@@ -13,11 +13,12 @@ script = ExtResource("1_sdddm")
 [node name="collider" type="CollisionShape3D" parent="." unique_id=1222115818]
 shape = SubResource("SphereShape3D_u70sm")
 
-[node name="icon" type="Sprite3D" parent="." unique_id=1254964751]
+[node name="sprite" type="Sprite3D" parent="." unique_id=1254964751]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 cast_shadow = 0
 billboard = 1
 shaded = true
+render_priority = 10
 texture = ExtResource("2_02j23")
 
 [node name="timer" type="Timer" parent="." unique_id=1600799431]

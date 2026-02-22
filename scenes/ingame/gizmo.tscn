@@ -1,0 +1,121 @@
+[gd_scene format=3 uid="uid://bphm22qybsnmn"]
+
+[ext_resource type="Script" uid="uid://dskqik8cn4ynu" path="res://scripts/editor/gizmo.gd" id="1_txym4"]
+[ext_resource type="Texture2D" uid="uid://15fwuiiv78vf" path="res://images/orb_icons/none.png" id="2_8kqt2"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_txym4"]
+radius = 0.4
+
+[node name="Gizmo" type="Node3D" unique_id=563405666]
+script = ExtResource("1_txym4")
+
+[node name="+X" type="Area3D" parent="." unique_id=992005240 groups=["gizmo"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+monitoring = false
+priority = 1
+metadata/_edit_group_ = true
+
+[node name="collider" type="CollisionShape3D" parent="+X" unique_id=1712699916]
+shape = SubResource("SphereShape3D_txym4")
+
+[node name="sprite" type="Sprite3D" parent="+X" unique_id=1355690006]
+modulate = Color(1, 0, 0, 1)
+pixel_size = 0.0075
+billboard = 1
+no_depth_test = true
+render_priority = 20
+texture = ExtResource("2_8kqt2")
+
+[node name="+Y" type="Area3D" parent="." unique_id=621176279 groups=["gizmo"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+monitoring = false
+priority = 1
+metadata/_edit_group_ = true
+
+[node name="collider" type="CollisionShape3D" parent="+Y" unique_id=1387220287]
+shape = SubResource("SphereShape3D_txym4")
+
+[node name="sprite" type="Sprite3D" parent="+Y" unique_id=288348408]
+modulate = Color(0, 1, 0, 1)
+pixel_size = 0.0075
+billboard = 1
+no_depth_test = true
+render_priority = 20
+texture = ExtResource("2_8kqt2")
+
+[node name="+Z" type="Area3D" parent="." unique_id=1300923737 groups=["gizmo"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+monitoring = false
+priority = 1
+metadata/_edit_group_ = true
+
+[node name="collider" type="CollisionShape3D" parent="+Z" unique_id=1934972468]
+shape = SubResource("SphereShape3D_txym4")
+
+[node name="sprite" type="Sprite3D" parent="+Z" unique_id=38590191]
+modulate = Color(0, 0, 1, 1)
+pixel_size = 0.0075
+billboard = 1
+no_depth_test = true
+render_priority = 20
+texture = ExtResource("2_8kqt2")
+
+[node name="-X" type="Area3D" parent="." unique_id=511323369 groups=["gizmo"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
+monitoring = false
+priority = 1
+metadata/_edit_group_ = true
+
+[node name="collider" type="CollisionShape3D" parent="-X" unique_id=436234347]
+shape = SubResource("SphereShape3D_txym4")
+
+[node name="sprite" type="Sprite3D" parent="-X" unique_id=1163483725]
+modulate = Color(0.5, 0, 0, 1)
+pixel_size = 0.0075
+billboard = 1
+no_depth_test = true
+render_priority = 20
+texture = ExtResource("2_8kqt2")
+
+[node name="-Y" type="Area3D" parent="." unique_id=294793048 groups=["gizmo"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
+monitoring = false
+priority = 1
+metadata/_edit_group_ = true
+
+[node name="collider" type="CollisionShape3D" parent="-Y" unique_id=1465400837]
+shape = SubResource("SphereShape3D_txym4")
+
+[node name="sprite" type="Sprite3D" parent="-Y" unique_id=1090619422]
+modulate = Color(0, 0.49803922, 0, 1)
+pixel_size = 0.0075
+billboard = 1
+no_depth_test = true
+render_priority = 20
+texture = ExtResource("2_8kqt2")
+
+[node name="-Z" type="Area3D" parent="." unique_id=984883865 groups=["gizmo"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+collision_layer = 8
+collision_mask = 0
+monitoring = false
+priority = 1
+metadata/_edit_group_ = true
+
+[node name="collider" type="CollisionShape3D" parent="-Z" unique_id=1722264156]
+shape = SubResource("SphereShape3D_txym4")
+
+[node name="sprite" type="Sprite3D" parent="-Z" unique_id=852132123]
+modulate = Color(0, 0, 0.49803922, 1)
+pixel_size = 0.0075
+billboard = 1
+no_depth_test = true
+render_priority = 20
+texture = ExtResource("2_8kqt2")
+
+[connection signal="input_event" from="+X" to="." method="_posi_x"]
+[connection signal="input_event" from="+Y" to="." method="_posi_y"]
+[connection signal="input_event" from="+Z" to="." method="_posi_z"]
+[connection signal="input_event" from="-X" to="." method="_neg_x"]
+[connection signal="input_event" from="-Y" to="." method="_neg_y"]
+[connection signal="input_event" from="-Z" to="." method="_neg_z"]

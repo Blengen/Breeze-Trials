@@ -1,7 +1,5 @@
 extends CharacterBody3D
 
-const group: String = "player"
-
 # ============================================================
 # NODE REFERENCES
 # ============================================================
@@ -76,6 +74,8 @@ var debug: bool = false
 var flying: bool = false
 var fly_speed: int = 50
 var fly_jump: int = 60
+
+var cline: Node = null
 #endregion
 
 # ============================================================
@@ -85,6 +85,7 @@ var fly_jump: int = 60
 func _ready() -> void:
 	if type == "play": Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	vignette_fuel.show()
+	if type == "editor": cline = $"../../ui/cline"
 
 func _physics_process(delta: float) -> void:
 	if root.playing:
@@ -101,41 +102,56 @@ func _process(delta: float) -> void:
 	camera()
 	handle_restart(delta)
 	set_variables(delta)
+	if type == "editor":
+		global.cam_pos = cam.global_position
+		$"../forward_indicator".position = position + Vector3(0, 1, -4)
 
 func _unhandled_input(event: InputEvent) -> void:
+	
+	
 	if event is InputEventMouseMotion:
 		if cam_mode == "none" and zoom != 0: return
 		rig.rotation_degrees.y -= event.relative.x * sens
 		rig.rotation_degrees.x -= event.relative.y * sens
 		rig.rotation_degrees.x = clamp(rig.rotation_degrees.x, -90, 90)
-	
-	if Input.is_action_pressed("debug") or type == "editor": debug = true
-	
-	if debug:
-		if Input.is_action_just_pressed("fly_slow"):
-			if flying and fly_speed == 25: flying = false
-			else:
-				flying = true
-				fly_speed = 25
-				fly_jump = 30
-		if Input.is_action_just_pressed("fly"):
-			if flying and fly_speed == 50: flying = false
-			else:
-				flying = true
-				fly_speed = 50
-				fly_jump = 60
-		elif Input.is_action_just_pressed("fly_fast"):
-			if flying and fly_speed == 100: flying = false
-			else:
-				flying = true
-				fly_speed = 100
-				fly_jump = 120
-	
-		elif Input.is_action_just_pressed("back_to_spawn"):
-			position = $"../../map/spawn".position
-			
-		if flying: noclip(true)
-		else: noclip(false)			
+		
+	elif type == "editor":
+		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed: select()
+		if Input.is_action_just_pressed("esc"):
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			$"../../ui/top_bar/items_middle/1".text = "Lock Cursor"
+			cam_mode = "none"
+		
+		if Input.is_action_just_pressed("focus"): $"../../ui/cline".release_focus()
+		
+	if event is InputEventKey:
+		if Input.is_action_pressed("debug") or type == "editor": debug = true
+		
+		if debug:
+			if Input.is_action_just_pressed("fly_slow"):
+				if flying and fly_speed == 25: flying = false
+				else:
+					flying = true
+					fly_speed = 25
+					fly_jump = 30
+			if Input.is_action_just_pressed("fly"):
+				if flying and fly_speed == 50: flying = false
+				else:
+					flying = true
+					fly_speed = 50
+					fly_jump = 60
+			elif Input.is_action_just_pressed("fly_fast"):
+				if flying and fly_speed == 100: flying = false
+				else:
+					flying = true
+					fly_speed = 100
+					fly_jump = 120
+		
+			elif Input.is_action_just_pressed("back_to_spawn"):
+				position = $"../../map/spawn".position
+				
+			if flying: noclip(true)
+			else: noclip(false)			
 			
 		
 func noclip(value: bool) -> void:
@@ -191,6 +207,7 @@ func vertical_movement(delta: float) -> void:
 func jump(delta: float) -> void:
 	
 	if flying: return
+	if type == "editor" and cline.has_focus(): return
 	
 	if is_on_floor():
 		coyote = 0
@@ -225,12 +242,15 @@ func quick_drop() -> void:
 
 func flying_physics() -> void:
 	
+	velocity.y = 0
+	if type == "editor" and cline.has_focus(): return
+	
 	get_input_vector()
 	var normalized_input_vector: Vector2 = input_vector.normalized()
 	velocity = get_rig_basis() * Vector3(normalized_input_vector.x * fly_speed, velocity.y, normalized_input_vector.y * fly_speed)
 	delta_slow = 0
 	
-	velocity.y = 0
+	
 	if Input.is_action_pressed("jump"): velocity.y += fly_jump
 	if Input.is_action_pressed("sink"): velocity.y -= fly_jump
 
@@ -241,12 +261,14 @@ func flying_physics() -> void:
 #region Camera
 func camera() -> void:
 	# Handle camlock toggle
-	if Input.is_action_just_pressed("camlock"):
+	if Input.is_action_just_pressed("camlock") and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		if cam_mode != "camlock":
 			cam_mode = "camlock"
 			camlock_ui.show()
+			if type == "editor": $"../camlock".show()
 		else:
 			camlock_ui.hide()
+			if type == "editor": $"../camlock".hide()
 			cam_mode = "move" if Input.is_action_pressed("rmb") else "none"
 
 	# Apply camera mode
@@ -257,6 +279,7 @@ func camera() -> void:
 		else:
 			cam_mode = "none"
 		camlock_ui.hide()
+		if type == "editor": $"../camlock".hide()
 	else:
 		cam.position.x = 1 if zoom != 0 else 0
 
@@ -366,8 +389,7 @@ func do_ability() -> void:
 	ability_list.pop_front()
 
 func _on_area_entered(area: Area3D) -> void:
-	if area.group == "orb":
-		orb_hit(area)
+	if area.is_in_group("orb"): orb_hit(area)
 
 func orb_hit(area: Area3D) -> void:
 	if area.type == "dash" or area.type == "jump":
@@ -464,6 +486,46 @@ func _on_update_timer_timeout() -> void:
 # ============================================================
 #region Utility
 func get_input_vector() -> Vector2:
-	input_vector = Input.get_vector("left", "right", "front", "back")
+	if type == "editor" and cline.has_focus(): input_vector = Vector2.ZERO
+	else: input_vector = Input.get_vector("left", "right", "front", "back")
 	return input_vector
 #endregion
+
+#region Editor
+func select() -> Node3D: # DeepSeek code because I don't understand ts yet lol
+	
+	# Only run in editor mode
+	if type != "editor" or Input.mouse_mode == Input.MOUSE_MODE_CAPTURED: return
+
+	# Get mouse position in viewport coordinates
+	var mouse_pos: Vector2 = get_viewport().get_mouse_position()
+
+	# Create ray from camera through mouse position
+	var from: Vector3 = cam.project_ray_origin(mouse_pos)
+	var dir: Vector3 = cam.project_ray_normal(mouse_pos)
+	var to: Vector3 = from + dir * 2000.0 # Max length
+
+	# Perform raycast
+	var space_state: PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
+	var query: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(from, to)
+	query.collide_with_areas = true   # include Areas (orbs, triggers)
+	
+	# Old gizmo code
+	"""
+	query.collision_mask = 8 # First check if it collides with gizmo
+	
+	var result: Dictionary = space_state.intersect_ray(query)
+	if result: 
+		print(result)
+		return
+	"""	
+	query.collide_with_bodies = true  # include PhysicsBody (CSG, walls)
+	query.collision_mask = 5 # Layer 1 and 3, doesn't collide with player
+	var result: Dictionary = space_state.intersect_ray(query)
+	
+	if result:
+		# Return the collided node (or its parent if it's a collision shape)
+		root.selection(result.collider)
+		return result.collider
+	root.selection(null)
+	return null

@@ -1,4 +1,0 @@
-[gd_scene format=3 uid="uid://bgeiq7imt17nc"]
-
-[node name="CSGBox3D" type="CSGBox3D" unique_id=449358822]
-use_collision = true

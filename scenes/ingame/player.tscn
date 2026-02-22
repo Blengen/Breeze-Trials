@@ -909,10 +909,11 @@ size = Vector3(0.1, 0.1, 8)
 [node name="player" type="Node3D" unique_id=325942831]
 
 [node name="body" type="CharacterBody3D" parent="." unique_id=1074058138]
+collision_layer = 2
+input_ray_pickable = false
 wall_min_slide_angle = 0.0
 floor_constant_speed = true
 script = ExtResource("1_scncy")
-type = null
 
 [node name="visual" type="Node3D" parent="body" unique_id=471777567]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
@@ -975,6 +976,8 @@ shape = SubResource("CylinderShape3D_say45")
 debug_color = Color(0.76862746, 0.15294118, 1, 1)
 
 [node name="area" type="Area3D" parent="body" unique_id=1447886355]
+collision_layer = 2
+input_ray_pickable = false
 
 [node name="collider_main" type="CollisionShape3D" parent="body/area" unique_id=1825263628]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, -0.19999999, 0)
@@ -1008,6 +1011,7 @@ positional_scaler = Vector3(0, 0, 0)
 rotational_scaler = Vector3(0.1, 0.1, 0.1)
 
 [node name="ui" type="Control" parent="." unique_id=775674146]
+z_as_relative = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -1017,7 +1021,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="camlock" type="TextureRect" parent="ui" unique_id=1170878781]
-visible = false
+z_as_relative = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1034,6 +1038,7 @@ texture = ExtResource("8_say45")
 expand_mode = 1
 
 [node name="fuel" type="Label" parent="ui" unique_id=668231312]
+z_as_relative = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -1058,7 +1063,7 @@ horizontal_alignment = 1
 [node name="vignette_fuel" type="TextureRect" parent="ui" unique_id=1172075527]
 visible = false
 modulate = Color(0.53986263, 1.0348111e-06, 2.8878452e-07, 1)
-z_index = 50
+z_index = -10
 z_as_relative = false
 layout_mode = 1
 anchors_preset = 15
@@ -1071,6 +1076,7 @@ texture = ExtResource("12_bcjk2")
 
 [node name="death_ui" type="Control" parent="ui" unique_id=73713722]
 visible = false
+z_as_relative = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1081,6 +1087,7 @@ mouse_filter = 2
 
 [node name="cover" type="ColorRect" parent="ui/death_ui" unique_id=963738214]
 z_index = 5
+z_as_relative = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1092,6 +1099,7 @@ color = Color(0, 0, 0, 0.627451)
 
 [node name="reason" type="Label" parent="ui/death_ui" unique_id=2119537636]
 z_index = 6
+z_as_relative = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1116,6 +1124,7 @@ horizontal_alignment = 1
 
 [node name="restart" type="Label" parent="ui/death_ui" unique_id=1952316193]
 z_index = 7
+z_as_relative = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1140,6 +1149,7 @@ text = "Hold [R] to restart"
 horizontal_alignment = 1
 
 [node name="debug" type="Control" parent="ui" unique_id=1652189249]
+z_as_relative = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1149,6 +1159,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="fps" type="Label" parent="ui/debug" unique_id=748754994]
+z_as_relative = false
 layout_mode = 1
 offset_right = 81.0
 offset_bottom = 43.0
@@ -1160,6 +1171,7 @@ text = "FPS:"
 
 [node name="speed" type="Label" parent="ui/debug" unique_id=1961375430]
 visible = false
+z_as_relative = false
 layout_mode = 1
 offset_top = 42.0
 offset_right = 113.0

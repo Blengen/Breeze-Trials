@@ -2,7 +2,7 @@ extends Node
 
 var settings_file: String = "res://settings.cfg"
 
-var selected_map: String = "res://scenes/test_map.tscn"
+var selected_map: String = "res://scenes/maps/test_map.tscn"
 var entered_from_editor: bool = false
 
 # SETTINGS VARIABLES
@@ -16,7 +16,10 @@ var music_volume: int = 100
 # GRAPHICS
 var fps_cap: int = 0
 
-var exit_juice: float = 0 # Time counter for exiting
+# EDITOR
+var cam_pos: Vector3 = Vector3.ZERO
+
+
 
 func _ready() -> void:
 	if not OS.has_feature("editor"): settings_file = OS.get_executable_path().get_base_dir().path_join("settings.cfg")
@@ -40,17 +43,6 @@ func make_new_settings_file() -> void:
 	
 	config.save(settings_file)
 	
-func _process(delta: float) -> void:
-	check_exit(delta)
-	
-
-func check_exit(delta: float) -> void:
-	if not Input.is_action_pressed("esc"): exit_juice = 0
-	else: 
-		exit_juice += delta
-		if exit_juice > 0.5:
-			get_tree().change_scene_to_file("res://scenes/menu/main_menu.tscn")
-			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 
 func change_setting(category: String, setting: String, value: Variant) -> void:

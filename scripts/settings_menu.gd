@@ -12,5 +12,5 @@ func _on_fps_cap_box_text_changed(new_text: String) -> void: if new_text.is_vali
 
 func _on_fov_box_text_changed(new_text: String) -> void:
 	if new_text.is_valid_float():
-		var new_fov = clamp(new_text.to_float(), 5, 175)
+		var new_fov: float = clamp(new_text.to_float(), 5, 175)
 		global.change_setting("visuals", "fov", new_fov)

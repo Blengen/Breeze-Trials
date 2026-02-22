@@ -13,9 +13,6 @@ script = ExtResource("1_cnm17")
 
 [node name="player" parent="." unique_id=1393978771 instance=ExtResource("3_dpktk")]
 
-[node name="body" parent="player" index="0" unique_id=1074058138]
-type = "play"
-
 [node name="sfx" type="Node" parent="." unique_id=1601465940]
 
 [node name="hihat" type="AudioStreamPlayer" parent="sfx" unique_id=197669818]
@@ -32,9 +29,10 @@ wait_time = 0.5
 one_shot = true
 
 [node name="pause_menu" type="Control" parent="." unique_id=449964422]
-process_mode = 2
+process_mode = 3
 visible = false
-z_index = 30
+z_index = 10
+z_as_relative = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -44,6 +42,8 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="cover" type="ColorRect" parent="pause_menu" unique_id=654685404]
+z_index = 9
+z_as_relative = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -54,6 +54,8 @@ mouse_filter = 2
 color = Color(0, 0, 0, 0.7254902)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="pause_menu" unique_id=742497510]
+z_index = 10
+z_as_relative = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -64,28 +66,72 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="paused" type="Label" parent="pause_menu/VBoxContainer" unique_id=1615520822]
+z_index = 10
+z_as_relative = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0.7019608, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0.1218, 0.20029333, 0.29, 1)
-theme_override_constants/outline_size = 50
+theme_override_constants/outline_size = 25
 theme_override_fonts/font = ExtResource("6_5g6bt")
 theme_override_font_sizes/font_size = 200
 text = "Paused"
 horizontal_alignment = 1
 
+[node name="music" type="Label" parent="pause_menu/VBoxContainer" unique_id=1162277515]
+z_index = 10
+z_as_relative = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.77, 1, 0.7, 1)
+theme_override_colors/font_outline_color = Color(0.1218, 0.29, 0.1834733, 1)
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("6_5g6bt")
+theme_override_font_sizes/font_size = 100
+text = "Music:"
+horizontal_alignment = 1
+
+[node name="composer" type="Label" parent="pause_menu/VBoxContainer" unique_id=184837468]
+z_index = 10
+z_as_relative = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 1, 0.97499996, 1)
+theme_override_colors/font_outline_color = Color(0.1218, 0.2759833, 0.29, 1)
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("6_5g6bt")
+theme_override_font_sizes/font_size = 75
+text = "By "
+horizontal_alignment = 1
+
+[node name="license" type="Label" parent="pause_menu/VBoxContainer" unique_id=981851421]
+z_index = 10
+z_as_relative = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.6, 0.6, 1)
+theme_override_colors/font_outline_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("6_5g6bt")
+theme_override_font_sizes/font_size = 70
+text = "License: "
+horizontal_alignment = 1
+
 [node name="continue" type="Button" parent="pause_menu/VBoxContainer" unique_id=1149258458]
+z_index = 10
+z_as_relative = false
 layout_mode = 2
 theme = ExtResource("7_p12a3")
 theme_override_font_sizes/font_size = 100
 text = "Continue"
 
 [node name="settings" type="Button" parent="pause_menu/VBoxContainer" unique_id=1513490838]
+z_index = 10
+z_as_relative = false
 layout_mode = 2
 theme = ExtResource("7_p12a3")
 theme_override_font_sizes/font_size = 100
 text = "Settings"
 
 [node name="exit" type="Button" parent="pause_menu/VBoxContainer" unique_id=461900396]
+z_index = 10
+z_as_relative = false
 layout_mode = 2
 theme = ExtResource("7_p12a3")
 theme_override_font_sizes/font_size = 100

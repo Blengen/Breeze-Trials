@@ -1,55 +1,59 @@
 [gd_scene format=3 uid="uid://cpda6ehi6dk37"]
 
-[ext_resource type="Script" uid="uid://cr2dgvo33htij" path="res://scripts/gameloop/map_settings.gd" id="1_34ald"]
-[ext_resource type="Material" uid="uid://do6njjm35omxb" path="res://materials/textures/grass.tres" id="1_ss0f2"]
-[ext_resource type="Texture2D" uid="uid://drfcef03hc8mr" path="res://images/skies/pink_sunset.png" id="3_lcvph"]
-[ext_resource type="PackedScene" uid="uid://87fjtv3ojqjl" path="res://scenes/ingame/orb.tscn" id="3_pw728"]
-[ext_resource type="Material" uid="uid://cwv8y2orbm2l8" path="res://materials/textures/cobble.tres" id="5_6751p"]
-[ext_resource type="Material" uid="uid://bjyfv1y18bnjs" path="res://materials/textures/brick.tres" id="6_36mki"]
-[ext_resource type="Material" uid="uid://dh8rk450440bi" path="res://materials/textures/metal_plate.tres" id="7_o5gif"]
-[ext_resource type="Material" uid="uid://ojolesk2qori" path="res://materials/transparent.tres" id="8_36mki"]
-[ext_resource type="Material" uid="uid://bdbw3v14jkbli" path="res://materials/textures/wood_rough.tres" id="9_4mr4y"]
-[ext_resource type="Texture2D" uid="uid://bycnoo1e8w5ve" path="res://materials/textures/assets/grass.jpg" id="10_36mki"]
-[ext_resource type="Material" uid="uid://qcoxisoe1yse" path="res://materials/textures/stone_brick.tres" id="10_o5gif"]
-[ext_resource type="Material" uid="uid://i6psjriy2r4p" path="res://materials/textures/dirt.tres" id="12_o5gif"]
-[ext_resource type="Texture2D" uid="uid://bqcu4nlwx8si0" path="res://materials/textures/assets/ground.png" id="14_34ald"]
-[ext_resource type="Material" uid="uid://mmdhmvoyyxwk" path="res://materials/textures/sand.tres" id="14_uutrq"]
-[ext_resource type="Material" uid="uid://bsagxqpx4uffk" path="res://materials/colors/standard/red.tres" id="15_1c7d3"]
-[ext_resource type="Material" uid="uid://ds4snv1lxm8x1" path="res://materials/colors/standard/redish_orange.tres" id="16_1c623"]
-[ext_resource type="Material" uid="uid://c7ciccfrawgcj" path="res://materials/colors/standard/orange.tres" id="17_4tk6c"]
-[ext_resource type="Material" uid="uid://c2wg3ofal00cv" path="res://materials/colors/standard/yellow.tres" id="18_k54pq"]
-[ext_resource type="Material" uid="uid://selrqc8yndg5" path="res://materials/colors/standard/lime.tres" id="19_45urp"]
-[ext_resource type="Material" uid="uid://bxqd6bllhg4ak" path="res://materials/colors/standard/green.tres" id="20_cgrq0"]
-[ext_resource type="Material" uid="uid://dbs6ngcuugkn" path="res://materials/colors/standard/teal.tres" id="21_rf3cb"]
-[ext_resource type="Material" uid="uid://c5m3sx5q65uyt" path="res://materials/colors/standard/light_blue.tres" id="22_8q2vg"]
-[ext_resource type="Material" uid="uid://cc4ygxfxajww2" path="res://materials/colors/standard/blue.tres" id="23_fveia"]
-[ext_resource type="Material" uid="uid://cmouoss0kv85e" path="res://materials/colors/standard/purple.tres" id="24_0ckd3"]
-[ext_resource type="Material" uid="uid://vxbdkrgee7fs" path="res://materials/colors/standard/pink.tres" id="25_6hptx"]
-[ext_resource type="Material" uid="uid://6hifvj4cipqo" path="res://materials/colors/dark/dark_red.tres" id="26_2icoj"]
-[ext_resource type="Material" uid="uid://bkega5ctiuv2c" path="res://materials/colors/pale/pale_red.tres" id="26_6xons"]
-[ext_resource type="Material" uid="uid://r6f1v1fh170j" path="res://materials/colors/pale/pale_redish_orange.tres" id="27_2icoj"]
-[ext_resource type="Material" uid="uid://bjfvorae7ooo2" path="res://materials/colors/dark/dark_redish_orange.tres" id="27_yq8tt"]
-[ext_resource type="Material" uid="uid://b44008lf4cnff" path="res://materials/colors/dark/dark_orange.tres" id="28_e6t1a"]
-[ext_resource type="Material" uid="uid://m3tu7ah8bm3t" path="res://materials/colors/pale/pale_orange.tres" id="28_yq8tt"]
-[ext_resource type="Material" uid="uid://bdbva3jenypxb" path="res://materials/colors/dark/dark_yellow.tres" id="29_5wrcu"]
-[ext_resource type="Material" uid="uid://bi3q0vt1fgnd0" path="res://materials/colors/pale/pale_yellow.tres" id="29_e6t1a"]
-[ext_resource type="Material" uid="uid://c8ar4rrj017f2" path="res://materials/colors/pale/pale_lime.tres" id="30_5wrcu"]
-[ext_resource type="Material" uid="uid://c6fl0ffpmby1d" path="res://materials/colors/dark/dark_lime.tres" id="30_m8t5h"]
-[ext_resource type="Material" uid="uid://dv6ko4x4jhyix" path="res://materials/colors/dark/dark_green.tres" id="31_8de4v"]
-[ext_resource type="Material" uid="uid://cw54uo00e6sdq" path="res://materials/colors/pale/pale_green.tres" id="31_m8t5h"]
-[ext_resource type="Material" uid="uid://ct1njtyehgcoi" path="res://materials/colors/pale/pale_teal.tres" id="32_8de4v"]
-[ext_resource type="Material" uid="uid://de151p4vh8l2u" path="res://materials/colors/dark/dark_teal.tres" id="32_h1ag3"]
-[ext_resource type="Material" uid="uid://gkrtwjse4pbj" path="res://materials/colors/dark/dark_light_blue.tres" id="33_f5sdk"]
-[ext_resource type="Material" uid="uid://c474eef3mygu1" path="res://materials/colors/pale/pale_light_blue.tres" id="33_h1ag3"]
-[ext_resource type="Material" uid="uid://cf51vpyxkbmum" path="res://materials/colors/pale/pale_blue.tres" id="34_f5sdk"]
-[ext_resource type="Material" uid="uid://ber5bawsorg14" path="res://materials/colors/dark/dark_blue.tres" id="34_v7e27"]
-[ext_resource type="Material" uid="uid://7l5db5nl56vr" path="res://materials/colors/dark/dark_purple.tres" id="35_kin18"]
-[ext_resource type="Material" uid="uid://i8d7y4avtjl7" path="res://materials/colors/pale/pale_purple.tres" id="35_v7e27"]
-[ext_resource type="Material" uid="uid://c4gf0envap555" path="res://materials/colors/pale/pale_pink.tres" id="36_kin18"]
-[ext_resource type="Material" uid="uid://d07cnhleqp1dl" path="res://materials/colors/dark/dark_pink.tres" id="36_w2hch"]
+[ext_resource type="Script" uid="uid://cr2dgvo33htij" path="res://scripts/gameloop/map_settings.gd" id="1_umpor"]
+[ext_resource type="Texture2D" uid="uid://drfcef03hc8mr" path="res://images/skies/pink_sunset.png" id="2_bo03o"]
+[ext_resource type="PackedScene" uid="uid://87fjtv3ojqjl" path="res://scenes/ingame/orb.tscn" id="3_8nlwg"]
+[ext_resource type="Material" uid="uid://cwv8y2orbm2l8" path="res://materials/textures/cobble.tres" id="4_uqyj7"]
+[ext_resource type="Material" uid="uid://qcoxisoe1yse" path="res://materials/textures/stone_brick.tres" id="5_ixhpj"]
+[ext_resource type="Material" uid="uid://dh8rk450440bi" path="res://materials/textures/metal_plate.tres" id="6_p0gy7"]
+[ext_resource type="Material" uid="uid://ojolesk2qori" path="res://materials/other/hidden.tres" id="7_qyr55"]
+[ext_resource type="Material" uid="uid://bdbw3v14jkbli" path="res://materials/textures/wood_rough.tres" id="8_per63"]
+[ext_resource type="Material" uid="uid://bjyfv1y18bnjs" path="res://materials/textures/brick.tres" id="9_60bxp"]
+[ext_resource type="Texture2D" uid="uid://bycnoo1e8w5ve" path="res://materials/textures/assets/grass.jpg" id="10_hy7q1"]
+[ext_resource type="Material" uid="uid://i6psjriy2r4p" path="res://materials/textures/dirt.tres" id="11_8tko3"]
+[ext_resource type="Material" uid="uid://do6njjm35omxb" path="res://materials/textures/grass.tres" id="12_s4jpd"]
+[ext_resource type="Material" uid="uid://dvvcnaa7p074n" path="res://materials/textures/ground.tres" id="13_umpor"]
+[ext_resource type="Material" uid="uid://lg0fun43oao" path="res://materials/colors/standard/red.tres" id="14_27klo"]
+[ext_resource type="Material" uid="uid://4fxapxbbf2kt" path="res://materials/colors/standard/flame.tres" id="15_833k3"]
+[ext_resource type="Material" uid="uid://dml66uj2gff6o" path="res://materials/colors/standard/orange.tres" id="16_40kq4"]
+[ext_resource type="Material" uid="uid://03xm1qqooh6o" path="res://materials/colors/standard/yellow.tres" id="17_36whc"]
+[ext_resource type="Material" uid="uid://8k08h2xsduq7" path="res://materials/colors/standard/lime.tres" id="18_xslfa"]
+[ext_resource type="Material" uid="uid://di7nmaprf362f" path="res://materials/colors/standard/green.tres" id="19_5wyga"]
+[ext_resource type="Material" uid="uid://cpvyb6ga5od8j" path="res://materials/colors/standard/teal.tres" id="20_i5uex"]
+[ext_resource type="Material" uid="uid://m4hct0aifxqg" path="res://materials/colors/standard/blue.tres" id="22_k7sb5"]
+[ext_resource type="Material" uid="uid://biuaayl4flf6o" path="res://materials/colors/standard/purple.tres" id="23_rrnyu"]
+[ext_resource type="Material" uid="uid://gdr46jp01xhg" path="res://materials/colors/standard/pink.tres" id="24_ofisw"]
+[ext_resource type="Material" uid="uid://6hifvj4cipqo" path="res://materials/colors/dark/dark_red.tres" id="25_mbs8e"]
+[ext_resource type="Material" uid="uid://bjfvorae7ooo2" path="res://materials/colors/dark/dark_flame.tres" id="26_xw4tv"]
+[ext_resource type="Material" uid="uid://b44008lf4cnff" path="res://materials/colors/dark/dark_orange.tres" id="27_yaq1t"]
+[ext_resource type="Material" uid="uid://bdbva3jenypxb" path="res://materials/colors/dark/dark_yellow.tres" id="28_rcp4o"]
+[ext_resource type="Material" uid="uid://c6fl0ffpmby1d" path="res://materials/colors/dark/dark_lime.tres" id="29_48oj8"]
+[ext_resource type="Material" uid="uid://dv6ko4x4jhyix" path="res://materials/colors/dark/dark_green.tres" id="30_vxa77"]
+[ext_resource type="Material" uid="uid://de151p4vh8l2u" path="res://materials/colors/dark/dark_teal.tres" id="31_1vpnj"]
+[ext_resource type="Material" uid="uid://gkrtwjse4pbj" path="res://materials/colors/dark/dark_l_blue.tres" id="32_xv8ug"]
+[ext_resource type="Material" uid="uid://ber5bawsorg14" path="res://materials/colors/dark/dark_blue.tres" id="33_nas30"]
+[ext_resource type="Material" uid="uid://7l5db5nl56vr" path="res://materials/colors/dark/dark_purple.tres" id="34_gxtg1"]
+[ext_resource type="Material" uid="uid://d07cnhleqp1dl" path="res://materials/colors/dark/dark_pink.tres" id="35_08hmv"]
+[ext_resource type="Material" uid="uid://bkega5ctiuv2c" path="res://materials/colors/pale/pale_red.tres" id="36_8olop"]
+[ext_resource type="Material" uid="uid://r6f1v1fh170j" path="res://materials/colors/pale/pale_flame.tres" id="37_tsg1i"]
+[ext_resource type="Material" uid="uid://m3tu7ah8bm3t" path="res://materials/colors/pale/pale_orange.tres" id="38_ip1g1"]
+[ext_resource type="Material" uid="uid://bi3q0vt1fgnd0" path="res://materials/colors/pale/pale_yellow.tres" id="39_lhdvt"]
+[ext_resource type="Material" uid="uid://c8ar4rrj017f2" path="res://materials/colors/pale/pale_lime.tres" id="40_c7o3x"]
+[ext_resource type="Material" uid="uid://cw54uo00e6sdq" path="res://materials/colors/pale/pale_green.tres" id="41_rdhiq"]
+[ext_resource type="Material" uid="uid://ct1njtyehgcoi" path="res://materials/colors/pale/pale_teal.tres" id="42_ss3vs"]
+[ext_resource type="Material" uid="uid://c474eef3mygu1" path="res://materials/colors/pale/pale_l_blue.tres" id="43_d0e8v"]
+[ext_resource type="Material" uid="uid://cf51vpyxkbmum" path="res://materials/colors/pale/pale_blue.tres" id="44_e4hyq"]
+[ext_resource type="Material" uid="uid://i8d7y4avtjl7" path="res://materials/colors/pale/pale_purple.tres" id="45_63s7i"]
+[ext_resource type="Material" uid="uid://c4gf0envap555" path="res://materials/colors/pale/pale_pink.tres" id="46_sx4ul"]
+[ext_resource type="Material" uid="uid://mmdhmvoyyxwk" path="res://materials/textures/sand.tres" id="47_ct54r"]
+[ext_resource type="Material" uid="uid://cs8npo4u2ldxe" path="res://materials/other/d_gray.tres" id="47_p0gy7"]
+[ext_resource type="Material" uid="uid://i50cad8p25do" path="res://materials/other/black.tres" id="48_qyr55"]
+[ext_resource type="Material" uid="uid://c2q7x271gy2it" path="res://materials/other/gray.tres" id="49_per63"]
+[ext_resource type="Material" uid="uid://dbqfhrtmltv4" path="res://materials/other/white.tres" id="50_60bxp"]
+[ext_resource type="Material" uid="uid://ur2kw2qqwx5i" path="res://materials/other/l_gray.tres" id="51_hy7q1"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_eukwx"]
-panorama = ExtResource("3_lcvph")
+panorama = ExtResource("2_bo03o")
 
 [sub_resource type="Sky" id="Sky_lcvph"]
 sky_material = SubResource("PanoramaSkyMaterial_eukwx")
@@ -72,19 +76,16 @@ adjustment_contrast = 1.1
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_u56q5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o5gif"]
-albedo_texture = ExtResource("10_36mki")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a5r8l"]
-albedo_color = Color(1, 0.9715, 0.90999997, 1)
-albedo_texture = ExtResource("14_34ald")
-uv1_scale = Vector3(0.08, 0.08, 0.08)
-uv1_triplanar = true
+albedo_texture = ExtResource("10_hy7q1")
 
 [node name="map" type="Node3D" unique_id=58885349]
 
 [node name="settings" type="Node" parent="." unique_id=932642946]
-script = ExtResource("1_34ald")
+script = ExtResource("1_umpor")
 music_file = "Whimsical Ahh Belenge Beat.mp3"
+music_name = "Whimsical Ahh Belenge Beat"
+composer = "Blengen"
+license = "Own work. CC0 (Public Domain)"
 fuel = 5.0
 
 [node name="music" type="AudioStreamPlayer" parent="settings" unique_id=2103185888]
@@ -109,49 +110,49 @@ environment = SubResource("Environment_lcvph")
 
 [node name="orbs" type="Node3D" parent="." unique_id=921069455]
 
-[node name="orb" parent="orbs" unique_id=738303789 instance=ExtResource("3_pw728")]
+[node name="orb" parent="orbs" unique_id=738303789 instance=ExtResource("3_8nlwg")]
 editor_description = ""
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -12.5, 8, -16)
 type = "dash"
 value = 300.0
 metadata/_edit_group_ = true
 
-[node name="orb2" parent="orbs" unique_id=57155786 instance=ExtResource("3_pw728")]
+[node name="orb2" parent="orbs" unique_id=57155786 instance=ExtResource("3_8nlwg")]
 editor_description = ""
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -7.5, 8, -16)
 type = "jump"
 value = 110.0
 metadata/_edit_group_ = true
 
-[node name="orb7" parent="orbs" unique_id=2017017224 instance=ExtResource("3_pw728")]
+[node name="orb7" parent="orbs" unique_id=2017017224 instance=ExtResource("3_8nlwg")]
 editor_description = ""
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -15.9, 35.6, -6)
 type = "jump"
 value = 70.0
 metadata/_edit_group_ = true
 
-[node name="orb3" parent="orbs" unique_id=1003111545 instance=ExtResource("3_pw728")]
+[node name="orb3" parent="orbs" unique_id=1003111545 instance=ExtResource("3_8nlwg")]
 editor_description = ""
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -2.5, 8, -16)
 type = "stat_speed"
 value = 30.0
 metadata/_edit_group_ = true
 
-[node name="orb4" parent="orbs" unique_id=1928270128 instance=ExtResource("3_pw728")]
+[node name="orb4" parent="orbs" unique_id=1928270128 instance=ExtResource("3_8nlwg")]
 editor_description = ""
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 2.5, 8, -16)
 type = "stat_jump"
 value = 75.0
 metadata/_edit_group_ = true
 
-[node name="orb5" parent="orbs" unique_id=62243371 instance=ExtResource("3_pw728")]
+[node name="orb5" parent="orbs" unique_id=62243371 instance=ExtResource("3_8nlwg")]
 editor_description = ""
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 7.5, 8, -16)
 type = "fuel"
 value = 37.0
 metadata/_edit_group_ = true
 
-[node name="orb6" parent="orbs" unique_id=1209799170 instance=ExtResource("3_pw728")]
+[node name="orb6" parent="orbs" unique_id=1209799170 instance=ExtResource("3_8nlwg")]
 editor_description = ""
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 12.5, 8, -16)
 type = "end"
@@ -419,466 +420,710 @@ texture = SubResource("CompressedTexture2D_u56q5")
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="unbaked" unique_id=1343453335]
 transform = Transform3D(1.3909063e-08, 0, -0.99999976, 0, 1, 0, 0.99999976, 0, 1.3909063e-08, 8.311664, 4.3, 7.566178)
-material_override = ExtResource("5_6751p")
+layers = 5
+material_override = ExtResource("4_uqyj7")
 cast_shadow = 0
 use_collision = true
+collision_layer = 5
 size = Vector3(8, 7, 7)
 
 [node name="CSGBox3D7" type="CSGBox3D" parent="unbaked" unique_id=1448240508]
 transform = Transform3D(1.3909063e-08, 0, -0.99999976, 0, 1, 0, 0.99999976, 0, 1.3909063e-08, -0.9383332, 8.8, 10.566177)
-material_override = ExtResource("10_o5gif")
+layers = 4
+material_override = ExtResource("5_ixhpj")
 cast_shadow = 0
+use_collision = true
+collision_layer = 5
 size = Vector3(6, 16, 0.2)
 
 [node name="CSGBox3D10" type="CSGBox3D" parent="unbaked" unique_id=850481457]
 transform = Transform3D(1.3909063e-08, 0, -0.99999976, 0, 1, 0, 0.99999976, 0, 1.3909063e-08, -0.9383332, 17.3, 10.566177)
-material_override = ExtResource("7_o5gif")
+layers = 4
+material_override = ExtResource("6_p0gy7")
 cast_shadow = 0
+use_collision = true
+collision_layer = 5
 size = Vector3(6, 1, 0.5)
 
 [node name="CSGBox3D19" type="CSGBox3D" parent="unbaked" unique_id=1518279635]
 transform = Transform3D(1.3909063e-08, 0, -0.99999976, 0, 1, 0, 0.99999976, 0, 1.3909063e-08, 4.061667, 17.3, 10.566177)
-material_override = ExtResource("7_o5gif")
+layers = 4
+material_override = ExtResource("6_p0gy7")
 cast_shadow = 0
+use_collision = true
+collision_layer = 5
 size = Vector3(6, 1, 0.5)
 
 [node name="CSGBox3D11" type="CSGBox3D" parent="unbaked" unique_id=179245936]
 transform = Transform3D(1.3909063e-08, 0, -0.99999976, 0, 1, 0, 0.99999976, 0, 1.3909063e-08, -0.9383333, 9.299999, 7.0661783)
-material_override = ExtResource("7_o5gif")
+layers = 4
+material_override = ExtResource("6_p0gy7")
 cast_shadow = 0
+use_collision = true
+collision_layer = 5
 size = Vector3(1, 17, 0.5)
 
 [node name="CSGBox3D20" type="CSGBox3D" parent="unbaked" unique_id=1063279183]
 transform = Transform3D(1.3909063e-08, 0, -0.99999976, 0, 1, 0, 0.99999976, 0, 1.3909063e-08, -0.9383335, 9.299999, 10.566177)
-material_override = ExtResource("8_36mki")
+layers = 5
+material_override = ExtResource("7_qyr55")
 cast_shadow = 0
 use_collision = true
+collision_layer = 5
 size = Vector3(8, 17, 0.5)
 
 [node name="CSGBox3D21" type="CSGBox3D" parent="unbaked" unique_id=1991469156]
 transform = Transform3D(1.3909063e-08, 0, -0.99999976, 0, 1, 0, 0.99999976, 0, 1.3909063e-08, 4.0616665, 9.299999, 10.566177)
-material_override = ExtResource("8_36mki")
+layers = 4
+material_override = ExtResource("7_qyr55")
 cast_shadow = 0
 use_collision = true
+collision_layer = 5
 size = Vector3(8, 17, 0.5)
 
 [node name="CSGBox3D22" type="CSGBox3D" parent="unbaked" unique_id=1424154392]
 transform = Transform3D(1.3909063e-08, 0, -0.99999976, 0, 1, 0, 0.99999976, 0, 1.3909063e-08, 1.5616665, 9.299999, 2.3661773)
-material_override = ExtResource("8_36mki")
+layers = 4
+material_override = ExtResource("7_qyr55")
 cast_shadow = 0
 use_collision = true
+collision_layer = 5
 size = Vector3(8, 17, 0.5)
 
 [node name="CSGBox3D12" type="CSGBox3D" parent="unbaked" unique_id=857187448]
 transform = Transform3D(1.3909063e-08, 0, -0.99999976, 0, 1, 0, 0.99999976, 0, 1.3909063e-08, -0.9383333, 9.299999, 14.066178)
-material_override = ExtResource("7_o5gif")
+layers = 4
+material_override = ExtResource("6_p0gy7")
 cast_shadow = 0
+use_collision = true
+collision_layer = 5
 size = Vector3(1, 17, 0.5)
 
 [node name="CSGBox3D9" type="CSGBox3D" parent="unbaked" unique_id=93704619]
 transform = Transform3D(1.3909063e-08, 0, -0.99999976, 0, 1, 0, 0.99999976, 0, 1.3909063e-08, 4.061667, 8.8, 10.566177)
-material_override = ExtResource("10_o5gif")
+layers = 4
+material_override = ExtResource("5_ixhpj")
 cast_shadow = 0
+use_collision = true
+collision_layer = 5
 size = Vector3(6, 16, 0.2)
 
 [node name="CSGBox3D17" type="CSGBox3D" parent="unbaked" unique_id=1378291697]
 transform = Transform3D(1.3909063e-08, 0, -0.99999976, 0, 1, 0, 0.99999976, 0, 1.3909063e-08, 4.0616665, 9.299999, 7.0661783)
-material_override = ExtResource("7_o5gif")
+layers = 5
+material_override = ExtResource("6_p0gy7")
 cast_shadow = 0
+use_collision = true
+collision_layer = 5
 size = Vector3(1, 17, 0.5)
 
 [node name="CSGBox3D18" type="CSGBox3D" parent="unbaked" unique_id=1754585743]
 transform = Transform3D(1.3909063e-08, 0, -0.99999976, 0, 1, 0, 0.99999976, 0, 1.3909063e-08, 4.0616665, 9.299999, 14.066178)
-material_override = ExtResource("7_o5gif")
+layers = 5
+material_override = ExtResource("6_p0gy7")
 cast_shadow = 0
+use_collision = true
+collision_layer = 5
 size = Vector3(1, 17, 0.5)
 
 [node name="CSGBox3D13" type="CSGBox3D" parent="unbaked" unique_id=1410926847]
 transform = Transform3D(1.3909063e-08, 0, -0.99999976, 0, 1, 0, 0.99999976, 0, 1.3909063e-08, 1.5616667, 8.8, 2.3661773)
-material_override = ExtResource("10_o5gif")
+layers = 4
+material_override = ExtResource("5_ixhpj")
 cast_shadow = 0
+use_collision = true
+collision_layer = 5
 size = Vector3(6, 16, 0.2)
 
 [node name="CSGBox3D14" type="CSGBox3D" parent="unbaked" unique_id=7930428]
 transform = Transform3D(1.3909063e-08, 0, -0.99999976, 0, 1, 0, 0.99999976, 0, 1.3909063e-08, 1.5616667, 17.3, 2.3661773)
-material_override = ExtResource("7_o5gif")
+layers = 4
+material_override = ExtResource("6_p0gy7")
 cast_shadow = 0
+use_collision = true
+collision_layer = 5
 size = Vector3(6, 1, 0.5)
 
 [node name="CSGBox3D15" type="CSGBox3D" parent="unbaked" unique_id=90802195]
 transform = Transform3D(1.3909063e-08, 0, -0.99999976, 0, 1, 0, 0.99999976, 0, 1.3909063e-08, 1.5616667, 9.299999, -1.1338217)
-material_override = ExtResource("7_o5gif")
+layers = 4
+material_override = ExtResource("6_p0gy7")
 cast_shadow = 0
+use_collision = true
+collision_layer = 5
 size = Vector3(1, 17, 0.5)
 
 [node name="CSGBox3D16" type="CSGBox3D" parent="unbaked" unique_id=1096398505]
 transform = Transform3D(1.3909063e-08, 0, -0.99999976, 0, 1, 0, 0.99999976, 0, 1.3909063e-08, 1.5616667, 9.299999, 5.8661785)
-material_override = ExtResource("7_o5gif")
+layers = 5
+material_override = ExtResource("6_p0gy7")
 cast_shadow = 0
+use_collision = true
+collision_layer = 5
 size = Vector3(1, 17, 0.5)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="unbaked" unique_id=1498105181]
 transform = Transform3D(0.8660253, 0, -0.49999997, 0, 1, 0, 0.49999997, 0, 0.8660253, -17.76552, 7.5, 0.22182563)
-material_override = ExtResource("7_o5gif")
+layers = 5
+material_override = ExtResource("6_p0gy7")
 cast_shadow = 0
 use_collision = true
+collision_layer = 5
 size = Vector3(8, 14, 7)
 
 [node name="CSGBox3D25" type="CSGBox3D" parent="unbaked" unique_id=867686490]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -17.76552, 28, 0.22182563)
-material_override = ExtResource("9_4mr4y")
+layers = 5
+material_override = ExtResource("8_per63")
 cast_shadow = 0
 use_collision = true
+collision_layer = 5
 size = Vector3(10, 1, 5)
 
 [node name="CSGBox3D29" type="CSGBox3D" parent="unbaked" unique_id=2065407233]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -20.76552, 42, 7.2218246)
-material_override = ExtResource("6_36mki")
+layers = 5
+material_override = ExtResource("9_60bxp")
 cast_shadow = 0
 use_collision = true
+collision_layer = 5
 size = Vector3(4, 1, 23)
 
 [node name="CSGBox3D30" type="CSGBox3D" parent="unbaked" unique_id=437298727]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -20.76552, 19, 18.221825)
-material_override = ExtResource("6_36mki")
+layers = 5
+material_override = ExtResource("9_60bxp")
 cast_shadow = 0
 use_collision = true
+collision_layer = 5
 size = Vector3(4, 45, 1)
 
 [node name="CSGBox3D31" type="CSGBox3D" parent="unbaked" unique_id=1413564701]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -20.76552, 19, -3.7781734)
-material_override = ExtResource("6_36mki")
+layers = 5
+material_override = ExtResource("9_60bxp")
 cast_shadow = 0
 use_collision = true
+collision_layer = 5
 size = Vector3(4, 45, 1)
 
 [node name="CSGBox3D26" type="CSGBox3D" parent="unbaked" unique_id=442433603]
 transform = Transform3D(0.8660253, 0, -0.49999997, 0, 1, 0, 0.49999997, 0, 0.8660253, -17.76552, 21, 0.22182563)
-material_override = ExtResource("5_6751p")
+layers = 5
+material_override = ExtResource("4_uqyj7")
 cast_shadow = 0
 use_collision = true
+collision_layer = 5
 size = Vector3(2, 13, 2)
 
 [node name="CSGBox3D23" type="CSGBox3D" parent="unbaked" unique_id=596492397]
 transform = Transform3D(0.96592575, 0, 0.25881904, 0, 1, 0, -0.25881904, 0, 0.96592575, -18.075108, 11, 10.65754)
-material_override = ExtResource("10_o5gif")
+layers = 5
+material_override = ExtResource("5_ixhpj")
 cast_shadow = 0
 use_collision = true
+collision_layer = 5
 size = Vector3(6, 21, 7)
 
 [node name="CSGBox3D27" type="CSGBox3D" parent="unbaked" unique_id=1214247384]
 transform = Transform3D(0.96592575, 0, 0.25881904, 0, 1, 0, -0.25881904, 0, 0.96592575, -17.878456, 21.00907, 10.811903)
+layers = 5
 material_override = SubResource("StandardMaterial3D_o5gif")
 cast_shadow = 0
 use_collision = true
+collision_layer = 5
 size = Vector3(4.7000003, 1, 5.6)
 
 [node name="CSGBox3D24" type="CSGBox3D" parent="unbaked" unique_id=1300951710]
 transform = Transform3D(0.96592575, 0, 0.25881904, 0, 1, 0, -0.25881904, 0, 0.96592575, -18.94215, 22.5, 7.4216886)
-material_override = ExtResource("9_4mr4y")
+layers = 5
+material_override = ExtResource("8_per63")
 cast_shadow = 0
 use_collision = true
+collision_layer = 5
 size = Vector3(6, 2, 0.3)
 
 [node name="CSGBox3D28" type="CSGBox3D" parent="unbaked" unique_id=1109036118]
 transform = Transform3D(0.96592575, 0, 0.25881904, 0, 1, 0, -0.25881904, 0, 0.96592575, -20.789171, 22.5, 11.540063)
-material_override = ExtResource("9_4mr4y")
+layers = 5
+material_override = ExtResource("8_per63")
 cast_shadow = 0
 use_collision = true
+collision_layer = 5
 size = Vector3(0.3, 2, 6.7000003)
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="unbaked" unique_id=613190331]
 transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -9.121321, 4, 8.5)
-material_override = ExtResource("9_4mr4y")
+layers = 5
+material_override = ExtResource("8_per63")
 cast_shadow = 0
 use_collision = true
+collision_layer = 5
 size = Vector3(8, 7, 7)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="unbaked" unique_id=992145481]
 transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, -0.00083351135, -2.6999998, -2.4999988)
-material_override = ExtResource("12_o5gif")
+layers = 5
+material_override = ExtResource("11_8tko3")
 cast_shadow = 0
 use_collision = true
+collision_layer = 5
 size = Vector3(35, 5, 45)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="unbaked" unique_id=1531222675]
 transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, -0.00083351135, 0.3000002, -2.4999988)
-material_override = ExtResource("1_ss0f2")
+layers = 5
+material_override = ExtResource("12_s4jpd")
 cast_shadow = 0
 use_collision = true
+collision_layer = 5
 size = Vector3(35, 1, 45)
 
 [node name="CSGBox3D8" type="CSGBox3D" parent="unbaked" unique_id=1989787194]
 transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, -0.00083351135, -5.7, -2.4999988)
-material_override = SubResource("StandardMaterial3D_a5r8l")
+layers = 5
+material_override = ExtResource("13_umpor")
 cast_shadow = 0
 use_collision = true
+collision_layer = 5
 size = Vector3(150, 1, 150)
 
 [node name="CSGBox3D32" type="CSGBox3D" parent="unbaked" unique_id=1536596461]
 transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, -15.0008335, 8.299999, -22.5)
-material_override = ExtResource("15_1c7d3")
+layers = 5
+material_override = ExtResource("14_27klo")
 cast_shadow = 0
+use_collision = true
+collision_layer = 4
 size = Vector3(1, 3, 3)
 
 [node name="CSGBox3D33" type="CSGBox3D" parent="unbaked" unique_id=1624003075]
 transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, -12.0008335, 8.299999, -22.5)
-material_override = ExtResource("16_1c623")
+layers = 5
+material_override = ExtResource("15_833k3")
 cast_shadow = 0
+use_collision = true
+collision_layer = 4
 size = Vector3(1, 3, 3)
 
 [node name="CSGBox3D34" type="CSGBox3D" parent="unbaked" unique_id=998689871]
 transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, -9.0008335, 8.299999, -22.5)
-material_override = ExtResource("17_4tk6c")
+layers = 5
+material_override = ExtResource("16_40kq4")
 cast_shadow = 0
+use_collision = true
+collision_layer = 4
 size = Vector3(1, 3, 3)
 
 [node name="CSGBox3D35" type="CSGBox3D" parent="unbaked" unique_id=1822023981]
 transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, -6.0008335, 8.299999, -22.5)
-material_override = ExtResource("18_k54pq")
+layers = 5
+material_override = ExtResource("17_36whc")
 cast_shadow = 0
+use_collision = true
+collision_layer = 4
 size = Vector3(1, 3, 3)
 
 [node name="CSGBox3D36" type="CSGBox3D" parent="unbaked" unique_id=412787645]
 transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, -3.0008335, 8.299999, -22.5)
-material_override = ExtResource("19_45urp")
+layers = 5
+material_override = ExtResource("18_xslfa")
 cast_shadow = 0
+use_collision = true
+collision_layer = 4
 size = Vector3(1, 3, 3)
 
 [node name="CSGBox3D37" type="CSGBox3D" parent="unbaked" unique_id=162540724]
 transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, -0.00083351135, 8.299999, -22.5)
-material_override = ExtResource("20_cgrq0")
+layers = 5
+material_override = ExtResource("19_5wyga")
 cast_shadow = 0
+use_collision = true
+collision_layer = 4
 size = Vector3(1, 3, 3)
 
 [node name="CSGBox3D38" type="CSGBox3D" parent="unbaked" unique_id=1418772032]
 transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, 2.9991665, 8.299999, -22.5)
-material_override = ExtResource("21_rf3cb")
+layers = 5
+material_override = ExtResource("20_i5uex")
 cast_shadow = 0
+use_collision = true
+collision_layer = 4
 size = Vector3(1, 3, 3)
 
 [node name="CSGBox3D39" type="CSGBox3D" parent="unbaked" unique_id=705999979]
 transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, 5.9991665, 8.299999, -22.5)
-material_override = ExtResource("22_8q2vg")
+layers = 5
 cast_shadow = 0
+use_collision = true
+collision_layer = 4
 size = Vector3(1, 3, 3)
 
 [node name="CSGBox3D40" type="CSGBox3D" parent="unbaked" unique_id=167498875]
 transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, 8.9991665, 8.299999, -22.5)
-material_override = ExtResource("23_fveia")
+layers = 5
+material_override = ExtResource("22_k7sb5")
 cast_shadow = 0
+use_collision = true
+collision_layer = 4
 size = Vector3(1, 3, 3)
 
 [node name="CSGBox3D41" type="CSGBox3D" parent="unbaked" unique_id=1481813691]
 transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, 11.9991665, 8.299999, -22.5)
-material_override = ExtResource("24_0ckd3")
+layers = 5
+material_override = ExtResource("23_rrnyu")
 cast_shadow = 0
+use_collision = true
+collision_layer = 4
 size = Vector3(1, 3, 3)
 
 [node name="CSGBox3D42" type="CSGBox3D" parent="unbaked" unique_id=1993570123]
 transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, 14.9991665, 8.299999, -22.5)
-material_override = ExtResource("25_6hptx")
+layers = 5
+material_override = ExtResource("24_ofisw")
 cast_shadow = 0
+use_collision = true
+collision_layer = 4
 size = Vector3(1, 3, 3)
 
 [node name="CSGBox3D54" type="CSGBox3D" parent="unbaked" unique_id=1027198488]
 transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, -15.0008335, 5.299999, -22.5)
-material_override = ExtResource("26_2icoj")
+layers = 5
+material_override = ExtResource("25_mbs8e")
 cast_shadow = 0
+use_collision = true
+collision_layer = 4
 size = Vector3(1, 3, 3)
 
 [node name="CSGBox3D55" type="CSGBox3D" parent="unbaked" unique_id=1182531048]
 transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, -12.0008335, 5.299999, -22.5)
-material_override = ExtResource("27_yq8tt")
+layers = 5
+material_override = ExtResource("26_xw4tv")
 cast_shadow = 0
+use_collision = true
+collision_layer = 4
 size = Vector3(1, 3, 3)
 
 [node name="CSGBox3D56" type="CSGBox3D" parent="unbaked" unique_id=1694408525]
 transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, -9.0008335, 5.299999, -22.5)
-material_override = ExtResource("28_e6t1a")
+layers = 5
+material_override = ExtResource("27_yaq1t")
 cast_shadow = 0
+use_collision = true
+collision_layer = 4
 size = Vector3(1, 3, 3)
 
 [node name="CSGBox3D57" type="CSGBox3D" parent="unbaked" unique_id=4735599]
 transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, -6.0008335, 5.299999, -22.5)
-material_override = ExtResource("29_5wrcu")
+layers = 5
+material_override = ExtResource("28_rcp4o")
 cast_shadow = 0
+use_collision = true
+collision_layer = 4
 size = Vector3(1, 3, 3)
 
 [node name="CSGBox3D58" type="CSGBox3D" parent="unbaked" unique_id=1529804682]
 transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, -3.0008335, 5.299999, -22.5)
-material_override = ExtResource("30_m8t5h")
+layers = 5
+material_override = ExtResource("29_48oj8")
 cast_shadow = 0
+use_collision = true
+collision_layer = 4
 size = Vector3(1, 3, 3)
 
 [node name="CSGBox3D59" type="CSGBox3D" parent="unbaked" unique_id=2007031060]
 transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, -0.00083351135, 5.299999, -22.5)
-material_override = ExtResource("31_8de4v")
+layers = 5
+material_override = ExtResource("30_vxa77")
 cast_shadow = 0
+use_collision = true
+collision_layer = 4
 size = Vector3(1, 3, 3)
 
 [node name="CSGBox3D60" type="CSGBox3D" parent="unbaked" unique_id=1537261906]
 transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, 2.9991665, 5.299999, -22.5)
-material_override = ExtResource("32_h1ag3")
+layers = 5
+material_override = ExtResource("31_1vpnj")
 cast_shadow = 0
+use_collision = true
+collision_layer = 4
 size = Vector3(1, 3, 3)
 
 [node name="CSGBox3D61" type="CSGBox3D" parent="unbaked" unique_id=470021367]
 transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, 5.9991665, 5.299999, -22.5)
-material_override = ExtResource("33_f5sdk")
+layers = 5
+material_override = ExtResource("32_xv8ug")
 cast_shadow = 0
+use_collision = true
+collision_layer = 4
 size = Vector3(1, 3, 3)
 
 [node name="CSGBox3D62" type="CSGBox3D" parent="unbaked" unique_id=1469458234]
 transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, 8.9991665, 5.299999, -22.5)
-material_override = ExtResource("34_v7e27")
+layers = 5
+material_override = ExtResource("33_nas30")
 cast_shadow = 0
+use_collision = true
+collision_layer = 4
 size = Vector3(1, 3, 3)
 
 [node name="CSGBox3D63" type="CSGBox3D" parent="unbaked" unique_id=410852624]
 transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, 11.9991665, 5.299999, -22.5)
-material_override = ExtResource("35_kin18")
+layers = 5
+material_override = ExtResource("34_gxtg1")
 cast_shadow = 0
+use_collision = true
+collision_layer = 4
 size = Vector3(1, 3, 3)
 
 [node name="CSGBox3D64" type="CSGBox3D" parent="unbaked" unique_id=22589381]
 transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, 14.9991665, 5.299999, -22.5)
-material_override = ExtResource("36_w2hch")
+layers = 5
+material_override = ExtResource("35_08hmv")
 cast_shadow = 0
+use_collision = true
+collision_layer = 4
 size = Vector3(1, 3, 3)
 
 [node name="CSGBox3D43" type="CSGBox3D" parent="unbaked" unique_id=520069406]
 transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, -15.0008335, 11.299999, -22.5)
-material_override = ExtResource("26_6xons")
+layers = 5
+material_override = ExtResource("36_8olop")
 cast_shadow = 0
+use_collision = true
+collision_layer = 4
 size = Vector3(1, 3, 3)
 
 [node name="CSGBox3D44" type="CSGBox3D" parent="unbaked" unique_id=2097989764]
 transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, -12.0008335, 11.299999, -22.5)
-material_override = ExtResource("27_2icoj")
+layers = 5
+material_override = ExtResource("37_tsg1i")
 cast_shadow = 0
+use_collision = true
+collision_layer = 4
 size = Vector3(1, 3, 3)
 
 [node name="CSGBox3D45" type="CSGBox3D" parent="unbaked" unique_id=1830814441]
 transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, -9.0008335, 11.299999, -22.5)
-material_override = ExtResource("28_yq8tt")
+layers = 5
+material_override = ExtResource("38_ip1g1")
 cast_shadow = 0
+use_collision = true
+collision_layer = 4
 size = Vector3(1, 3, 3)
 
 [node name="CSGBox3D46" type="CSGBox3D" parent="unbaked" unique_id=1029565072]
 transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, -6.0008335, 11.299999, -22.5)
-material_override = ExtResource("29_e6t1a")
+layers = 5
+material_override = ExtResource("39_lhdvt")
 cast_shadow = 0
+use_collision = true
+collision_layer = 4
 size = Vector3(1, 3, 3)
 
 [node name="CSGBox3D47" type="CSGBox3D" parent="unbaked" unique_id=1076669131]
 transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, -3.0008335, 11.299999, -22.5)
-material_override = ExtResource("30_5wrcu")
+layers = 5
+material_override = ExtResource("40_c7o3x")
 cast_shadow = 0
+use_collision = true
+collision_layer = 4
 size = Vector3(1, 3, 3)
 
 [node name="CSGBox3D48" type="CSGBox3D" parent="unbaked" unique_id=938553432]
 transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, -0.00083351135, 11.299999, -22.5)
-material_override = ExtResource("31_m8t5h")
+layers = 5
+material_override = ExtResource("41_rdhiq")
 cast_shadow = 0
+use_collision = true
+collision_layer = 4
 size = Vector3(1, 3, 3)
 
 [node name="CSGBox3D49" type="CSGBox3D" parent="unbaked" unique_id=2045957335]
 transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, 2.9991665, 11.299999, -22.5)
-material_override = ExtResource("32_8de4v")
+layers = 5
+material_override = ExtResource("42_ss3vs")
 cast_shadow = 0
+use_collision = true
+collision_layer = 4
 size = Vector3(1, 3, 3)
 
 [node name="CSGBox3D50" type="CSGBox3D" parent="unbaked" unique_id=578087733]
 transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, 5.9991665, 11.299999, -22.5)
-material_override = ExtResource("33_h1ag3")
+layers = 5
+material_override = ExtResource("43_d0e8v")
 cast_shadow = 0
+use_collision = true
+collision_layer = 4
 size = Vector3(1, 3, 3)
 
 [node name="CSGBox3D51" type="CSGBox3D" parent="unbaked" unique_id=1661472711]
 transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, 8.9991665, 11.299999, -22.5)
-material_override = ExtResource("34_f5sdk")
+layers = 5
+material_override = ExtResource("44_e4hyq")
 cast_shadow = 0
+use_collision = true
+collision_layer = 4
 size = Vector3(1, 3, 3)
 
 [node name="CSGBox3D52" type="CSGBox3D" parent="unbaked" unique_id=297866467]
 transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, 11.9991665, 11.299999, -22.5)
-material_override = ExtResource("35_v7e27")
+layers = 5
+material_override = ExtResource("45_63s7i")
 cast_shadow = 0
+use_collision = true
+collision_layer = 4
 size = Vector3(1, 3, 3)
 
 [node name="CSGBox3D53" type="CSGBox3D" parent="unbaked" unique_id=1806390676]
 transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, 14.9991665, 11.299999, -22.5)
-material_override = ExtResource("36_kin18")
+layers = 5
+material_override = ExtResource("46_sx4ul")
 cast_shadow = 0
+use_collision = true
+collision_layer = 4
+size = Vector3(1, 3, 3)
+
+[node name="CSGBox3D65" type="CSGBox3D" parent="unbaked" unique_id=1533589283]
+transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, 17.999166, 8.299999, -22.5)
+layers = 5
+material_override = ExtResource("47_p0gy7")
+cast_shadow = 0
+use_collision = true
+collision_layer = 4
+size = Vector3(1, 3, 3)
+
+[node name="CSGBox3D66" type="CSGBox3D" parent="unbaked" unique_id=1733163612]
+transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, 17.999166, 5.299999, -22.5)
+layers = 5
+material_override = ExtResource("48_qyr55")
+cast_shadow = 0
+use_collision = true
+collision_layer = 4
+size = Vector3(1, 3, 3)
+
+[node name="CSGBox3D67" type="CSGBox3D" parent="unbaked" unique_id=1662331082]
+transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, 17.999166, 11.299999, -22.5)
+layers = 5
+material_override = ExtResource("49_per63")
+cast_shadow = 0
+use_collision = true
+collision_layer = 4
+size = Vector3(1, 3, 3)
+
+[node name="CSGBox3D68" type="CSGBox3D" parent="unbaked" unique_id=234462536]
+transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, 17.999166, 17.3, -22.5)
+layers = 5
+material_override = ExtResource("50_60bxp")
+cast_shadow = 0
+use_collision = true
+collision_layer = 4
+size = Vector3(1, 3, 3)
+
+[node name="CSGBox3D69" type="CSGBox3D" parent="unbaked" unique_id=735962848]
+transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, 17.999166, 14.299999, -22.5)
+layers = 5
+material_override = ExtResource("51_hy7q1")
+cast_shadow = 0
+use_collision = true
+collision_layer = 4
 size = Vector3(1, 3, 3)
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="unbaked" unique_id=679976279]
 transform = Transform3D(-0.032509737, 0, -0.99947137, 0, 1, 0, 0.99947137, 0, -0.032509737, 0.0966957, -4.2, -2.998413)
-material_override = ExtResource("14_uutrq")
+layers = 5
+material_override = ExtResource("47_ct54r")
 cast_shadow = 0
 use_collision = true
+collision_layer = 5
 size = Vector3(39, 2, 49)
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="." unique_id=1858675377]
 transform = Transform3D(1, 0, 0, 0, 0.39999998, 0, 0, 0, 1, 39, -5, 43)
-material_override = ExtResource("14_uutrq")
+layers = 5
+material_override = ExtResource("47_ct54r")
+use_collision = true
+collision_layer = 4
 radius = 15.0
 radial_segments = 7
 rings = 5
 
 [node name="CSGSphere3D2" type="CSGSphere3D" parent="." unique_id=143795700]
 transform = Transform3D(1, 0, 0, 0, 0.39999998, 0, 0, 0, 1, 3, -5, -50)
-material_override = ExtResource("14_uutrq")
+layers = 5
+material_override = ExtResource("47_ct54r")
+use_collision = true
+collision_layer = 4
 radius = 25.0
 radial_segments = 7
 rings = 5
 
 [node name="CSGSphere3D3" type="CSGSphere3D" parent="." unique_id=1471716402]
 transform = Transform3D(1, 0, 0, 0, 0.39999998, 0, 0, 0, 1, -59, -5, 17)
-material_override = ExtResource("14_uutrq")
+layers = 5
+material_override = ExtResource("47_ct54r")
+use_collision = true
+collision_layer = 4
 radius = 15.0
 radial_segments = 7
 rings = 5
 
 [node name="CSGSphere3D4" type="CSGSphere3D" parent="." unique_id=991217618]
 transform = Transform3D(0.49999997, 0, -0.86602545, 0, 0.39999998, 0, 0.86602545, 0, 0.49999997, -12.2423, -5, 43.682472)
-material_override = ExtResource("5_6751p")
+layers = 5
+material_override = ExtResource("4_uqyj7")
+use_collision = true
+collision_layer = 4
 radius = 25.0
 radial_segments = 7
 rings = 5
 
 [node name="CSGSphere3D5" type="CSGSphere3D" parent="." unique_id=1969642895]
 transform = Transform3D(0.49999997, 0, -0.86602545, 0, 0.39999998, 0, 0.86602545, 0, 0.49999997, 51.967937, -8, -26.494446)
-material_override = ExtResource("5_6751p")
+layers = 5
+material_override = ExtResource("4_uqyj7")
+use_collision = true
+collision_layer = 4
 radius = 25.0
 radial_segments = 7
 rings = 5
 
 [node name="CSGSphere3D7" type="CSGSphere3D" parent="." unique_id=1896932131]
 transform = Transform3D(0.49999997, 0, -0.86602545, 0, 0.05599999, 0, 0.86602545, 0, 0.49999997, 29.967937, -7, 23.505554)
-material_override = ExtResource("1_ss0f2")
+layers = 5
+material_override = ExtResource("12_s4jpd")
+use_collision = true
+collision_layer = 4
 radius = 50.0
 radial_segments = 7
 rings = 5
 
 [node name="CSGSphere3D8" type="CSGSphere3D" parent="." unique_id=1032853319]
 transform = Transform3D(0.49999997, 0, -0.86602545, 0, 0.05599999, 0, 0.86602545, 0, 0.49999997, -23.032063, -7, -35.494446)
-material_override = ExtResource("1_ss0f2")
+layers = 5
+material_override = ExtResource("12_s4jpd")
+use_collision = true
+collision_layer = 4
 radius = 50.0
 radial_segments = 7
 rings = 5
 
 [node name="CSGSphere3D9" type="CSGSphere3D" parent="." unique_id=912826853]
 transform = Transform3D(0.49999997, 0, -0.86602545, 0, 0.05599999, 0, 0.86602545, 0, 0.49999997, -23.032063, -7, -35.494446)
-material_override = ExtResource("1_ss0f2")
+layers = 5
+material_override = ExtResource("12_s4jpd")
+use_collision = true
+collision_layer = 4
 radius = 50.0
 radial_segments = 7
 rings = 5
 
 [node name="CSGSphere3D6" type="CSGSphere3D" parent="." unique_id=1182504175]
 transform = Transform3D(0.49999997, 0, -0.86602545, 0, 0.39999998, 0, 0.86602545, 0, 0.49999997, -53.725636, -5, -34.188023)
-material_override = ExtResource("5_6751p")
+layers = 5
+material_override = ExtResource("4_uqyj7")
+use_collision = true
+collision_layer = 4
 radius = 15.0
 radial_segments = 7
 rings = 5

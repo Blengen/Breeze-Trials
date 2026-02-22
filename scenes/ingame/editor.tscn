@@ -3,7 +3,13 @@
 [ext_resource type="Script" uid="uid://bsee77p85qluf" path="res://scripts/gameloop/editor.gd" id="1_g4u4a"]
 [ext_resource type="PackedScene" uid="uid://weodvb5mj5gd" path="res://scenes/ingame/player.tscn" id="2_uwsws"]
 [ext_resource type="FontFile" uid="uid://cixohe42kxmvu" path="res://themes/fonts/league_spartan_bold.ttf" id="3_bfmew"]
+[ext_resource type="Material" uid="uid://cf51vpyxkbmum" path="res://materials/colors/pale/pale_blue.tres" id="4_40411"]
 [ext_resource type="Texture2D" uid="uid://o7mhsfqkkcdh" path="res://images/cam_lock.png" id="4_uwsws"]
+[ext_resource type="Texture2D" uid="uid://ccqvv4hx24284" path="res://images/symbols/cube-bold.webp" id="5_fpa18"]
+[ext_resource type="Texture2D" uid="uid://p2peq10t0hx7" path="res://images/symbols/floppy-disk-bold.webp" id="7_40411"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_08xjh"]
+size = Vector3(0.1, 0.1, 5)
 
 [sub_resource type="Gradient" id="Gradient_pxqd5"]
 colors = PackedColorArray(5.2943824e-07, 0.5193118, 0.15212819, 1, 0.31924888, 0.43650743, 9.62615e-08, 1)
@@ -47,7 +53,9 @@ border_width_bottom = 5
 border_color = Color(0.8, 0.8, 0.8, 0)
 corner_detail = 1
 
-[node name="root" type="Node3D" unique_id=469681779]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uwsws"]
+
+[node name="root" type="Node3D" unique_id=469681779 groups=["root"]]
 script = ExtResource("1_g4u4a")
 
 [node name="player" parent="." unique_id=1257681076 instance=ExtResource("2_uwsws")]
@@ -57,6 +65,27 @@ type = "editor"
 
 [node name="ui" parent="player" index="2" unique_id=775674146]
 visible = false
+
+[node name="camlock" type="TextureRect" parent="player" unique_id=958410312]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_uwsws")
+expand_mode = 1
+
+[node name="forward_indicator" type="MeshInstance3D" parent="player" unique_id=1532974813]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -4)
+material_override = ExtResource("4_40411")
+mesh = SubResource("BoxMesh_08xjh")
 
 [node name="ui" type="Control" parent="." unique_id=1033926218]
 layout_mode = 3
@@ -96,6 +125,22 @@ offset_bottom = 60.0
 
 [node name="1" type="Button" parent="ui/top_bar/items_left" unique_id=1205695188]
 layout_mode = 2
+tooltip_text = "Adds a 3x3, collidable, no-material cube relative to your position."
+focus_mode = 0
+theme_override_constants/outline_size = 2
+theme_override_constants/icon_max_width = 40
+theme_override_fonts/font = ExtResource("3_bfmew")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_uwsws")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fpa18")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bfmew")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_uwsws")
+text = "Add Cube"
+icon = ExtResource("5_fpa18")
+
+[node name="2" type="Button" parent="ui/top_bar/items_left" unique_id=1830763453]
+layout_mode = 2
+tooltip_text = "Will be added later. Use command line."
 focus_mode = 0
 theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("3_bfmew")
@@ -103,16 +148,8 @@ theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_uwsws")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_fpa18")
 theme_override_styles/hover = SubResource("StyleBoxFlat_bfmew")
-text = "Add Cube"
-
-[node name="2" type="Button" parent="ui/top_bar/items_left" unique_id=963695540]
-layout_mode = 2
-focus_mode = 0
-theme_override_constants/outline_size = 2
-theme_override_fonts/font = ExtResource("3_bfmew")
-theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_uwsws")
-theme_override_styles/hover = SubResource("StyleBoxFlat_uwsws")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_uwsws")
+disabled = true
 text = "Add Other"
 
 [node name="items_middle" type="HBoxContainer" parent="ui/top_bar" unique_id=354623542]
@@ -125,38 +162,49 @@ offset_right = 116.5
 offset_bottom = 60.0
 grow_horizontal = 2
 
-[node name="1" type="Button" parent="ui/top_bar/items_middle" unique_id=444796145]
+[node name="1" type="Button" parent="ui/top_bar/items_middle" unique_id=1756856595]
 layout_mode = 2
-focus_mode = 0
-theme_override_constants/outline_size = 2
-theme_override_fonts/font = ExtResource("3_bfmew")
-theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_uwsws")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_fpa18")
-theme_override_styles/hover = SubResource("StyleBoxFlat_bfmew")
-text = "Show Properties"
-
-[node name="2" type="Button" parent="ui/top_bar/items_middle" unique_id=482374375]
-layout_mode = 2
-focus_mode = 0
-theme_override_constants/outline_size = 2
-theme_override_fonts/font = ExtResource("3_bfmew")
-theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_uwsws")
-theme_override_styles/hover = SubResource("StyleBoxFlat_uwsws")
-text = "Map Settings"
-
-[node name="3" type="Button" parent="ui/top_bar/items_middle" unique_id=1904607853]
-layout_mode = 2
+tooltip_text = "Unselects, locks your cursor, and enables camlock. Useful for quick testing."
 focus_mode = 0
 theme_override_constants/outline_size = 2
 theme_override_constants/icon_max_width = 40
 theme_override_fonts/font = ExtResource("3_bfmew")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_uwsws")
-theme_override_styles/hover = SubResource("StyleBoxFlat_uwsws")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fpa18")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bfmew")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_uwsws")
 text = "Lock Cursor"
 icon = ExtResource("4_uwsws")
+
+[node name="2" type="Button" parent="ui/top_bar/items_middle" unique_id=1022388826]
+layout_mode = 2
+tooltip_text = "Not out yet"
+focus_mode = 0
+theme_override_constants/outline_size = 2
+theme_override_constants/icon_max_width = 40
+theme_override_fonts/font = ExtResource("3_bfmew")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_uwsws")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fpa18")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bfmew")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_uwsws")
+disabled = true
+text = "Effects"
+
+[node name="3" type="Button" parent="ui/top_bar/items_middle" unique_id=1496881810]
+layout_mode = 2
+tooltip_text = "Which mode you are using. This affects the transform hotkeys (default: X for XZ, Y, and Z for Z-axis rotation)"
+focus_mode = 0
+theme_override_constants/outline_size = 2
+theme_override_constants/icon_max_width = 40
+theme_override_fonts/font = ExtResource("3_bfmew")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_uwsws")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fpa18")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bfmew")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_uwsws")
+text = "Moving"
 
 [node name="items_right" type="HBoxContainer" parent="ui/top_bar" unique_id=406293966]
 layout_mode = 1
@@ -167,36 +215,120 @@ offset_left = -173.0
 offset_bottom = 60.0
 grow_horizontal = 0
 
-[node name="1" type="Button" parent="ui/top_bar/items_right" unique_id=750758883]
+[node name="1" type="Button" parent="ui/top_bar/items_right" unique_id=1964597005]
 layout_mode = 2
+tooltip_text = "! CAREFUL ! Make sure you overwrite the correct file. Backups recommended.
+Allows you to save or overwrite the current map as a file that can be loaded."
 focus_mode = 0
 theme_override_constants/outline_size = 2
+theme_override_constants/icon_max_width = 40
 theme_override_fonts/font = ExtResource("3_bfmew")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_uwsws")
-theme_override_styles/hover = SubResource("StyleBoxFlat_uwsws")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fpa18")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bfmew")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_uwsws")
 text = "Save"
+icon = ExtResource("7_40411")
 
-[node name="2" type="Button" parent="ui/top_bar/items_right" unique_id=1987703931]
+[node name="2" type="Button" parent="ui/top_bar/items_right" unique_id=867258323]
 layout_mode = 2
+tooltip_text = "! Saving first is recommended !
+Plays the current map in play mode. Exiting returns you to the editor."
 focus_mode = 0
 theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("3_bfmew")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_uwsws")
-theme_override_styles/hover = SubResource("StyleBoxFlat_uwsws")
-text = "Playtest"
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fpa18")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bfmew")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_uwsws")
+text = "Play"
 
-[node name="3" type="Button" parent="ui/top_bar/items_right" unique_id=1578248655]
+[node name="3" type="Button" parent="ui/top_bar/items_right" unique_id=263128774]
 layout_mode = 2
+tooltip_text = "Save or back up first.
+If you don't want to save, click save, close the dialog, then exit."
 focus_mode = 0
 theme_override_constants/outline_size = 2
+theme_override_constants/icon_max_width = 40
 theme_override_fonts/font = ExtResource("3_bfmew")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_uwsws")
-theme_override_styles/hover = SubResource("StyleBoxFlat_uwsws")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fpa18")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bfmew")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_uwsws")
+disabled = true
 text = "Exit"
 
+[node name="disable_timer" type="Timer" parent="ui/top_bar/items_right/3" unique_id=1754578931]
+wait_time = 60.0
+one_shot = true
+
+[node name="Label" type="Label" parent="ui/top_bar" unique_id=1369712007]
+visible = false
+layout_mode = 0
+offset_left = 3.0
+offset_top = 981.0
+offset_right = 262.0
+offset_bottom = 1027.0
+theme_override_fonts/font = ExtResource("3_bfmew")
+theme_override_font_sizes/font_size = 50
+text = "Command: "
+
+[node name="cline" type="LineEdit" parent="ui" unique_id=1149297824]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -49.0
+grow_horizontal = 2
+grow_vertical = 0
+focus_mode = 1
+theme_override_fonts/font = ExtResource("3_bfmew")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_uwsws")
+placeholder_text = "\"help\" to see commands."
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+caret_blink = true
+caret_blink_interval = 0.5
+
+[node name="console" type="Label" parent="ui/cline" unique_id=439718986]
+visible = false
+layout_mode = 0
+offset_top = -214.0
+offset_right = 1920.0
+theme_override_fonts/font = ExtResource("3_bfmew")
+theme_override_font_sizes/font_size = 40
+text = "Console: "
+vertical_alignment = 2
+
+[node name="hide_timer" type="Timer" parent="ui/cline/console" unique_id=1516625488]
+wait_time = 10.0
+one_shot = true
+
+[node name="update_timer" type="Timer" parent="." unique_id=198667903]
+wait_time = 0.05
+autostart = true
+
+[node name="FileDialog" type="FileDialog" parent="." unique_id=1328550924]
+title = "Save Map"
+display_mode = 1
+access = 2
+filters = PackedStringArray("*tscn")
+
 [connection signal="pressed" from="ui/top_bar/items_left/1" to="." method="_on_add_cube_pressed"]
+[connection signal="pressed" from="ui/top_bar/items_middle/1" to="." method="_on_lock_cursor_pressed"]
+[connection signal="pressed" from="ui/top_bar/items_middle/3" to="." method="_on_mode_pressed"]
+[connection signal="pressed" from="ui/top_bar/items_right/1" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="ui/top_bar/items_right/3" to="." method="_on_exit_pressed"]
+[connection signal="timeout" from="ui/top_bar/items_right/3/disable_timer" to="." method="_on_disable_timer_timeout"]
+[connection signal="text_submitted" from="ui/cline" to="." method="_on_cline_text_submitted"]
+[connection signal="timeout" from="ui/cline/console/hide_timer" to="." method="_on_hide_timer_timeout"]
+[connection signal="timeout" from="update_timer" to="." method="_on_update_timer_timeout"]
+[connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]
 
 [editable path="player"]
