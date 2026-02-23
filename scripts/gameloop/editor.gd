@@ -136,9 +136,18 @@ func _on_exit_pressed() -> void: get_tree().change_scene_to_file("res://scenes/m
 
 func _unhandled_input(event: InputEvent) -> void:
 	
+	# Holy long-ass line
+	if transforming: if not Input.is_action_pressed("transform_xz") and not Input.is_action_pressed("transform_y") and not Input.is_action_pressed("transform_z"):
+		transforming = false
+		transform_x = 0
+		transform_y = 0
+		transform_object = null
+	
 	if event is InputEventMouseMotion and transforming and transform_object:
 		transform_x += event.relative.x
 		transform_y += event.relative.y
+		
+		# This code might be the biggest mess I've ever made
 		
 		if Input.is_action_pressed("increment_small"): increment = Vector3(0.25, 0.25, 0.25)
 		elif Input.is_action_pressed("increment_smaller"): increment = Vector3(0.05, 0.05, 0.05)
@@ -168,16 +177,16 @@ func _unhandled_input(event: InputEvent) -> void:
 		elif (selected or transform_object) and Input.is_action_just_pressed("transform_z"): transform_settings("z")
 		
 func transform_settings(dir: String) -> void:
-	if transforming:
-		transforming = false
-		transform_x = 0
-		transform_y = 0
-		transform_object = null
-	else:
-		transform_dir = dir
-		transforming = true
-		transform_object = selected
-		set_origin()
+	#if transforming:
+		#transforming = false
+		#transform_x = 0
+		#transform_y = 0
+		#transform_object = null
+	#else:
+	transform_dir = dir
+	transforming = true
+	transform_object = selected
+	set_origin()
 
 
 func set_origin() -> void:
@@ -431,7 +440,20 @@ func _on_cline_text_submitted(cmd: String) -> void:
 			print_error("size, sizex, sizey, sizez, size+, sizex+ sizey+ sizez+ same structure but replace \"size\"
 			with \"pos\" (position) or \"rot\" (rotation) col, col true, col false (collision), mat (material name)
 			matlist (see material names) This is extremely confusing so I recommend watching the tutorial.")
+		
+		"dupe":
 			
+			if !selected: print_error("No object selected to duplicate")
+			
+			var duplicated: Node = selected.duplicate()
+			selected.get_parent().add_child(duplicated)
+			selected.material_overlay = null
+			selected = duplicated
+		
+		"del":
+			if !selected: print_error("No object selected to delete")
+			selected.queue_free()
+			selected = null
 		
 func _on_hide_timer_timeout() -> void: $ui/cline/console.hide()
 	
