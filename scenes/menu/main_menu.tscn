@@ -322,7 +322,7 @@ min_size = Vector2i(1920, 1080)
 ok_button_text = "Load"
 file_mode = 0
 access = 2
-filters = PackedStringArray("*.tscn")
+filters = PackedStringArray("*.btmap")
 hidden_files_toggle_enabled = false
 file_filter_toggle_enabled = false
 

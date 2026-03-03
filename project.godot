@@ -8,6 +8,10 @@
 
 config_version=5
 
+[accessibility]
+
+general/updates_per_second=12
+
 [animation]
 
 compatibility/default_parent_skeleton_in_mesh_instance_3d=true
@@ -192,7 +196,7 @@ increment_smaller={
 
 [physics]
 
-common/physics_ticks_per_second=165
+common/physics_ticks_per_second=240
 common/max_physics_steps_per_frame=100
 common/physics_jitter_fix=0.0
 

@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://5abaadf51xt"]
+[gd_scene format=3 uid="uid://bgra82ii0rdmu"]
 
 [ext_resource type="Script" uid="uid://cr2dgvo33htij" path="res://scripts/gameloop/map_settings.gd" id="1_hgs20"]
 [ext_resource type="AudioStream" uid="uid://f8xrv4240fjt" path="res://scenes/maps/Whimsical Ahh Belenge Beat.mp3" id="2_xd0rm"]

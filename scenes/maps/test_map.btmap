@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://dmvgdl57pplx2"]
+[gd_scene format=3 uid="uid://cpda6ehi6dk37"]
 
 [ext_resource type="Script" uid="uid://cr2dgvo33htij" path="res://scripts/gameloop/map_settings.gd" id="1_umpor"]
 [ext_resource type="Texture2D" uid="uid://drfcef03hc8mr" path="res://images/skies/pink_sunset.png" id="2_bo03o"]

@@ -43,12 +43,16 @@ func fix_pause_menu() -> void:
 	$pause_menu/VBoxContainer/license.text = "License: " + settings.license
 
 func _ready() -> void:
-	add_child(load(global.selected_map).instantiate())
+	load_map()
 	fix_variables()
 	get_song()
 	fix_pause_menu()
 	restart()
-	
+
+func load_map() -> void:
+	add_child(load(global.temp_file).instantiate())
+	DirAccess.rename_absolute(global.temp_file, global.selected_map)
+	DirAccess.remove_absolute(global.temp_file)
 	
 
 func restart() -> void:

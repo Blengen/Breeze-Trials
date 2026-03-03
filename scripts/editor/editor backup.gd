@@ -120,7 +120,6 @@ func _on_lock_cursor_pressed() -> void:
 	selected = null
 	
 func _on_mode_pressed() -> void:
-	
 	if transform_mode == "move":
 		$"ui/top_bar/items_middle/3".text = "Scaling"
 		transform_mode = "size"
@@ -130,7 +129,19 @@ func _on_mode_pressed() -> void:
 	elif $"ui/top_bar/items_middle/3".text == "Rotating":
 		$"ui/top_bar/items_middle/3".text = "Moving"
 		transform_mode = "move"
-
+		
+func _on_save_as_pressed() -> void:
+	save_scene = PackedScene.new()
+	var err: Error = save_scene.pack($map)
+	if err == OK: $save_dialog.show()
+	$"ui/top_bar/items_right/4".disabled = false
+	$"ui/top_bar/items_right/4/disable_timer".start()
+	
+func _on_save_pressed() -> void:
+	pass
+	
+func _on_file_dialog_file_selected(path: String) -> void: ResourceSaver.save(save_scene, path)
+func _on_disable_timer_timeout() -> void: $"ui/top_bar/items_right/3".disabled = true
 
 func _on_exit_pressed() -> void: get_tree().change_scene_to_file("res://scenes/menu/main_menu.tscn")
 
@@ -177,12 +188,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		elif (selected or transform_object) and Input.is_action_just_pressed("transform_z"): transform_settings("z")
 		
 func transform_settings(dir: String) -> void:
-	#if transforming:
-		#transforming = false
-		#transform_x = 0
-		#transform_y = 0
-		#transform_object = null
-	#else:
 	transform_dir = dir
 	transforming = true
 	transform_object = selected
@@ -209,7 +214,7 @@ func selection(object: Node) -> void:
 		elif selected is Area3D and selected.is_in_group("orb"): selected.sprite.modulate = Color(0.5, 0.5, 0.5)
 	
 
-
+# Command line parser
 func _on_cline_text_submitted(cmd: String) -> void:
 	cline.text = ""
 	cmd = cmd.to_lower()
@@ -415,7 +420,7 @@ func _on_cline_text_submitted(cmd: String) -> void:
 			elif not materials.has(args[1]): print_error("Invalid Material name. Use \"matlist\" to see names. Check spelling.")
 			
 			# Failsafes not triggered, correct input 
-			else: selected.material_override = materials[args[1]] 
+			else: selected.material_override = materials[args[1]]
 		
 		"col":
 			# Failsafes
@@ -462,12 +467,3 @@ func print_error(message: String) -> void:
 	$ui/cline/console.text = message
 	$ui/cline/console/hide_timer.start()
 	
-func _on_save_pressed() -> void:
-	save_scene = PackedScene.new()
-	var err: Error = save_scene.pack($map)
-	if err == OK: $FileDialog.show()
-	$"ui/top_bar/items_right/3".disabled = false
-	$"ui/top_bar/items_right/3/disable_timer".start()
-	
-func _on_file_dialog_file_selected(path: String) -> void: ResourceSaver.save(save_scene, path)
-func _on_disable_timer_timeout() -> void: $"ui/top_bar/items_right/3".disabled = true

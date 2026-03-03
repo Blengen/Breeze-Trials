@@ -2,8 +2,9 @@ extends Node
 
 var settings_file: String = "res://settings.cfg"
 
-var selected_map: String = "res://scenes/maps/test_map.tscn"
-var entered_from_editor: bool = false
+var selected_map: String = "res://scenes/maps/test_map.btmap"
+var temp_file: String = ""
+#var entered_from_editor: bool = false
 
 # SETTINGS VARIABLES
 
