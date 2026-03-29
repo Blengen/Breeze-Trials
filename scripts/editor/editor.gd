@@ -1,7 +1,6 @@
 extends Node3D
 
 # This was messy as hell so I got DeepSeek to refactor it ... does anyone actually look at the source code?
-# Slightly buggy, some command extensions don't work.
 
 # ============================================================
 # NODE REFERENCES
@@ -18,6 +17,15 @@ extends Node3D
 # EDITOR STATE
 # ============================================================
 var selected: Node
+
+var gizmo: Node3D = preload("res://scenes/ingame/gizmo.tscn").instantiate()
+var gizmove: bool = false # Is currently transforming with gizmo?
+var gizmove_type: String = "move" # Are we moving, scaling, or rotating?
+var gizmove_dir: Vector3 = Vector3(1, 0, 0) # Vector3 direction multiplier
+var gizmove_start: float = 0 # Mouse Y position when drag begins
+var gizmove_origin: Vector3 = Vector3.ZERO
+var gizmove_pos: Vector3 = Vector3.ZERO
+
 var save_scene: Variant = null
 var playing: bool = true
 var hihat_juice: float = -1
@@ -103,11 +111,47 @@ func _ready() -> void:
 	load_map()
 	fix_variables()
 	player.position = spawn.position
+
+func _process(_delta: float) -> void:
+	# Gizmo transforming code
+	if !gizmove: return
+	
+	# Determine increment
+	if Input.is_action_pressed("increment_small"):
+		increment = Vector3(0.25, 0.25, 0.25)
+		rotation_increment = 5
+	elif Input.is_action_pressed("increment_smaller"):
+		increment = Vector3(0.05, 0.05, 0.05)
+		rotation_increment = 2.5
+	else:
+		increment = Vector3(1, 1, 1)
+		rotation_increment = 22.5
+	
+	if not Input.is_action_pressed("lmb"):
+		gizmove = false
+		return
+	if selected:
+		gizmo.global_position = selected.global_position
+		gizmo.global_rotation_degrees = Vector3.ZERO
+	
+	
+	var mouse_y: float = get_viewport().get_mouse_position().y
+	if false: mouse_y = 0
+	
+	match gizmove_type: # Least confusing equations:
+		"move": selected.position = snapped(gizmove_origin - ((mouse_y - gizmove_start) * 0.1 * gizmove_dir), increment)
+		"size":
+			selected.size = snapped(gizmove_origin - ((mouse_y - gizmove_start) * 0.1 * abs(gizmove_dir) ), increment) # No clue how I made this lmao
+			if Input.is_action_pressed("even"): selected.position = gizmove_pos
+			else: selected.position = snapped(gizmove_pos + (gizmove_dir * (mouse_y - gizmove_start) * -0.05), increment * 0.5)
+		"scale":
+			selected.scale = snapped(gizmove_origin - ((mouse_y - gizmove_start) * 0.1 * abs(gizmove_dir)), increment)
+			if Input.is_action_pressed("even"): selected.position = gizmove_pos
+			else: selected.position = gizmove_pos + snapped((gizmove_dir * (mouse_y - gizmove_start) * -0.05), increment * 0.5)
+		"rotate": selected.rotation_degrees = snapped(gizmove_origin - ((mouse_y - gizmove_start) * gizmove_dir), Vector3(rotation_increment, rotation_increment, rotation_increment))
 	
 func load_map() -> void:
-	add_child(load(global.temp_file).instantiate())
-	DirAccess.rename_absolute(global.temp_file, global.selected_map)
-	DirAccess.remove_absolute(global.temp_file)
+	add_child(load(global.selected_map).instantiate())
 	
 func fix_variables() -> void:
 	player = $player/body
@@ -129,17 +173,55 @@ func _on_add_cube_pressed() -> void:
 	cube_instance.position = snapped(cube_instance.position, Vector3(1, 1, 1))
 	cube_instance.size = Vector3(3, 3, 3)
 	cube_instance.use_collision = true
-	cube_instance.collision_layer = 1 | 3
+	cube_instance.collision_layer = 5
+	cube_instance.material_override = materials["gray"]
 	
 	# Add Cube
 	main.add_child(cube_instance)
 	cube_instance.owner = map
+	
+func _on_add_other_pressed() -> void: _on_add_orb_pressed() # Temporary
+
+func _on_add_orb_pressed() -> void:
+	var orb_instance: Area3D = load("res://scenes/ingame/orb.tscn").instantiate()
+	
+	# Cube Settings
+	orb_instance.position = player.position + Vector3(0, -1, -5)
+	orb_instance.position = snapped(orb_instance.position, Vector3(1, 1, 1))
+	
+	# Add orb
+	$map/orbs.add_child(orb_instance)
+	orb_instance.owner = map
+
+
+func _on_add_cylinder_pressed() -> void:
+	var cylinder_instance: CSGCylinder3D = CSGCylinder3D.new()
+	
+	# cylinder Settings
+	cylinder_instance.position = player.position + Vector3(0, -1, -5)
+	cylinder_instance.position = snapped(cylinder_instance.position, Vector3(1, 1, 1))
+	cylinder_instance.radius = 3
+	cylinder_instance.height = 3
+	cylinder_instance.use_collision = true
+	cylinder_instance.collision_layer = 1 | 3
+	cylinder_instance.sides = 16
+	cylinder_instance.smooth_faces = false
+	
+	# Add cylinder
+	main.add_child(cylinder_instance)
+	cylinder_instance.owner = map
+
+
+func _on_add_low_poly_rock_pressed() -> void:
+	pass # Replace with function body.
+
 
 func _on_lock_cursor_pressed() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	$"ui/top_bar/items_middle/1".text = "ESC to return"
 	if selected:
 		selected.material_overlay = null
+		selected.remove_child(gizmo)
 	selected = null
 
 func _on_mode_pressed() -> void:
@@ -165,16 +247,14 @@ func _on_save_pressed() -> void:
 	pass # Not implemented yet
 
 func _on_file_dialog_file_selected(path: String) -> void:
-	
-	path = path.trim_suffix("btmap")
 
-	if path.ends_with(".btmap"): path.trim_suffix(".btmap")
-	if not path.ends_with(".tscn"): path += ".tscn"
+	if not path.ends_with(".btmap.tscn"): path += ".btmap.tscn"
 	
 	var err: Error = ResourceSaver.save(save_scene, path)
 	
 	if err != OK: print_error("Map did not save properly: " + str(err))
-	else: DirAccess.rename_absolute(path, path.trim_suffix("tscn") + "btmap")
+	
+	global.selected_map = path
 
 func _on_disable_timer_timeout() -> void: $"ui/top_bar/items_right/3".disabled = true
 
@@ -186,14 +266,24 @@ func _on_exit_pressed() -> void:
 # ============================================================
 func selection(object: Node) -> void:
 	# Clear previous selection highlight
+	
+	
+	
 	if selected is CSGShape3D:
 		selected.material_overlay = null
 	elif selected is Area3D and selected.is_in_group("orb"):
 		selected.sprite.modulate = Color(1, 1, 1)
+		
+	if selected: if selected.get_children().has(gizmo): selected.remove_child(gizmo)
 	selected = null
 
 	if object:
 		selected = object
+		selected.add_child(gizmo)
+		
+		gizmo.global_rotation_degrees = Vector3.ZERO
+		gizmo.global_position = selected.global_position
+		
 		if object is CSGShape3D:
 			object.material_overlay = selection_material
 		elif selected is Area3D and selected.is_in_group("orb"):
@@ -203,6 +293,7 @@ func selection(object: Node) -> void:
 # INPUT & TRANSFORM HANDLING
 # ============================================================
 func _unhandled_input(event: InputEvent) -> void:
+	
 	# Cancel transform if all transform keys released
 	if transforming:
 		if not Input.is_action_pressed("transform_xz") and not Input.is_action_pressed("transform_y") and not Input.is_action_pressed("transform_z"):
@@ -223,6 +314,34 @@ func _unhandled_input(event: InputEvent) -> void:
 			start_transform("y")
 		elif (selected or transform_object) and Input.is_action_just_pressed("transform_z"):
 			start_transform("z")
+		
+		if Input.is_action_just_pressed("duplicate"): _on_cline_text_submitted("dup")
+
+func gizmo_transform(groups: Array) -> void:
+
+	gizmove_type = "move" # Transform Type
+	gizmove_dir = Vector3(1, 0, 0)
+	gizmove_pos = selected.position
+	
+	if groups.has(&"size"): gizmove_type = "size"
+	elif groups.has(&"rotate"): gizmove_type = "rotate"
+	
+	if groups.has(&"y"): gizmove_dir = Vector3.UP
+	elif groups.has(&"z"): gizmove_dir = Vector3(0, 0, 1)
+	
+	if groups.has(&"-"): gizmove_dir *= Vector3(-1, -1, -1)
+
+	gizmove = true
+	gizmove_start = get_viewport().get_mouse_position().y
+	
+	match gizmove_type:
+		"move": gizmove_origin = selected.position
+		"size":
+			if selected is CSGBox3D: gizmove_origin = selected.size
+			else:
+				gizmove_type = "scale"
+				gizmove_origin = selected.scale
+		"rotate": gizmove_origin = selected.rotation_degrees
 
 func start_transform(dir: String) -> void:
 	transform_dir = dir
@@ -235,7 +354,7 @@ func set_origin() -> void:
 		"move":
 			origin = transform_object.position
 		"size":
-			origin = transform_object.size
+			if selected is CSGBox3D: origin = transform_object.size
 		"rotate":
 			origin = transform_object.rotation_degrees
 
@@ -243,10 +362,13 @@ func update_transform() -> void:
 	# Determine increment
 	if Input.is_action_pressed("increment_small"):
 		increment = Vector3(0.25, 0.25, 0.25)
+		rotation_increment = 5
 	elif Input.is_action_pressed("increment_smaller"):
 		increment = Vector3(0.05, 0.05, 0.05)
+		rotation_increment = 2.5
 	else:
 		increment = Vector3(1, 1, 1)
+		rotation_increment = 22.5
 
 	match transform_dir:
 		"x":
@@ -265,7 +387,7 @@ func update_transform() -> void:
 		"y":
 			if transform_mode == "move":
 				transform_object.position.y = origin.y + snappedf(-transform_y * 0.05, increment.x)
-			elif transform_mode == "size" and transform_object is CSGShape3D:
+			elif transform_mode == "size" and transform_object is CSGBox3D:
 				transform_object.size.y = origin.y + snappedf(-transform_y * 0.05, increment.x)
 				if transform_object.size.y < increment.y:
 					transform_object.size.y = increment.y
@@ -288,28 +410,25 @@ func _on_cline_text_submitted(cmd: String) -> void:
 
 	var command: String = args[0]
 	var rest: Array = args.slice(1)
-
+	
+	#print(command, ", ", rest)
+	
+	if command.begins_with("pos") or command.begins_with("size") or command.begins_with("rot"):
+		handle_transform_command(command, rest)
+		return
+	
 	# Dispatch commands
 	match command:
-		# Transform commands
-		"size", "size+", "sizex", "sizex+", "sizey", "sizey+", "sizez", "sizez+": handle_transform_command(command, rest)
-		"pos", "pos+", "posx", "posx+", "posy", "posy+", "posz", "posz+": handle_transform_command(command, rest)
-		"rot", "rot+", "rotx", "rotx+", "roty", "roty+", "rotz", "rotz+": handle_transform_command(command, rest)
-			
-
+		
 		# Other commands
-		"mat":
-			handle_material_command(rest)
-		"col":
-			handle_collision_command(rest)
-		"matlist":
-			print_material_list()
-		"help":
-			print_help()
-		"dupe":
-			handle_duplicate()
-		"del":
-			handle_delete()
+		"mat", "material": handle_material_command(rest)
+		"col", "collide", "cancollide", "collision", "hascollision": handle_collision_command(rest)
+		"matlist", "materials", "mats", "passmethelistofmaterialsalready": print_material_list()
+		"help", "cmds", "cmd": print_help()
+		"dupe", "dup", "copy", "duplicate": handle_duplicate()
+		"del", "delete", "remove", "destroy": handle_delete()
+		"orb", "orbsettings": handle_orb_settings(args)
+		"spawn": spawn.position = player.position
 		_:
 			print_error("Unknown command: " + command)
 
@@ -325,21 +444,24 @@ func handle_transform_command(cmd: String, args: Array) -> void:
 
 	# Split the command into base (size/pos/rot) and optional axis/operator
 	# Examples: size, size+, sizex, sizex+, sizey, sizey+, etc.
+	var parsed_values: Array = []
 	if cmd.begins_with("size"):
 		base = "size"
 		var suffix: String = cmd.trim_prefix("size")
-		parse_suffix(suffix, axis, operator)
+		parsed_values = parse_suffix(suffix, axis, operator)
 	elif cmd.begins_with("pos"):
 		base = "pos"
 		var suffix: String = cmd.trim_prefix("pos")
-		parse_suffix(suffix, axis, operator)
+		parsed_values = parse_suffix(suffix, axis, operator)
 	elif cmd.begins_with("rot"):
 		base = "rot"
 		var suffix: String = cmd.trim_prefix("rot")
-		parse_suffix(suffix, axis, operator)
-	else:
-		return # Should not happen
-
+		parsed_values = parse_suffix(suffix, axis, operator)
+	
+	axis = parsed_values[0]
+	operator = parsed_values[1]
+	#print(base, ", ", axis, ", ", operator)
+	
 	# Get the property to modify based on base
 	var prop: Variant
 	match base:
@@ -400,42 +522,22 @@ func handle_transform_command(cmd: String, args: Array) -> void:
 		new_vec[idx] = new_val
 		apply_transform(base, new_vec)
 
-func parse_suffix(suffix: String, axis: String, operator: String) -> void:
-	# suffix examples: "", "+", "x", "x+", "y", "y+", "z", "z+"
+func parse_suffix(suffix: String, axis: String, operator: String) -> Array:
 	
-	# Some weirdass shenanigans because otherwise Godot screams at me for unused variables ... even though they are used.
-	@warning_ignore("standalone_expression")
-	axis + operator
+	if suffix.contains("x"): axis = "x"
+	elif suffix.contains("y"): axis = "y"
+	elif suffix.contains("z"): axis = "z"
+	else: axis = ""
 	
-	if suffix.is_empty():
-		axis = ""
-		operator = ""
-	elif suffix == "+":
-		axis = ""
-		operator = "+"
-	elif suffix == "x":
-		axis = "x"
-		operator = ""
-	elif suffix == "x+":
-		axis = "x"
-		operator = "+"
-	elif suffix == "y":
-		axis = "y"
-		operator = ""
-	elif suffix == "y+":
-		axis = "y"
-		operator = "+"
-	elif suffix == "z":
-		axis = "z"
-		operator = ""
-	elif suffix == "z+":
-		axis = "z"
-		operator = "+"
-	else:
-		# Unknown suffix, treat as no axis/operator? We'll just set defaults
-		axis = ""
-		operator = ""
-
+	if suffix.contains("+"): operator = "+"
+	elif suffix.contains("-"): operator = "-"
+	elif suffix.contains("*"): operator = "*"
+	elif suffix.contains("/"): operator = "/"
+	else: operator = ""
+	
+	return [axis, operator]
+	
+	
 func apply_transform(base: String, new_val: Vector3) -> void:
 	match base:
 		"size":
@@ -507,15 +609,31 @@ func handle_duplicate() -> void:
 		return
 	var duplicated: Node = selected.duplicate()
 	selected.get_parent().add_child(duplicated)
-	selected.material_overlay = null
+	if not selected.is_in_group("orb"): selected.material_overlay = null
+	
 	selected = duplicated
-
+	duplicated.owner = map
+	
 func handle_delete() -> void:
 	if not selected:
 		print_error("No object selected")
 		return
 	selected.queue_free()
 	selected = null
+
+func handle_orb_settings(args: Array) -> void:
+	if !selected or not selected.is_in_group("orb"):
+		print_error("No orb selected")
+		return
+	if args.size() != 3: print_error("Expected 2 arguments (orb type, strength), got " + str(args.size() - 1))
+	
+	if ["dash", "jump", "stat_speed", "stat_jump", "fuel", "end"].has(args[1]): selected.type = args[1]
+	if args[2].is_valid_float(): selected.value = abs(float(args[2]))
+	selected.load_texture()
+	
+	selected.type = args[1]
+	selected.value = float(args[2])
+	selected.load_texture()
 
 func print_error(message: String) -> void:
 	$ui/cline/console.show()

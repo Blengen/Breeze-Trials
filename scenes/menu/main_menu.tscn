@@ -4,15 +4,37 @@
 [ext_resource type="Script" uid="uid://b1flga8wtbld1" path="res://scripts/menu/menu.gd" id="1_247la"]
 [ext_resource type="Theme" uid="uid://bvyertuunhye7" path="res://themes/main_menu.tres" id="2_247la"]
 [ext_resource type="Texture2D" uid="uid://bafym8lcd76yg" path="res://themes/gradients/main_menu.tres" id="2_hj162"]
+[ext_resource type="FontFile" uid="uid://cixohe42kxmvu" path="res://themes/fonts/league_spartan_bold.ttf" id="3_d4hu8"]
 [ext_resource type="Texture2D" uid="uid://c06aaa8dtbgcr" path="res://themes/gradients/credits.tres" id="4_xn6kt"]
 [ext_resource type="Texture2D" uid="uid://chgl7eowug3ag" path="res://themes/gradients/custom_maps.tres" id="5_1k4da"]
 [ext_resource type="Texture2D" uid="uid://cxwe3fpgrfn6q" path="res://themes/gradients/main_maps.tres" id="5_bbqo6"]
 [ext_resource type="Texture2D" uid="uid://c30t2wy8qd6xi" path="res://images/difficulties/medium.png" id="6_bbqo6"]
-[ext_resource type="Texture2D" uid="uid://ka42k2j8a0ug" path="res://themes/gradients/settings.tres" id="6_xn6kt"]
 [ext_resource type="Texture2D" uid="uid://r8sxn1yp2etk" path="res://images/difficulties/unknown.png" id="7_d4hu8"]
 [ext_resource type="Texture2D" uid="uid://bs2tavlqjv86f" path="res://images/difficulties/hard.png" id="7_p1nwe"]
 [ext_resource type="Texture2D" uid="uid://dg25ddk3nfee7" path="res://images/difficulties/legendary.png" id="8_prbor"]
-[ext_resource type="Script" uid="uid://bl21uuma35gwr" path="res://scripts/settings_menu.gd" id="12_p1nwe"]
+
+[sub_resource type="Animation" id="Animation_p1nwe"]
+resource_name = "pulse"
+length = 3.0
+loop_mode = 1
+step = 0.083333336
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector2(0.98, 0.98), Vector2(1.02, 1.02), Vector2(0.98, 0.98)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_prbor"]
+_data = {
+&"pulse": SubResource("Animation_p1nwe")
+}
 
 [node name="menu" type="Control" unique_id=681409378]
 z_as_relative = false
@@ -35,6 +57,31 @@ grow_vertical = 2
 mouse_filter = 0
 texture = ExtResource("2_hj162")
 
+[node name="title" type="Label" parent="main_menu" unique_id=253568751]
+z_index = 2
+z_as_relative = false
+layout_mode = 0
+offset_left = 183.0
+offset_top = 92.0
+offset_right = 1727.0
+offset_bottom = 434.0
+scale = Vector2(0.98, 0.98)
+pivot_offset_ratio = Vector2(0.5, 0.3)
+mouse_filter = 0
+theme_override_colors/font_color = Color(0.73333335, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.19607843, 0.19607843, 0.19607843, 0.58431375)
+theme_override_colors/font_outline_color = Color(0.16899684, 0.40683764, 0.27268642, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 10
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("3_d4hu8")
+theme_override_font_sizes/font_size = 250
+text = "Breeze Trials"
+horizontal_alignment = 1
+
+[node name="ani" type="AnimationPlayer" parent="main_menu/title" unique_id=1705582601]
+libraries/ = SubResource("AnimationLibrary_prbor")
+
 [node name="vbox" type="VBoxContainer" parent="main_menu" unique_id=2071970611]
 z_as_relative = false
 layout_mode = 1
@@ -44,29 +91,14 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -712.0
-offset_top = -415.0
+offset_top = -265.0
 offset_right = 672.0
-offset_bottom = 375.0
+offset_bottom = 525.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 0
 theme = ExtResource("2_247la")
 alignment = 1
-
-[node name="title" type="Label" parent="main_menu/vbox" unique_id=253568751]
-z_index = 2
-z_as_relative = false
-layout_mode = 2
-mouse_filter = 0
-theme_override_colors/font_color = Color(0.73333335, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0.19607843, 0.19607843, 0.19607843, 0.58431375)
-theme_override_colors/font_outline_color = Color(0.16899684, 0.40683764, 0.27268642, 1)
-theme_override_constants/shadow_offset_x = 0
-theme_override_constants/shadow_offset_y = 10
-theme_override_constants/outline_size = 20
-theme_override_font_sizes/font_size = 250
-text = "Breeze Trials"
-horizontal_alignment = 1
 
 [node name="version" type="Label" parent="main_menu/vbox" unique_id=1297986335]
 z_index = 2
@@ -322,7 +354,7 @@ min_size = Vector2i(1920, 1080)
 ok_button_text = "Load"
 file_mode = 0
 access = 2
-filters = PackedStringArray("*.btmap")
+filters = PackedStringArray("*.btmap.tscn")
 hidden_files_toggle_enabled = false
 file_filter_toggle_enabled = false
 
@@ -340,94 +372,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 0
 texture = ExtResource("4_xn6kt")
-
-[node name="vbox" type="VBoxContainer" parent="credits" unique_id=428279587]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -681.0
-offset_top = -437.0
-offset_right = 681.0
-offset_bottom = 330.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_filter = 0
-theme = ExtResource("2_247la")
-alignment = 1
-
-[node name="title" type="Label" parent="credits/vbox" unique_id=1885492094]
-layout_mode = 2
-mouse_filter = 0
-theme_override_colors/font_color = Color(0.9917378, 0.42157233, 1, 1)
-theme_override_colors/font_shadow_color = Color(0.19607843, 0.19607843, 0.19607843, 0.58431375)
-theme_override_colors/font_outline_color = Color(0.6175447, 2.6183128e-05, 0.46413237, 1)
-theme_override_constants/shadow_offset_x = 0
-theme_override_constants/shadow_offset_y = 10
-theme_override_constants/outline_size = 20
-theme_override_font_sizes/font_size = 250
-text = "Credits"
-horizontal_alignment = 1
-
-[node name="text_1" type="Label" parent="credits/vbox" unique_id=296173971]
-layout_mode = 2
-mouse_filter = 0
-theme_override_colors/font_color = Color(0.96368617, 0.9494793, 0.8079109, 1)
-theme_override_colors/font_shadow_color = Color(0.19607843, 0.19607843, 0.19607843, 0.58431375)
-theme_override_colors/font_outline_color = Color(0.46944386, 0.31538966, 0.14666304, 1)
-theme_override_constants/shadow_offset_x = 0
-theme_override_constants/shadow_offset_y = 3
-theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 100
-text = "Assets"
-horizontal_alignment = 1
-
-[node name="text_2" type="Label" parent="credits/vbox" unique_id=222322879]
-layout_mode = 2
-mouse_filter = 0
-theme_override_colors/font_color = Color(0.96368617, 0.9494793, 0.8079109, 1)
-theme_override_colors/font_shadow_color = Color(0.19607843, 0.19607843, 0.19607843, 0.58431375)
-theme_override_colors/font_outline_color = Color(0.46944386, 0.31538966, 0.14666304, 1)
-theme_override_constants/shadow_offset_x = 0
-theme_override_constants/shadow_offset_y = 3
-theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 50
-text = "OpenGameArt.org
-"
-horizontal_alignment = 1
-
-[node name="text_3" type="Label" parent="credits/vbox" unique_id=1950666818]
-layout_mode = 2
-mouse_filter = 0
-theme_override_colors/font_color = Color(0.96368617, 0.9494793, 0.8079109, 1)
-theme_override_colors/font_shadow_color = Color(0.19607843, 0.19607843, 0.19607843, 0.58431375)
-theme_override_colors/font_outline_color = Color(0.46944386, 0.31538966, 0.14666304, 1)
-theme_override_constants/shadow_offset_x = 0
-theme_override_constants/shadow_offset_y = 3
-theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 100
-text = "Tools"
-horizontal_alignment = 1
-
-[node name="text_4" type="Label" parent="credits/vbox" unique_id=1487787499]
-layout_mode = 2
-mouse_filter = 0
-theme_override_colors/font_color = Color(0.96368617, 0.9494793, 0.8079109, 1)
-theme_override_colors/font_shadow_color = Color(0.19607843, 0.19607843, 0.19607843, 0.58431375)
-theme_override_colors/font_outline_color = Color(0.46944386, 0.31538966, 0.14666304, 1)
-theme_override_constants/shadow_offset_x = 0
-theme_override_constants/shadow_offset_y = 3
-theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 50
-text = "Game Engine: Godot Engine (v4.5)
-3D-Modeling: Blender
-2D Assets and Drawing: Krita
-Artificial Intellegence: DeepSeek (Coding help & refactoring)"
-horizontal_alignment = 1
 
 [node name="back" type="Button" parent="credits" unique_id=1407752272]
 z_index = 5
@@ -452,201 +396,146 @@ theme_override_constants/outline_size = 15
 theme_override_font_sizes/font_size = 100
 text = "Back"
 
-[node name="settings" type="TextureRect" parent="." unique_id=2102410986]
-visible = false
-z_index = -100
-z_as_relative = false
+[node name="scroll_container" type="ScrollContainer" parent="credits" unique_id=1295029809]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_right = 1920.0
-offset_bottom = 1080.0
+offset_left = -681.0
+offset_right = 679.0
+offset_bottom = -138.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 0
-texture = ExtResource("6_xn6kt")
-script = ExtResource("12_p1nwe")
+horizontal_scroll_mode = 0
 
-[node name="back" type="Button" parent="settings" unique_id=1302974468]
-z_index = 2
-z_as_relative = false
-layout_mode = 0
-offset_left = 512.0
-offset_top = 950.0
-offset_right = 1408.0
-offset_bottom = 1058.0
-focus_mode = 0
-mouse_default_cursor_shape = 2
-theme = ExtResource("2_247la")
-theme_override_colors/font_color = Color(0.59285295, 0.8405803, 0.7143255, 1)
-theme_override_constants/outline_size = 15
-theme_override_font_sizes/font_size = 100
-text = "Back"
-
-[node name="scroll_box" type="ScrollContainer" parent="settings" unique_id=241147661]
-z_as_relative = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 516.0
-offset_right = -492.0
-offset_bottom = -134.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="vbox" type="VBoxContainer" parent="settings/scroll_box" unique_id=1790245783]
-z_as_relative = false
+[node name="vbox" type="VBoxContainer" parent="credits/scroll_container" unique_id=428279587]
 layout_mode = 2
+mouse_filter = 0
 theme = ExtResource("2_247la")
 alignment = 1
 
-[node name="title" type="Label" parent="settings/scroll_box/vbox" unique_id=33270713]
+[node name="title" type="Label" parent="credits/scroll_container/vbox" unique_id=1885492094]
 layout_mode = 2
 mouse_filter = 0
-theme_override_colors/font_color = Color(0.9946844, 0.6768414, 0.5794238, 1)
+theme_override_colors/font_color = Color(0.9917378, 0.42157233, 1, 1)
 theme_override_colors/font_shadow_color = Color(0.19607843, 0.19607843, 0.19607843, 0.58431375)
-theme_override_colors/font_outline_color = Color(0.67829865, 0.3635711, 0.3214071, 1)
+theme_override_colors/font_outline_color = Color(0.6175447, 2.6183128e-05, 0.46413237, 1)
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 10
 theme_override_constants/outline_size = 20
 theme_override_font_sizes/font_size = 250
-text = "Settings"
+text = "Credits"
 horizontal_alignment = 1
 
-[node name="controls" type="Label" parent="settings/scroll_box/vbox" unique_id=42644232]
+[node name="text_1" type="Label" parent="credits/scroll_container/vbox" unique_id=1575075780]
 layout_mode = 2
 mouse_filter = 0
-theme_override_colors/font_color = Color(0.9946844, 0.6768414, 0.5794238, 1)
+theme_override_colors/font_color = Color(0.96368617, 0.9494793, 0.8079109, 1)
 theme_override_colors/font_shadow_color = Color(0.19607843, 0.19607843, 0.19607843, 0.58431375)
-theme_override_colors/font_outline_color = Color(0.67829865, 0.3635711, 0.3214071, 1)
+theme_override_colors/font_outline_color = Color(0.46944386, 0.31538966, 0.14666304, 1)
 theme_override_constants/shadow_offset_x = 0
-theme_override_constants/shadow_offset_y = 5
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 125
-text = "Controls"
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 100
+text = "Breeze Trials"
 horizontal_alignment = 1
 
-[node name="sens" type="Label" parent="settings/scroll_box/vbox" unique_id=394518823]
+[node name="text_2" type="Label" parent="credits/scroll_container/vbox" unique_id=966872215]
 layout_mode = 2
 mouse_filter = 0
-theme_override_colors/font_color = Color(0.99668926, 0.7210396, 0.63583964, 1)
+theme_override_colors/font_color = Color(0.96368617, 0.9494793, 0.8079109, 1)
 theme_override_colors/font_shadow_color = Color(0.19607843, 0.19607843, 0.19607843, 0.58431375)
-theme_override_colors/font_outline_color = Color(0.67829865, 0.3635711, 0.3214071, 1)
-theme_override_constants/shadow_offset_y = 5
-theme_override_constants/outline_size = 8
-theme_override_font_sizes/font_size = 50
-text = "Sensitivity"
-horizontal_alignment = 1
-
-[node name="sens_box" type="LineEdit" parent="settings/scroll_box/vbox" unique_id=1389611533]
-layout_mode = 2
-tooltip_text = "Measured in degrees per pixel, meaning if sens = 1, then moving your mouse one pixel moves the camera one degree."
-theme_override_font_sizes/font_size = 35
-placeholder_text = "Default: 0.1"
-alignment = 1
-context_menu_enabled = false
-emoji_menu_enabled = false
-shortcut_keys_enabled = false
-virtual_keyboard_type = 3
-secret_character = ""
-
-[node name="audio" type="Label" parent="settings/scroll_box/vbox" unique_id=90423002]
-layout_mode = 2
-mouse_filter = 0
-theme_override_colors/font_color = Color(0.9946844, 0.6768414, 0.5794238, 1)
-theme_override_colors/font_shadow_color = Color(0.19607843, 0.19607843, 0.19607843, 0.58431375)
-theme_override_colors/font_outline_color = Color(0.67829865, 0.3635711, 0.3214071, 1)
+theme_override_colors/font_outline_color = Color(0.46944386, 0.31538966, 0.14666304, 1)
 theme_override_constants/shadow_offset_x = 0
-theme_override_constants/shadow_offset_y = 5
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 125
-text = "Audio"
-horizontal_alignment = 1
-
-[node name="music_volume" type="Label" parent="settings/scroll_box/vbox" unique_id=1461999053]
-layout_mode = 2
-mouse_filter = 0
-theme_override_colors/font_color = Color(0.99668926, 0.7210396, 0.63583964, 1)
-theme_override_colors/font_shadow_color = Color(0.19607843, 0.19607843, 0.19607843, 0.58431375)
-theme_override_colors/font_outline_color = Color(0.67829865, 0.3635711, 0.3214071, 1)
-theme_override_constants/shadow_offset_y = 5
-theme_override_constants/outline_size = 8
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 50
-text = "Music Volume"
+text = "Based on Flood Escape 2 by Crazyblox (On Roblox)
+"
 horizontal_alignment = 1
 
-[node name="music_volume_slider" type="HSlider" parent="settings/scroll_box/vbox" unique_id=1115378861]
-layout_mode = 2
-tooltip_text = "Middle is 100%. Anything over that can may traumatize your ears .-.
-Note: Godot works with decibels, so conversion may not be perfect."
-max_value = 200.0
-step = 5.0
-value = 100.0
-rounded = true
-tick_count = 41
-
-[node name="visuals" type="Label" parent="settings/scroll_box/vbox" unique_id=933821150]
+[node name="text_3" type="Label" parent="credits/scroll_container/vbox" unique_id=296173971]
 layout_mode = 2
 mouse_filter = 0
-theme_override_colors/font_color = Color(0.9946844, 0.6768414, 0.5794238, 1)
+theme_override_colors/font_color = Color(0.96368617, 0.9494793, 0.8079109, 1)
 theme_override_colors/font_shadow_color = Color(0.19607843, 0.19607843, 0.19607843, 0.58431375)
-theme_override_colors/font_outline_color = Color(0.67829865, 0.3635711, 0.3214071, 1)
+theme_override_colors/font_outline_color = Color(0.46944386, 0.31538966, 0.14666304, 1)
 theme_override_constants/shadow_offset_x = 0
-theme_override_constants/shadow_offset_y = 5
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 125
-text = "Visuals"
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 100
+text = "Assets"
 horizontal_alignment = 1
 
-[node name="fps_cap" type="Label" parent="settings/scroll_box/vbox" unique_id=620375972]
+[node name="text_4" type="Label" parent="credits/scroll_container/vbox" unique_id=222322879]
 layout_mode = 2
 mouse_filter = 0
-theme_override_colors/font_color = Color(0.99668926, 0.7210396, 0.63583964, 1)
+theme_override_colors/font_color = Color(0.96368617, 0.9494793, 0.8079109, 1)
 theme_override_colors/font_shadow_color = Color(0.19607843, 0.19607843, 0.19607843, 0.58431375)
-theme_override_colors/font_outline_color = Color(0.67829865, 0.3635711, 0.3214071, 1)
-theme_override_constants/shadow_offset_y = 5
-theme_override_constants/outline_size = 8
+theme_override_colors/font_outline_color = Color(0.46944386, 0.31538966, 0.14666304, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 50
-text = "FPS Cap"
+text = "OpenGameArt.org
+"
 horizontal_alignment = 1
 
-[node name="fps_cap_box" type="LineEdit" parent="settings/scroll_box/vbox" unique_id=508210304]
-layout_mode = 2
-tooltip_text = "Set to your monitors refresh rate to get VSync."
-theme_override_font_sizes/font_size = 35
-placeholder_text = "0 for uncapped FPS"
-alignment = 1
-context_menu_enabled = false
-emoji_menu_enabled = false
-shortcut_keys_enabled = false
-virtual_keyboard_type = 3
-secret_character = ""
-
-[node name="fov" type="Label" parent="settings/scroll_box/vbox" unique_id=517963361]
+[node name="text_5" type="Label" parent="credits/scroll_container/vbox" unique_id=1950666818]
 layout_mode = 2
 mouse_filter = 0
-theme_override_colors/font_color = Color(0.99668926, 0.7210396, 0.63583964, 1)
+theme_override_colors/font_color = Color(0.96368617, 0.9494793, 0.8079109, 1)
 theme_override_colors/font_shadow_color = Color(0.19607843, 0.19607843, 0.19607843, 0.58431375)
-theme_override_colors/font_outline_color = Color(0.67829865, 0.3635711, 0.3214071, 1)
-theme_override_constants/shadow_offset_y = 5
-theme_override_constants/outline_size = 8
-theme_override_font_sizes/font_size = 50
-text = "FOV (Field of Vision/View)"
+theme_override_colors/font_outline_color = Color(0.46944386, 0.31538966, 0.14666304, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 100
+text = "Tools"
 horizontal_alignment = 1
 
-[node name="fov_box" type="LineEdit" parent="settings/scroll_box/vbox" unique_id=2130817112]
+[node name="text_6" type="Label" parent="credits/scroll_container/vbox" unique_id=1487787499]
 layout_mode = 2
-tooltip_text = "Set to your monitors refresh rate to get VSync."
-theme_override_font_sizes/font_size = 35
-placeholder_text = "Default: 90"
-alignment = 1
-context_menu_enabled = false
-emoji_menu_enabled = false
-shortcut_keys_enabled = false
-virtual_keyboard_type = 3
-secret_character = ""
+mouse_filter = 0
+theme_override_colors/font_color = Color(0.96368617, 0.9494793, 0.8079109, 1)
+theme_override_colors/font_shadow_color = Color(0.19607843, 0.19607843, 0.19607843, 0.58431375)
+theme_override_colors/font_outline_color = Color(0.46944386, 0.31538966, 0.14666304, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 50
+text = "Game Engine: Godot Engine
+3D-Modeling: Blender
+2D Assets and Drawing: Krita, Inkscape
+Artificial Intellegence: DeepSeek (Coding help & refactoring)
+"
+horizontal_alignment = 1
+
+[node name="text_7" type="Label" parent="credits/scroll_container/vbox" unique_id=1545215630]
+layout_mode = 2
+mouse_filter = 0
+theme_override_colors/font_color = Color(0.96368617, 0.9494793, 0.8079109, 1)
+theme_override_colors/font_shadow_color = Color(0.19607843, 0.19607843, 0.19607843, 0.58431375)
+theme_override_colors/font_outline_color = Color(0.46944386, 0.31538966, 0.14666304, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 100
+text = "Featured music:"
+horizontal_alignment = 1
+
+[node name="text_8" type="Label" parent="credits/scroll_container/vbox" unique_id=395903747]
+layout_mode = 2
+mouse_filter = 0
+theme_override_colors/font_color = Color(0.96368617, 0.9494793, 0.8079109, 1)
+theme_override_colors/font_shadow_color = Color(0.19607843, 0.19607843, 0.19607843, 0.58431375)
+theme_override_colors/font_outline_color = Color(0.46944386, 0.31538966, 0.14666304, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 50
+horizontal_alignment = 1
 
 [node name="vignette" type="TextureRect" parent="." unique_id=2044094381]
 modulate = Color(0, 0, 0, 0.5882353)
@@ -670,8 +559,3 @@ metadata/_edit_use_anchors_ = true
 [connection signal="pressed" from="custom/vbox/back" to="." method="_cm_main"]
 [connection signal="file_selected" from="custom/files" to="." method="_on_files_file_selected"]
 [connection signal="pressed" from="credits/back" to="." method="_credits_exit"]
-[connection signal="pressed" from="settings/back" to="." method="_settings_exit"]
-[connection signal="text_changed" from="settings/scroll_box/vbox/sens_box" to="settings" method="_on_sens_box_text_changed"]
-[connection signal="value_changed" from="settings/scroll_box/vbox/music_volume_slider" to="settings" method="_on_music_volume_slider_value_changed"]
-[connection signal="text_changed" from="settings/scroll_box/vbox/fps_cap_box" to="settings" method="_on_fps_cap_box_text_changed"]
-[connection signal="text_changed" from="settings/scroll_box/vbox/fov_box" to="settings" method="_on_fov_box_text_changed"]

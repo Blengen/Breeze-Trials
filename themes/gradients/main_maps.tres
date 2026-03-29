@@ -5,5 +5,5 @@ colors = PackedColorArray(0.99999994, 0.7724901, 0.33931676, 1, 0.6012259, 0.757
 
 [resource]
 gradient = SubResource("Gradient_kiqgm")
-width = 400
+width = 50
 height = 1

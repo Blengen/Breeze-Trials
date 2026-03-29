@@ -12,6 +12,9 @@ extends Area3D
 const type_orb: bool = true
 
 func _ready() -> void:
+	load_texture()
+
+func load_texture() -> void:
 	match type:
 		"dash": sprite.texture = load("res://images/orb_icons/dash.png")
 		"jump": sprite.texture = load("res://images/orb_icons/jump.png")

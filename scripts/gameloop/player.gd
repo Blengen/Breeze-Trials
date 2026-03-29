@@ -11,12 +11,16 @@ extends CharacterBody3D
 @onready var root: Node3D = $"../.."
 @onready var camlock_ui: TextureRect = $"../ui/camlock"
 @onready var fuel_label: Label = $"../ui/fuel"
-@onready var ui_death_cover: ColorRect = $"../ui/death_ui/cover"
 @onready var debug_speed: Label = $"../ui/debug/speed"
 @onready var debug_fps: Label = $"../ui/debug/fps"
-
 @onready var vignette_fuel: TextureRect = $"../ui/vignette_fuel"
-#var vignette: ShaderMaterial = preload("res://materials/shaders/vignette.tres")
+
+@onready var l1: CollisionShape3D = $l1
+@onready var l2: CollisionShape3D = $l2
+@onready var l3: CollisionShape3D = $l3
+@onready var l4: CollisionShape3D = $l4
+@onready var l5: CollisionShape3D = $l5
+@onready var l6: CollisionShape3D = $l6
 #endregion
 
 # ============================================================
@@ -76,25 +80,39 @@ var fly_speed: int = 50
 var fly_jump: int = 60
 
 var cline: Node = null
+var properties_menu: Control = null
+var forward_indicator: MeshInstance3D = null
+
+var reverse_game_speed: float = 1 / global.game_speed
+var dragging: bool = false
 #endregion
+
+
 
 # ============================================================
 # CORE PROCESS FUNCTIONS
 # ============================================================
 #region Core Process
 func _ready() -> void:
-	if type == "play": Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	vignette_fuel.show()
-	if type == "editor": cline = $"../../ui/cline"
+	
+	cam.fov = global.fov
+	if type == "play":
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		vignette_fuel.show()
+	if type == "editor":
+		cline = $"../../ui/cline"
+		properties_menu = $"../../ui/properties"
+		forward_indicator = $"../forward_indicator"
 
 func _physics_process(delta: float) -> void:
 	if root.playing:
 		get_input_vector()
 		player_rotation(delta)
 		animation()
-		if type == "play": handle_fuel(delta)
+		handle_fuel(delta)
 		do_ability()
 		movement(delta)
+		ledge_collision()
 		move_and_slide()
 
 func _process(delta: float) -> void:
@@ -104,7 +122,7 @@ func _process(delta: float) -> void:
 	set_variables(delta)
 	if type == "editor":
 		global.cam_pos = cam.global_position
-		$"../forward_indicator".position = position + Vector3(0, 1, -4)
+		forward_indicator.position = position + Vector3(0, 1, -4)
 
 func _unhandled_input(event: InputEvent) -> void:
 	
@@ -116,7 +134,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		rig.rotation_degrees.x = clamp(rig.rotation_degrees.x, -90, 90)
 		
 	elif type == "editor":
-		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed: select()
+		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed: select.call_deferred()
 		if Input.is_action_just_pressed("esc"):
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 			$"../../ui/top_bar/items_middle/1".text = "Lock Cursor"
@@ -178,6 +196,7 @@ func movement(delta: float) -> void:
 func move(delta: float) -> void:
 	
 	if flying: return
+	#if type == "editor" and properties_menu.visible: return
 	
 	var normalized_input_vector: Vector2 = input_vector.normalized()
 	var current_speed: float = Vector2(velocity.x, velocity.z).length()
@@ -238,6 +257,24 @@ func gravity(delta: float) -> void:
 func quick_drop() -> void:
 	if Input.is_action_just_pressed("quick_drop") and !is_on_floor():
 		velocity.y = -grav / 2.0
+		
+func ledge_collision() -> void:
+	if is_on_floor():
+		if l1.disabled:
+			l1.disabled = false
+			l2.disabled = false
+			l3.disabled = false
+			l4.disabled = false
+			l5.disabled = false
+			l6.disabled = false
+	elif not l1.disabled:
+		l1.disabled = true
+		l2.disabled = true
+		l3.disabled = true
+		l4.disabled = true
+		l5.disabled = true
+		l6.disabled = true
+	
 #endregion
 
 func flying_physics() -> void:
@@ -407,9 +444,9 @@ func orb_hit(area: Area3D) -> void:
 		if fuel >= 0:
 			death("win")
 		else:
-			death(fuel)
+			death(fuel) 
 
-	disable_orb(area)
+	if type != "editor": disable_orb(area)
 
 func disable_orb(orb: Area3D) -> void:
 	orb.visible = false
@@ -421,33 +458,32 @@ func disable_orb(orb: Area3D) -> void:
 # ============================================================
 #region Game State
 func handle_fuel(delta: float) -> void:
+	if type != "play": return
 	fuel -= delta
 	if fuel < -0.25 and !debug: death("fuel")
 
 func handle_restart(delta: float) -> void:
-	if Input.is_action_pressed("restart"):
-		restart_juice += delta
-	else:
-		restart_juice = 0
+	if Input.is_action_pressed("restart"): restart_juice += delta * reverse_game_speed
+	else: restart_juice = 0
 
 	if restart_juice > 0.5 and type == "play":
 		root.restart()
 		restart_juice = -9999
 
-func set_variables(delta: float) -> void:
+func set_variables(_delta: float) -> void:
 	rig.position = position + Vector3(0, 1.5, 0)
-	if root.playing == false:
-		ui_death_cover.color -= Color(2 * delta, 2 * delta, 2 * delta, 0)
 
 func death(death_type: Variant) -> void:
 	$"../ui/death_ui".visible = true
-	$"../ui/death_ui/cover".color = Color(1.0, 1.0, 1.0, 0.75)
 	$"../cam_rig/cam/shake".shake_node = true
+	#if death_type == "win": $"../../sfx/death".pitch_scale = 1
+	#else: $"../../sfx/death".pitch_scale = 1
 	$"../../sfx/death".play()
 	$"../../map/settings/music".stop()
 	vignette_fuel.hide()
 	root.playing = false
 	ani.stop()
+	$"../ui/death_ui/ani".play("death")
 	
 	if death_type is float:
 		$"../ui/death_ui/reason".text = "Late by " + str(abs(snappedf(fuel, 0.001))) + "s"
@@ -486,13 +522,14 @@ func _on_update_timer_timeout() -> void:
 # ============================================================
 #region Utility
 func get_input_vector() -> Vector2:
+	if Input.is_action_pressed("duplicate"): return Vector2.ZERO
 	if type == "editor" and cline.has_focus(): input_vector = Vector2.ZERO
 	else: input_vector = Input.get_vector("left", "right", "front", "back")
 	return input_vector
 #endregion
 
 #region Editor
-func select() -> Node3D: # DeepSeek code because I don't understand ts yet lol
+func select() -> Node3D: # IDK how to calculate raycast position so that's all deepseek generated lol
 	
 	# Only run in editor mode
 	if type != "editor" or Input.mouse_mode == Input.MOUSE_MODE_CAPTURED: return
@@ -508,17 +545,19 @@ func select() -> Node3D: # DeepSeek code because I don't understand ts yet lol
 	# Perform raycast
 	var space_state: PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
 	var query: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(from, to)
-	query.collide_with_areas = true   # include Areas (orbs, triggers)
 	
-	# Old gizmo code
-	"""
-	query.collision_mask = 8 # First check if it collides with gizmo
+	query.collide_with_areas = true   # include Areas (gizmo, orbs, triggers)
 	
-	var result: Dictionary = space_state.intersect_ray(query)
-	if result: 
-		print(result)
-		return
-	"""	
+	# First check if it collides with gizmo
+	if root.selected:
+		query.collision_mask = 8 # Layer 4
+		var gizmo_result: Dictionary = space_state.intersect_ray(query)
+		if gizmo_result:
+			root.gizmo_transform(gizmo_result.collider.get_groups())
+			return
+
+
+	
 	query.collide_with_bodies = true  # include PhysicsBody (CSG, walls)
 	query.collision_mask = 5 # Layer 1 and 3, doesn't collide with player
 	var result: Dictionary = space_state.intersect_ray(query)

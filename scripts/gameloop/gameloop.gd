@@ -8,11 +8,11 @@ extends Node3D
 @onready var settings: Node
 @onready var ani: AnimationPlayer # Player AnimationPlayer
 @onready var death_ui: Control
-@onready var spawn_timer: Timer
+@onready var hihat_timer: Timer
 
+var from: String = global.from
 
 var playing: bool = false
-var hihat_juice: float = -1 # Acts like a timer for hihats. When it crosses a threshold, the audio plays.
 var hihat_count: int = -1
 
 var music_dir: String = "res://scenes/Whimsical Ahh Belenge beat.mp3"
@@ -28,7 +28,9 @@ func fix_variables() -> void:
 	settings = $map/settings
 	ani = $player/body/visual/ani # Player AnimationPlayer
 	death_ui = $player/ui/death_ui
-	spawn_timer = $spawn_timer
+	hihat_timer = $hihat_timer
+	
+	music.pitch_scale = global.game_speed
 
 func get_song() -> void:
 	music_dir = global.selected_map.get_base_dir().path_join(settings.music_file)
@@ -50,16 +52,13 @@ func _ready() -> void:
 	restart()
 
 func load_map() -> void:
-	add_child(load(global.temp_file).instantiate())
-	DirAccess.rename_absolute(global.temp_file, global.selected_map)
-	DirAccess.remove_absolute(global.temp_file)
+	add_child(load(global.selected_map).instantiate())
 	
 
 func restart() -> void:
-	hihat_juice = 0.5
 	hihat_count = 2
 	music.stop()
-	spawn_timer.start()
+	hihat_timer.start()
 	$"player/ui/vignette_fuel".show()
 	
 	
@@ -86,16 +85,18 @@ func restart() -> void:
 	player.flying = false
 	
 	$sfx/hihat.play()
-	$"2nd_hihat_timer".start()
 	
 	for node in $map/orbs.get_children():
 		node.visible = true
 		node.collider.disabled = false
 
 func _on_spawn_timer_timeout() -> void:
-	playing = true
-	music.play()
+	hihat_count -= 1
 	
-
-func _on_2nd_hihat_timer_timeout() -> void:
-	$sfx/hihat.play()
+	if hihat_count == 0:
+		playing = true
+		music.play()
+	else:
+		$sfx/hihat.play()
+		hihat_timer.start()
+	

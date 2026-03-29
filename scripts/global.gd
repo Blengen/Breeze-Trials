@@ -2,20 +2,21 @@ extends Node
 
 var settings_file: String = "res://settings.cfg"
 
-var selected_map: String = "res://scenes/maps/test_map.btmap"
-var temp_file: String = ""
-#var entered_from_editor: bool = false
+var selected_map: String = "res://scenes/maps/test_map.btmap.tscn"
+var from: String = "menu"
 
 # SETTINGS VARIABLES
 
 # CONTROLS
 var sens: float = 0.1
+var game_speed: float = 1
 
 # AUDIO
 var music_volume: int = 100
 
 # GRAPHICS
 var fps_cap: int = 0
+var fov: float = 0
 
 # EDITOR
 var cam_pos: Vector3 = Vector3.ZERO
@@ -34,6 +35,7 @@ func make_new_settings_file() -> void:
 	
 	# CONTROLS
 	config.set_value("controls", "sensitivity", 0.1)
+	config.set_value("controls", "game_speed", 1)
 	
 	# AUDIO
 	config.set_value("audio", "music_volume", 100)
@@ -58,9 +60,13 @@ func load_settings() -> void:
 	var config: ConfigFile = ConfigFile.new()
 	if config.load(settings_file) != OK: make_new_settings_file() # Loads settings, but also returns an error if there is none, and makes a new one.
 	
-	# lol this is gonna be long
+	# lol this is gonna get long
 	
 	sens = config.get_value("controls", "sensitivity")
+	game_speed = config.get_value("controls", "game_speed")
 	music_volume = config.get_value("audio", "music_volume")
 	fps_cap = config.get_value("visuals", "fps_cap")
+	fov = config.get_value("visuals", "fov")
+
 	Engine.max_fps = fps_cap
+	Engine.time_scale = game_speed

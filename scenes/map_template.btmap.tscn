@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://5abaadf51xt"]
+[gd_scene format=3 uid="uid://c5fqc1j54o2xi"]
 
 [ext_resource type="Script" uid="uid://cr2dgvo33htij" path="res://scripts/gameloop/map_settings.gd" id="1_hgs20"]
 [ext_resource type="AudioStream" uid="uid://f8xrv4240fjt" path="res://scenes/maps/Whimsical Ahh Belenge Beat.mp3" id="2_xd0rm"]
@@ -59,4 +59,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 [node name="CSGBox3D" type="CSGBox3D" parent="main" unique_id=209002904]
 material_override = ExtResource("4_b025c")
 use_collision = true
+collision_layer = 5
 size = Vector3(15, 1, 15)
