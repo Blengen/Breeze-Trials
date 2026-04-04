@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dkqbookngw740"]
+
+[ext_resource type="FontFile" uid="uid://cixohe42kxmvu" path="res://old/themes/fonts/league_spartan_bold.ttf" id="1_j3xj1"]
+
+[node name="label" type="Label" unique_id=706375391]
+theme_override_fonts/font = ExtResource("1_j3xj1")
+theme_override_font_sizes/font_size = 40
+text = "Property"

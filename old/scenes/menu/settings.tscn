@@ -1,0 +1,563 @@
+[gd_scene format=3 uid="uid://d21mxi2cymc13"]
+
+[ext_resource type="Texture2D" uid="uid://ka42k2j8a0ug" path="res://old/themes/gradients/settings.tres" id="1_37860"]
+[ext_resource type="Script" uid="uid://bl21uuma35gwr" path="res://old/scripts/settings_menu.gd" id="2_0t5g5"]
+[ext_resource type="Theme" uid="uid://bvyertuunhye7" path="res://old/themes/main_menu.tres" id="3_occy7"]
+[ext_resource type="PackedScene" uid="uid://cvmqipwsnbj" path="res://old/themes/gui/remap_button.tscn" id="4_0t5g5"]
+
+[node name="settings" type="TextureRect" unique_id=1180791219]
+z_index = -100
+z_as_relative = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+texture = ExtResource("1_37860")
+script = ExtResource("2_0t5g5")
+
+[node name="back" type="Button" parent="." unique_id=834949894]
+z_index = 2
+z_as_relative = false
+layout_mode = 0
+offset_left = 512.0
+offset_top = 950.0
+offset_right = 1408.0
+offset_bottom = 1058.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme = ExtResource("3_occy7")
+theme_override_colors/font_color = Color(0.59285295, 0.8405803, 0.7143255, 1)
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 100
+text = "Back"
+
+[node name="scroll_box" type="ScrollContainer" parent="." unique_id=58198127]
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 505.0
+offset_right = -492.0
+offset_bottom = -130.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="vbox" type="VBoxContainer" parent="scroll_box" unique_id=1743504237]
+z_as_relative = false
+layout_mode = 2
+theme = ExtResource("3_occy7")
+alignment = 1
+
+[node name="title" type="Label" parent="scroll_box/vbox" unique_id=1804216450]
+layout_mode = 2
+mouse_filter = 0
+theme_override_colors/font_color = Color(0.9946844, 0.6768414, 0.5794238, 1)
+theme_override_colors/font_shadow_color = Color(0.19607843, 0.19607843, 0.19607843, 0.58431375)
+theme_override_colors/font_outline_color = Color(0.67829865, 0.3635711, 0.3214071, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 10
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 250
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="controls" type="Label" parent="scroll_box/vbox" unique_id=1593820402]
+layout_mode = 2
+mouse_filter = 0
+theme_override_colors/font_color = Color(0.9946844, 0.6768414, 0.5794238, 1)
+theme_override_colors/font_shadow_color = Color(0.19607843, 0.19607843, 0.19607843, 0.58431375)
+theme_override_colors/font_outline_color = Color(0.67829865, 0.3635711, 0.3214071, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 125
+text = "Controls"
+horizontal_alignment = 1
+
+[node name="sens" type="HBoxContainer" parent="scroll_box/vbox" unique_id=1899717350]
+layout_mode = 2
+alignment = 1
+
+[node name="sens" type="Label" parent="scroll_box/vbox/sens" unique_id=1966450305]
+layout_mode = 2
+mouse_filter = 0
+theme_override_colors/font_color = Color(0.99668926, 0.7210396, 0.63583964, 1)
+theme_override_colors/font_shadow_color = Color(0.19607843, 0.19607843, 0.19607843, 0.58431375)
+theme_override_colors/font_outline_color = Color(0.67829865, 0.3635711, 0.3214071, 1)
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 50
+text = "Sensitivity"
+horizontal_alignment = 1
+
+[node name="sens_box" type="LineEdit" parent="scroll_box/vbox/sens" unique_id=1044903720]
+layout_mode = 2
+tooltip_text = "Measured in degrees per pixel, meaning if sens = 1, then moving your mouse one pixel moves the camera one degree."
+theme_override_font_sizes/font_size = 35
+placeholder_text = "Default: 0.1"
+alignment = 1
+expand_to_text_length = true
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+virtual_keyboard_type = 3
+secret_character = ""
+
+[node name="game_speed" type="HBoxContainer" parent="scroll_box/vbox" unique_id=1131324584]
+layout_mode = 2
+alignment = 1
+
+[node name="game_speed" type="Label" parent="scroll_box/vbox/game_speed" unique_id=1455006541]
+layout_mode = 2
+mouse_filter = 0
+theme_override_colors/font_color = Color(0.99668926, 0.7210396, 0.63583964, 1)
+theme_override_colors/font_shadow_color = Color(0.19607843, 0.19607843, 0.19607843, 0.58431375)
+theme_override_colors/font_outline_color = Color(0.67829865, 0.3635711, 0.3214071, 1)
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 50
+text = "Game Speed"
+horizontal_alignment = 1
+
+[node name="game_speed_box" type="LineEdit" parent="scroll_box/vbox/game_speed" unique_id=1236471138]
+layout_mode = 2
+tooltip_text = "Speedhack essentially. Speed up or slow down the game."
+theme_override_font_sizes/font_size = 35
+placeholder_text = "Default: 1"
+alignment = 1
+expand_to_text_length = true
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+virtual_keyboard_type = 3
+secret_character = ""
+
+[node name="audio" type="Label" parent="scroll_box/vbox" unique_id=476825373]
+layout_mode = 2
+mouse_filter = 0
+theme_override_colors/font_color = Color(0.9946844, 0.6768414, 0.5794238, 1)
+theme_override_colors/font_shadow_color = Color(0.19607843, 0.19607843, 0.19607843, 0.58431375)
+theme_override_colors/font_outline_color = Color(0.67829865, 0.3635711, 0.3214071, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 125
+text = "Audio"
+horizontal_alignment = 1
+
+[node name="music_volume" type="Label" parent="scroll_box/vbox" unique_id=1988540500]
+layout_mode = 2
+mouse_filter = 0
+theme_override_colors/font_color = Color(0.99668926, 0.7210396, 0.63583964, 1)
+theme_override_colors/font_shadow_color = Color(0.19607843, 0.19607843, 0.19607843, 0.58431375)
+theme_override_colors/font_outline_color = Color(0.67829865, 0.3635711, 0.3214071, 1)
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 50
+text = "Music Volume"
+horizontal_alignment = 1
+
+[node name="music_volume_slider" type="HSlider" parent="scroll_box/vbox" unique_id=186369415]
+layout_mode = 2
+tooltip_text = "Middle is 100%. Higher than that might traumatize your ears .-."
+max_value = 200.0
+step = 5.0
+value = 100.0
+rounded = true
+tick_count = 41
+
+[node name="visuals" type="Label" parent="scroll_box/vbox" unique_id=1144202582]
+layout_mode = 2
+mouse_filter = 0
+theme_override_colors/font_color = Color(0.9946844, 0.6768414, 0.5794238, 1)
+theme_override_colors/font_shadow_color = Color(0.19607843, 0.19607843, 0.19607843, 0.58431375)
+theme_override_colors/font_outline_color = Color(0.67829865, 0.3635711, 0.3214071, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 125
+text = "Visuals"
+horizontal_alignment = 1
+
+[node name="fps_cap" type="HBoxContainer" parent="scroll_box/vbox" unique_id=679897347]
+layout_mode = 2
+alignment = 1
+
+[node name="fps_cap" type="Label" parent="scroll_box/vbox/fps_cap" unique_id=896374572]
+layout_mode = 2
+mouse_filter = 0
+theme_override_colors/font_color = Color(0.99668926, 0.7210396, 0.63583964, 1)
+theme_override_colors/font_shadow_color = Color(0.19607843, 0.19607843, 0.19607843, 0.58431375)
+theme_override_colors/font_outline_color = Color(0.67829865, 0.3635711, 0.3214071, 1)
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 50
+text = "FPS Cap"
+horizontal_alignment = 1
+
+[node name="fps_cap_box" type="LineEdit" parent="scroll_box/vbox/fps_cap" unique_id=1810707056]
+layout_mode = 2
+tooltip_text = "Max frames per second.
+Usually smoother results if you set it to a multiple of your monitors refresh rate
+(e.g. if 60Hz, you can do 60, 120, 180, 240, 480, etc.)"
+theme_override_font_sizes/font_size = 35
+placeholder_text = "0 for uncapped FPS"
+alignment = 1
+expand_to_text_length = true
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+virtual_keyboard_type = 3
+secret_character = ""
+
+[node name="fov" type="HBoxContainer" parent="scroll_box/vbox" unique_id=270711744]
+layout_mode = 2
+alignment = 1
+
+[node name="fov" type="Label" parent="scroll_box/vbox/fov" unique_id=1262264950]
+layout_mode = 2
+mouse_filter = 0
+theme_override_colors/font_color = Color(0.99668926, 0.7210396, 0.63583964, 1)
+theme_override_colors/font_shadow_color = Color(0.19607843, 0.19607843, 0.19607843, 0.58431375)
+theme_override_colors/font_outline_color = Color(0.67829865, 0.3635711, 0.3214071, 1)
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 50
+text = "FOV (Field of Vision/View)"
+horizontal_alignment = 1
+
+[node name="fov_box" type="LineEdit" parent="scroll_box/vbox/fov" unique_id=642268463]
+layout_mode = 2
+tooltip_text = "Set to your monitors refresh rate to get VSync."
+theme_override_font_sizes/font_size = 35
+placeholder_text = "Default: 90"
+alignment = 1
+expand_to_text_length = true
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+virtual_keyboard_type = 3
+secret_character = ""
+
+[node name="keybinds" type="Label" parent="scroll_box/vbox" unique_id=1911529172]
+layout_mode = 2
+mouse_filter = 0
+theme_override_colors/font_color = Color(0.9946844, 0.6768414, 0.5794238, 1)
+theme_override_colors/font_shadow_color = Color(0.19607843, 0.19607843, 0.19607843, 0.58431375)
+theme_override_colors/font_outline_color = Color(0.67829865, 0.3635711, 0.3214071, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 125
+text = "Keybinds"
+horizontal_alignment = 1
+
+[node name="forward" type="HBoxContainer" parent="scroll_box/vbox" unique_id=1541429686]
+layout_mode = 2
+alignment = 1
+
+[node name="label" type="Label" parent="scroll_box/vbox/forward" unique_id=119425548]
+layout_mode = 2
+mouse_filter = 0
+theme_override_colors/font_color = Color(0.99668926, 0.7210396, 0.63583964, 1)
+theme_override_colors/font_shadow_color = Color(0.19607843, 0.19607843, 0.19607843, 0.58431375)
+theme_override_colors/font_outline_color = Color(0.67829865, 0.3635711, 0.3214071, 1)
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 50
+text = "Forward"
+horizontal_alignment = 1
+
+[node name="1" parent="scroll_box/vbox/forward" unique_id=42126203 instance=ExtResource("4_0t5g5")]
+layout_mode = 2
+
+[node name="2" parent="scroll_box/vbox/forward" unique_id=1543980159 instance=ExtResource("4_0t5g5")]
+layout_mode = 2
+
+[node name="3" parent="scroll_box/vbox/forward" unique_id=2023310416 instance=ExtResource("4_0t5g5")]
+layout_mode = 2
+
+[node name="Left" type="HBoxContainer" parent="scroll_box/vbox" unique_id=1575632241]
+layout_mode = 2
+alignment = 1
+
+[node name="label" type="Label" parent="scroll_box/vbox/Left" unique_id=369869416]
+layout_mode = 2
+mouse_filter = 0
+theme_override_colors/font_color = Color(0.99668926, 0.7210396, 0.63583964, 1)
+theme_override_colors/font_shadow_color = Color(0.19607843, 0.19607843, 0.19607843, 0.58431375)
+theme_override_colors/font_outline_color = Color(0.67829865, 0.3635711, 0.3214071, 1)
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 50
+text = "Left"
+horizontal_alignment = 1
+
+[node name="1" parent="scroll_box/vbox/Left" unique_id=1958197459 instance=ExtResource("4_0t5g5")]
+layout_mode = 2
+
+[node name="2" parent="scroll_box/vbox/Left" unique_id=1069507362 instance=ExtResource("4_0t5g5")]
+layout_mode = 2
+
+[node name="3" parent="scroll_box/vbox/Left" unique_id=1938211109 instance=ExtResource("4_0t5g5")]
+layout_mode = 2
+
+[node name="Back" type="HBoxContainer" parent="scroll_box/vbox" unique_id=2006463433]
+layout_mode = 2
+alignment = 1
+
+[node name="label" type="Label" parent="scroll_box/vbox/Back" unique_id=756447054]
+layout_mode = 2
+mouse_filter = 0
+theme_override_colors/font_color = Color(0.99668926, 0.7210396, 0.63583964, 1)
+theme_override_colors/font_shadow_color = Color(0.19607843, 0.19607843, 0.19607843, 0.58431375)
+theme_override_colors/font_outline_color = Color(0.67829865, 0.3635711, 0.3214071, 1)
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 50
+text = "Back"
+horizontal_alignment = 1
+
+[node name="1" parent="scroll_box/vbox/Back" unique_id=1293217407 instance=ExtResource("4_0t5g5")]
+layout_mode = 2
+
+[node name="2" parent="scroll_box/vbox/Back" unique_id=1028870344 instance=ExtResource("4_0t5g5")]
+layout_mode = 2
+
+[node name="3" parent="scroll_box/vbox/Back" unique_id=2012357580 instance=ExtResource("4_0t5g5")]
+layout_mode = 2
+
+[node name="Right" type="HBoxContainer" parent="scroll_box/vbox" unique_id=763946117]
+layout_mode = 2
+alignment = 1
+
+[node name="label" type="Label" parent="scroll_box/vbox/Right" unique_id=1192604657]
+layout_mode = 2
+mouse_filter = 0
+theme_override_colors/font_color = Color(0.99668926, 0.7210396, 0.63583964, 1)
+theme_override_colors/font_shadow_color = Color(0.19607843, 0.19607843, 0.19607843, 0.58431375)
+theme_override_colors/font_outline_color = Color(0.67829865, 0.3635711, 0.3214071, 1)
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 50
+text = "Right"
+horizontal_alignment = 1
+
+[node name="1" parent="scroll_box/vbox/Right" unique_id=216297097 instance=ExtResource("4_0t5g5")]
+layout_mode = 2
+
+[node name="2" parent="scroll_box/vbox/Right" unique_id=1242693276 instance=ExtResource("4_0t5g5")]
+layout_mode = 2
+
+[node name="3" parent="scroll_box/vbox/Right" unique_id=1461480321 instance=ExtResource("4_0t5g5")]
+layout_mode = 2
+
+[node name="forward5" type="HBoxContainer" parent="scroll_box/vbox" unique_id=817385671]
+layout_mode = 2
+alignment = 1
+
+[node name="label" type="Label" parent="scroll_box/vbox/forward5" unique_id=1761207149]
+layout_mode = 2
+mouse_filter = 0
+theme_override_colors/font_color = Color(0.99668926, 0.7210396, 0.63583964, 1)
+theme_override_colors/font_shadow_color = Color(0.19607843, 0.19607843, 0.19607843, 0.58431375)
+theme_override_colors/font_outline_color = Color(0.67829865, 0.3635711, 0.3214071, 1)
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 50
+text = "Quick-Drop"
+horizontal_alignment = 1
+
+[node name="1" parent="scroll_box/vbox/forward5" unique_id=259647387 instance=ExtResource("4_0t5g5")]
+layout_mode = 2
+
+[node name="2" parent="scroll_box/vbox/forward5" unique_id=376220216 instance=ExtResource("4_0t5g5")]
+layout_mode = 2
+
+[node name="3" parent="scroll_box/vbox/forward5" unique_id=123650029 instance=ExtResource("4_0t5g5")]
+layout_mode = 2
+
+[node name="forward6" type="HBoxContainer" parent="scroll_box/vbox" unique_id=375621631]
+layout_mode = 2
+alignment = 1
+
+[node name="label" type="Label" parent="scroll_box/vbox/forward6" unique_id=1733825643]
+layout_mode = 2
+mouse_filter = 0
+theme_override_colors/font_color = Color(0.99668926, 0.7210396, 0.63583964, 1)
+theme_override_colors/font_shadow_color = Color(0.19607843, 0.19607843, 0.19607843, 0.58431375)
+theme_override_colors/font_outline_color = Color(0.67829865, 0.3635711, 0.3214071, 1)
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 50
+text = "Use Ability"
+horizontal_alignment = 1
+
+[node name="1" parent="scroll_box/vbox/forward6" unique_id=1866357225 instance=ExtResource("4_0t5g5")]
+layout_mode = 2
+
+[node name="2" parent="scroll_box/vbox/forward6" unique_id=845050617 instance=ExtResource("4_0t5g5")]
+layout_mode = 2
+
+[node name="3" parent="scroll_box/vbox/forward6" unique_id=667464299 instance=ExtResource("4_0t5g5")]
+layout_mode = 2
+
+[node name="forward7" type="HBoxContainer" parent="scroll_box/vbox" unique_id=1410005482]
+layout_mode = 2
+alignment = 1
+
+[node name="label" type="Label" parent="scroll_box/vbox/forward7" unique_id=951326607]
+layout_mode = 2
+mouse_filter = 0
+theme_override_colors/font_color = Color(0.99668926, 0.7210396, 0.63583964, 1)
+theme_override_colors/font_shadow_color = Color(0.19607843, 0.19607843, 0.19607843, 0.58431375)
+theme_override_colors/font_outline_color = Color(0.67829865, 0.3635711, 0.3214071, 1)
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 50
+text = "Camlock"
+horizontal_alignment = 1
+
+[node name="1" parent="scroll_box/vbox/forward7" unique_id=364955669 instance=ExtResource("4_0t5g5")]
+layout_mode = 2
+
+[node name="2" parent="scroll_box/vbox/forward7" unique_id=1505932066 instance=ExtResource("4_0t5g5")]
+layout_mode = 2
+
+[node name="3" parent="scroll_box/vbox/forward7" unique_id=444938228 instance=ExtResource("4_0t5g5")]
+layout_mode = 2
+
+[node name="forward8" type="HBoxContainer" parent="scroll_box/vbox" unique_id=432383279]
+layout_mode = 2
+alignment = 1
+
+[node name="label" type="Label" parent="scroll_box/vbox/forward8" unique_id=476472124]
+layout_mode = 2
+mouse_filter = 0
+theme_override_colors/font_color = Color(0.99668926, 0.7210396, 0.63583964, 1)
+theme_override_colors/font_shadow_color = Color(0.19607843, 0.19607843, 0.19607843, 0.58431375)
+theme_override_colors/font_outline_color = Color(0.67829865, 0.3635711, 0.3214071, 1)
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 50
+text = "Restart"
+horizontal_alignment = 1
+
+[node name="1" parent="scroll_box/vbox/forward8" unique_id=2084653534 instance=ExtResource("4_0t5g5")]
+layout_mode = 2
+
+[node name="2" parent="scroll_box/vbox/forward8" unique_id=1482685157 instance=ExtResource("4_0t5g5")]
+layout_mode = 2
+
+[node name="3" parent="scroll_box/vbox/forward8" unique_id=81519246 instance=ExtResource("4_0t5g5")]
+layout_mode = 2
+
+[node name="forward9" type="HBoxContainer" parent="scroll_box/vbox" unique_id=1209338086]
+layout_mode = 2
+alignment = 1
+
+[node name="label" type="Label" parent="scroll_box/vbox/forward9" unique_id=1750407300]
+layout_mode = 2
+mouse_filter = 0
+theme_override_colors/font_color = Color(0.99668926, 0.7210396, 0.63583964, 1)
+theme_override_colors/font_shadow_color = Color(0.19607843, 0.19607843, 0.19607843, 0.58431375)
+theme_override_colors/font_outline_color = Color(0.67829865, 0.3635711, 0.3214071, 1)
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 50
+text = "Debug Mode"
+horizontal_alignment = 1
+
+[node name="1" parent="scroll_box/vbox/forward9" unique_id=607695622 instance=ExtResource("4_0t5g5")]
+layout_mode = 2
+
+[node name="2" parent="scroll_box/vbox/forward9" unique_id=438165589 instance=ExtResource("4_0t5g5")]
+layout_mode = 2
+
+[node name="3" parent="scroll_box/vbox/forward9" unique_id=2130904176 instance=ExtResource("4_0t5g5")]
+layout_mode = 2
+
+[node name="forward10" type="HBoxContainer" parent="scroll_box/vbox" unique_id=2045212575]
+layout_mode = 2
+alignment = 1
+
+[node name="label" type="Label" parent="scroll_box/vbox/forward10" unique_id=1854729942]
+layout_mode = 2
+mouse_filter = 0
+theme_override_colors/font_color = Color(0.99668926, 0.7210396, 0.63583964, 1)
+theme_override_colors/font_shadow_color = Color(0.19607843, 0.19607843, 0.19607843, 0.58431375)
+theme_override_colors/font_outline_color = Color(0.67829865, 0.3635711, 0.3214071, 1)
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 50
+text = "Zoom in"
+horizontal_alignment = 1
+
+[node name="1" parent="scroll_box/vbox/forward10" unique_id=664379854 instance=ExtResource("4_0t5g5")]
+layout_mode = 2
+
+[node name="2" parent="scroll_box/vbox/forward10" unique_id=1416106699 instance=ExtResource("4_0t5g5")]
+layout_mode = 2
+
+[node name="3" parent="scroll_box/vbox/forward10" unique_id=1392137617 instance=ExtResource("4_0t5g5")]
+layout_mode = 2
+
+[node name="forward11" type="HBoxContainer" parent="scroll_box/vbox" unique_id=1958891779]
+layout_mode = 2
+alignment = 1
+
+[node name="label" type="Label" parent="scroll_box/vbox/forward11" unique_id=1420987866]
+layout_mode = 2
+mouse_filter = 0
+theme_override_colors/font_color = Color(0.99668926, 0.7210396, 0.63583964, 1)
+theme_override_colors/font_shadow_color = Color(0.19607843, 0.19607843, 0.19607843, 0.58431375)
+theme_override_colors/font_outline_color = Color(0.67829865, 0.3635711, 0.3214071, 1)
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 50
+text = "Zoom out"
+horizontal_alignment = 1
+
+[node name="1" parent="scroll_box/vbox/forward11" unique_id=1008493537 instance=ExtResource("4_0t5g5")]
+layout_mode = 2
+
+[node name="2" parent="scroll_box/vbox/forward11" unique_id=799604048 instance=ExtResource("4_0t5g5")]
+layout_mode = 2
+
+[node name="3" parent="scroll_box/vbox/forward11" unique_id=78486494 instance=ExtResource("4_0t5g5")]
+layout_mode = 2
+
+[node name="forward12" type="HBoxContainer" parent="scroll_box/vbox" unique_id=547881921]
+layout_mode = 2
+alignment = 1
+
+[node name="label" type="Label" parent="scroll_box/vbox/forward12" unique_id=1512616280]
+layout_mode = 2
+mouse_filter = 0
+theme_override_colors/font_color = Color(0.99668926, 0.7210396, 0.63583964, 1)
+theme_override_colors/font_shadow_color = Color(0.19607843, 0.19607843, 0.19607843, 0.58431375)
+theme_override_colors/font_outline_color = Color(0.67829865, 0.3635711, 0.3214071, 1)
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 50
+text = "Noclip - Fly down"
+horizontal_alignment = 1
+
+[node name="1" parent="scroll_box/vbox/forward12" unique_id=1987694070 instance=ExtResource("4_0t5g5")]
+layout_mode = 2
+
+[node name="2" parent="scroll_box/vbox/forward12" unique_id=836897394 instance=ExtResource("4_0t5g5")]
+layout_mode = 2
+
+[node name="3" parent="scroll_box/vbox/forward12" unique_id=1199986279 instance=ExtResource("4_0t5g5")]
+layout_mode = 2
+
+[connection signal="pressed" from="back" to="." method="_on_back_pressed"]
+[connection signal="text_changed" from="scroll_box/vbox/sens/sens_box" to="." method="_on_sens_box_text_changed"]
+[connection signal="text_changed" from="scroll_box/vbox/game_speed/game_speed_box" to="." method="_on_game_speed_box_text_changed"]
+[connection signal="value_changed" from="scroll_box/vbox/music_volume_slider" to="." method="_on_music_volume_slider_value_changed"]
+[connection signal="text_changed" from="scroll_box/vbox/fps_cap/fps_cap_box" to="." method="_on_fps_cap_box_text_changed"]
+[connection signal="text_changed" from="scroll_box/vbox/fov/fov_box" to="." method="_on_fov_box_text_changed"]

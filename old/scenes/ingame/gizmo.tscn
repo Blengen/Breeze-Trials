@@ -1,0 +1,290 @@
+[gd_scene format=3 uid="uid://igrpv12vdken"]
+
+[ext_resource type="Script" uid="uid://cw4p5r4g3foxe" path="res://old/scripts/editor/gizmo.gd" id="1_7k60f"]
+[ext_resource type="Material" uid="uid://cprh10dg2ccnm" path="res://old/materials/gizmo/+X.tres" id="1_veywm"]
+[ext_resource type="Material" uid="uid://lsmdcskff7m4" path="res://old/materials/gizmo/+Y.tres" id="2_7k60f"]
+[ext_resource type="Material" uid="uid://cr0wc5vsqpqj0" path="res://old/materials/gizmo/+Z.tres" id="3_nyu6g"]
+[ext_resource type="Material" uid="uid://xulhjx423vfs" path="res://old/materials/gizmo/-X.tres" id="4_cj8tr"]
+[ext_resource type="Material" uid="uid://cpdh0dgoeubmp" path="res://old/materials/gizmo/-Y.tres" id="5_hcbm7"]
+[ext_resource type="Material" uid="uid://hcack7mf3hiq" path="res://old/materials/gizmo/-Z.tres" id="6_plw6a"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_73rso"]
+radius = 0.2
+height = 4.0
+radial_segments = 4
+rings = 1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7ebxn"]
+size = Vector3(1, 4, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_a7u53"]
+size = Vector3(0.75, 0.75, 0.75)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7mwia"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_w2tki"]
+inner_radius = 6.5
+outer_radius = 7.0
+rings = 16
+ring_segments = 4
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_7k60f"]
+data = PackedVector3Array(-2.2961, 0, -5.5432997, 0, 0.75, -6.75, 0, 0, -6, -2.2961, 0, -5.5432997, -2.5830998, 0.75, -6.2362, 0, 0.75, -6.75, -2.5830998, 0.75, -6.2362, 0, 0, -7.5, 0, 0.75, -6.75, -2.5830998, 0.75, -6.2362, -2.8701, 0, -6.9291, 0, 0, -7.5, -2.8701, 0, -6.9291, 0, -0.75, -6.75, 0, 0, -7.5, -2.8701, 0, -6.9291, -2.5830998, -0.75, -6.2362, 0, -0.75, -6.75, -2.5830998, -0.75, -6.2362, 0, 0, -6, 0, -0.75, -6.75, -2.5830998, -0.75, -6.2362, -2.2961, 0, -5.5432997, 0, 0, -6, -4.2426, 0, -4.2426, -2.5830998, 0.75, -6.2362, -2.2961, 0, -5.5432997, -4.2426, 0, -4.2426, -4.773, 0.75, -4.773, -2.5830998, 0.75, -6.2362, -4.773, 0.75, -4.773, -2.8701, 0, -6.9291, -2.5830998, 0.75, -6.2362, -4.773, 0.75, -4.773, -5.3033, 0, -5.3033, -2.8701, 0, -6.9291, -5.3033, 0, -5.3033, -2.5830998, -0.75, -6.2362, -2.8701, 0, -6.9291, -5.3033, 0, -5.3033, -4.773, -0.75, -4.773, -2.5830998, -0.75, -6.2362, -4.773, -0.75, -4.773, -2.2961, 0, -5.5432997, -2.5830998, -0.75, -6.2362, -4.773, -0.75, -4.773, -4.2426, 0, -4.2426, -2.2961, 0, -5.5432997, -5.5432997, 0, -2.2961, -4.773, 0.75, -4.773, -4.2426, 0, -4.2426, -5.5432997, 0, -2.2961, -6.2362, 0.75, -2.5830998, -4.773, 0.75, -4.773, -6.2362, 0.75, -2.5830998, -5.3033, 0, -5.3033, -4.773, 0.75, -4.773, -6.2362, 0.75, -2.5830998, -6.9291, 0, -2.8701, -5.3033, 0, -5.3033, -6.9291, 0, -2.8701, -4.773, -0.75, -4.773, -5.3033, 0, -5.3033, -6.9291, 0, -2.8701, -6.2362, -0.75, -2.5830998, -4.773, -0.75, -4.773, -6.2362, -0.75, -2.5830998, -4.2426, 0, -4.2426, -4.773, -0.75, -4.773, -6.2362, -0.75, -2.5830998, -5.5432997, 0, -2.2961, -4.2426, 0, -4.2426, -6, 0, 0, -6.2362, 0.75, -2.5830998, -5.5432997, 0, -2.2961, -6, 0, 0, -6.75, 0.75, 0, -6.2362, 0.75, -2.5830998, -6.75, 0.75, 0, -6.9291, 0, -2.8701, -6.2362, 0.75, -2.5830998, -6.75, 0.75, 0, -7.5, 0, 0, -6.9291, 0, -2.8701, -7.5, 0, 0, -6.2362, -0.75, -2.5830998, -6.9291, 0, -2.8701, -7.5, 0, 0, -6.75, -0.75, 0, -6.2362, -0.75, -2.5830998, -6.75, -0.75, 0, -5.5432997, 0, -2.2961, -6.2362, -0.75, -2.5830998, -6.75, -0.75, 0, -6, 0, 0, -5.5432997, 0, -2.2961, -5.5432997, 0, 2.2961, -6.75, 0.75, 0, -6, 0, 0, -5.5432997, 0, 2.2961, -6.2362, 0.75, 2.5830998, -6.75, 0.75, 0, -6.2362, 0.75, 2.5830998, -7.5, 0, 0, -6.75, 0.75, 0, -6.2362, 0.75, 2.5830998, -6.9291, 0, 2.8701, -7.5, 0, 0, -6.9291, 0, 2.8701, -6.75, -0.75, 0, -7.5, 0, 0, -6.9291, 0, 2.8701, -6.2362, -0.75, 2.5830998, -6.75, -0.75, 0, -6.2362, -0.75, 2.5830998, -6, 0, 0, -6.75, -0.75, 0, -6.2362, -0.75, 2.5830998, -5.5432997, 0, 2.2961, -6, 0, 0, -4.2426, 0, 4.2426, -6.2362, 0.75, 2.5830998, -5.5432997, 0, 2.2961, -4.2426, 0, 4.2426, -4.773, 0.75, 4.773, -6.2362, 0.75, 2.5830998, -4.773, 0.75, 4.773, -6.9291, 0, 2.8701, -6.2362, 0.75, 2.5830998, -4.773, 0.75, 4.773, -5.3033, 0, 5.3033, -6.9291, 0, 2.8701, -5.3033, 0, 5.3033, -6.2362, -0.75, 2.5830998, -6.9291, 0, 2.8701, -5.3033, 0, 5.3033, -4.773, -0.75, 4.773, -6.2362, -0.75, 2.5830998, -4.773, -0.75, 4.773, -5.5432997, 0, 2.2961, -6.2362, -0.75, 2.5830998, -4.773, -0.75, 4.773, -4.2426, 0, 4.2426, -5.5432997, 0, 2.2961, -2.2961, 0, 5.5432997, -4.773, 0.75, 4.773, -4.2426, 0, 4.2426, -2.2961, 0, 5.5432997, -2.5830998, 0.75, 6.2362, -4.773, 0.75, 4.773, -2.5830998, 0.75, 6.2362, -5.3033, 0, 5.3033, -4.773, 0.75, 4.773, -2.5830998, 0.75, 6.2362, -2.8701, 0, 6.9291, -5.3033, 0, 5.3033, -2.8701, 0, 6.9291, -4.773, -0.75, 4.773, -5.3033, 0, 5.3033, -2.8701, 0, 6.9291, -2.5830998, -0.75, 6.2362, -4.773, -0.75, 4.773, -2.5830998, -0.75, 6.2362, -4.2426, 0, 4.2426, -4.773, -0.75, 4.773, -2.5830998, -0.75, 6.2362, -2.2961, 0, 5.5432997, -4.2426, 0, 4.2426, 0, 0, 6, -2.5830998, 0.75, 6.2362, -2.2961, 0, 5.5432997, 0, 0, 6, 0, 0.75, 6.75, -2.5830998, 0.75, 6.2362, 0, 0.75, 6.75, -2.8701, 0, 6.9291, -2.5830998, 0.75, 6.2362, 0, 0.75, 6.75, 0, 0, 7.5, -2.8701, 0, 6.9291, 0, 0, 7.5, -2.5830998, -0.75, 6.2362, -2.8701, 0, 6.9291, 0, 0, 7.5, 0, -0.75, 6.75, -2.5830998, -0.75, 6.2362, 0, -0.75, 6.75, -2.2961, 0, 5.5432997, -2.5830998, -0.75, 6.2362, 0, -0.75, 6.75, 0, 0, 6, -2.2961, 0, 5.5432997, 2.2961, 0, 5.5432997, 0, 0.75, 6.75, 0, 0, 6, 2.2961, 0, 5.5432997, 2.5830998, 0.75, 6.2362, 0, 0.75, 6.75, 2.5830998, 0.75, 6.2362, 0, 0, 7.5, 0, 0.75, 6.75, 2.5830998, 0.75, 6.2362, 2.8701, 0, 6.9291, 0, 0, 7.5, 2.8701, 0, 6.9291, 0, -0.75, 6.75, 0, 0, 7.5, 2.8701, 0, 6.9291, 2.5830998, -0.75, 6.2362, 0, -0.75, 6.75, 2.5830998, -0.75, 6.2362, 0, 0, 6, 0, -0.75, 6.75, 2.5830998, -0.75, 6.2362, 2.2961, 0, 5.5432997, 0, 0, 6, 4.2426, 0, 4.2426, 2.5830998, 0.75, 6.2362, 2.2961, 0, 5.5432997, 4.2426, 0, 4.2426, 4.773, 0.75, 4.773, 2.5830998, 0.75, 6.2362, 4.773, 0.75, 4.773, 2.8701, 0, 6.9291, 2.5830998, 0.75, 6.2362, 4.773, 0.75, 4.773, 5.3033, 0, 5.3033, 2.8701, 0, 6.9291, 5.3033, 0, 5.3033, 2.5830998, -0.75, 6.2362, 2.8701, 0, 6.9291, 5.3033, 0, 5.3033, 4.773, -0.75, 4.773, 2.5830998, -0.75, 6.2362, 4.773, -0.75, 4.773, 2.2961, 0, 5.5432997, 2.5830998, -0.75, 6.2362, 4.773, -0.75, 4.773, 4.2426, 0, 4.2426, 2.2961, 0, 5.5432997, 5.5432997, 0, 2.2961, 4.773, 0.75, 4.773, 4.2426, 0, 4.2426, 5.5432997, 0, 2.2961, 6.2362, 0.75, 2.5830998, 4.773, 0.75, 4.773, 6.2362, 0.75, 2.5830998, 5.3033, 0, 5.3033, 4.773, 0.75, 4.773, 6.2362, 0.75, 2.5830998, 6.9291, 0, 2.8701, 5.3033, 0, 5.3033, 6.9291, 0, 2.8701, 4.773, -0.75, 4.773, 5.3033, 0, 5.3033, 6.9291, 0, 2.8701, 6.2362, -0.75, 2.5830998, 4.773, -0.75, 4.773, 6.2362, -0.75, 2.5830998, 4.2426, 0, 4.2426, 4.773, -0.75, 4.773, 6.2362, -0.75, 2.5830998, 5.5432997, 0, 2.2961, 4.2426, 0, 4.2426, 6, 0, 0, 6.2362, 0.75, 2.5830998, 5.5432997, 0, 2.2961, 6, 0, 0, 6.75, 0.75, 0, 6.2362, 0.75, 2.5830998, 6.75, 0.75, 0, 6.9291, 0, 2.8701, 6.2362, 0.75, 2.5830998, 6.75, 0.75, 0, 7.5, 0, 0, 6.9291, 0, 2.8701, 7.5, 0, 0, 6.2362, -0.75, 2.5830998, 6.9291, 0, 2.8701, 7.5, 0, 0, 6.75, -0.75, 0, 6.2362, -0.75, 2.5830998, 6.75, -0.75, 0, 5.5432997, 0, 2.2961, 6.2362, -0.75, 2.5830998, 6.75, -0.75, 0, 6, 0, 0, 5.5432997, 0, 2.2961, 5.5432997, 0, -2.2961, 6.75, 0.75, 0, 6, 0, 0, 5.5432997, 0, -2.2961, 6.2362, 0.75, -2.5830998, 6.75, 0.75, 0, 6.2362, 0.75, -2.5830998, 7.5, 0, 0, 6.75, 0.75, 0, 6.2362, 0.75, -2.5830998, 6.9291, 0, -2.8701, 7.5, 0, 0, 6.9291, 0, -2.8701, 6.75, -0.75, 0, 7.5, 0, 0, 6.9291, 0, -2.8701, 6.2362, -0.75, -2.5830998, 6.75, -0.75, 0, 6.2362, -0.75, -2.5830998, 6, 0, 0, 6.75, -0.75, 0, 6.2362, -0.75, -2.5830998, 5.5432997, 0, -2.2961, 6, 0, 0, 4.2426, 0, -4.2426, 6.2362, 0.75, -2.5830998, 5.5432997, 0, -2.2961, 4.2426, 0, -4.2426, 4.773, 0.75, -4.773, 6.2362, 0.75, -2.5830998, 4.773, 0.75, -4.773, 6.9291, 0, -2.8701, 6.2362, 0.75, -2.5830998, 4.773, 0.75, -4.773, 5.3033, 0, -5.3033, 6.9291, 0, -2.8701, 5.3033, 0, -5.3033, 6.2362, -0.75, -2.5830998, 6.9291, 0, -2.8701, 5.3033, 0, -5.3033, 4.773, -0.75, -4.773, 6.2362, -0.75, -2.5830998, 4.773, -0.75, -4.773, 5.5432997, 0, -2.2961, 6.2362, -0.75, -2.5830998, 4.773, -0.75, -4.773, 4.2426, 0, -4.2426, 5.5432997, 0, -2.2961, 2.2961, 0, -5.5432997, 4.773, 0.75, -4.773, 4.2426, 0, -4.2426, 2.2961, 0, -5.5432997, 2.5830998, 0.75, -6.2362, 4.773, 0.75, -4.773, 2.5830998, 0.75, -6.2362, 5.3033, 0, -5.3033, 4.773, 0.75, -4.773, 2.5830998, 0.75, -6.2362, 2.8701, 0, -6.9291, 5.3033, 0, -5.3033, 2.8701, 0, -6.9291, 4.773, -0.75, -4.773, 5.3033, 0, -5.3033, 2.8701, 0, -6.9291, 2.5830998, -0.75, -6.2362, 4.773, -0.75, -4.773, 2.5830998, -0.75, -6.2362, 4.2426, 0, -4.2426, 4.773, -0.75, -4.773, 2.5830998, -0.75, -6.2362, 2.2961, 0, -5.5432997, 4.2426, 0, -4.2426, 0, 0, -6, 2.5830998, 0.75, -6.2362, 2.2961, 0, -5.5432997, 0, 0, -6, 0, 0.75, -6.75, 2.5830998, 0.75, -6.2362, 0, 0.75, -6.75, 2.8701, 0, -6.9291, 2.5830998, 0.75, -6.2362, 0, 0.75, -6.75, 0, 0, -7.5, 2.8701, 0, -6.9291, 0, 0, -7.5, 2.5830998, -0.75, -6.2362, 2.8701, 0, -6.9291, 0, 0, -7.5, 0, -0.75, -6.75, 2.5830998, -0.75, -6.2362, 0, -0.75, -6.75, 2.2961, 0, -5.5432997, 2.5830998, -0.75, -6.2362, 0, -0.75, -6.75, 0, 0, -6, 2.2961, 0, -5.5432997)
+
+[node name="gizmo" type="Node3D" unique_id=121144244 groups=["gizmo"]]
+process_priority = 1
+script = ExtResource("1_7k60f")
+
+[node name="move&size" type="Node3D" parent="." unique_id=1440228419]
+
+[node name="move" type="Node3D" parent="move&size" unique_id=1412355301]
+
+[node name="+X" type="Area3D" parent="move&size/move" unique_id=1478541355 groups=["move", "x"]]
+process_priority = 3
+process_physics_priority = 3
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 5, -2.1855695e-07, 0)
+collision_layer = 8
+collision_mask = 8
+monitoring = false
+priority = 3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="move&size/move/+X" unique_id=1180840318]
+material_override = ExtResource("1_veywm")
+mesh = SubResource("CapsuleMesh_73rso")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="move&size/move/+X" unique_id=1221595345]
+shape = SubResource("BoxShape3D_7ebxn")
+
+[node name="+Y" type="Area3D" parent="move&size/move" unique_id=723331295 groups=["move", "y"]]
+process_priority = 3
+process_physics_priority = 3
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+collision_layer = 8
+collision_mask = 8
+monitoring = false
+priority = 3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="move&size/move/+Y" unique_id=445615710]
+material_override = ExtResource("2_7k60f")
+mesh = SubResource("CapsuleMesh_73rso")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="move&size/move/+Y" unique_id=1185931575]
+shape = SubResource("BoxShape3D_7ebxn")
+
+[node name="+Z" type="Area3D" parent="move&size/move" unique_id=2042995289 groups=["move", "z"]]
+process_priority = 3
+process_physics_priority = 3
+transform = Transform3D(1.9106855e-15, -4.371139e-08, -1, -1, -4.371139e-08, 0, -4.371139e-08, 1, -4.371139e-08, -2.1855695e-07, -2.1855695e-07, 5)
+collision_layer = 8
+collision_mask = 8
+monitoring = false
+priority = 3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="move&size/move/+Z" unique_id=1965323952]
+material_override = ExtResource("3_nyu6g")
+mesh = SubResource("CapsuleMesh_73rso")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="move&size/move/+Z" unique_id=2074490355]
+shape = SubResource("BoxShape3D_7ebxn")
+
+[node name="-X" type="Area3D" parent="move&size/move" unique_id=556067890 groups=["-", "move", "x"]]
+process_priority = 3
+process_physics_priority = 3
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -5, 2.1855695e-07, 0)
+collision_layer = 8
+collision_mask = 8
+monitoring = false
+priority = 3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="move&size/move/-X" unique_id=2078228739]
+material_override = ExtResource("4_cj8tr")
+mesh = SubResource("CapsuleMesh_73rso")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="move&size/move/-X" unique_id=1733103183]
+shape = SubResource("BoxShape3D_7ebxn")
+
+[node name="-Y" type="Area3D" parent="move&size/move" unique_id=390723673 groups=["-", "move", "y"]]
+process_priority = 3
+process_physics_priority = 3
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+collision_layer = 8
+collision_mask = 8
+monitoring = false
+priority = 3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="move&size/move/-Y" unique_id=865333796]
+material_override = ExtResource("5_hcbm7")
+mesh = SubResource("CapsuleMesh_73rso")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="move&size/move/-Y" unique_id=1334620132]
+shape = SubResource("BoxShape3D_7ebxn")
+
+[node name="-Z" type="Area3D" parent="move&size/move" unique_id=1065904449 groups=["-", "move", "z"]]
+process_priority = 3
+process_physics_priority = 3
+transform = Transform3D(1.9106855e-15, -4.371139e-08, -1, -1, -4.371139e-08, 0, -4.371139e-08, 1, -4.371139e-08, 2.1855695e-07, 2.1855695e-07, -5)
+collision_layer = 8
+collision_mask = 8
+monitoring = false
+priority = 3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="move&size/move/-Z" unique_id=1793809721]
+material_override = ExtResource("6_plw6a")
+mesh = SubResource("CapsuleMesh_73rso")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="move&size/move/-Z" unique_id=108032268]
+shape = SubResource("BoxShape3D_7ebxn")
+
+[node name="size" type="Node3D" parent="move&size" unique_id=1272999457]
+
+[node name="+X" type="Area3D" parent="move&size/size" unique_id=680924083 groups=["size", "x"]]
+process_priority = 3
+process_physics_priority = 3
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 2, 0, 0)
+collision_layer = 8
+collision_mask = 8
+monitoring = false
+priority = 3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="move&size/size/+X" unique_id=790486850]
+material_override = ExtResource("1_veywm")
+mesh = SubResource("BoxMesh_a7u53")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="move&size/size/+X" unique_id=762389551]
+shape = SubResource("BoxShape3D_7mwia")
+
+[node name="+Y" type="Area3D" parent="move&size/size" unique_id=569171380 groups=["size", "y"]]
+process_priority = 3
+process_physics_priority = 3
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+collision_layer = 8
+collision_mask = 8
+monitoring = false
+priority = 3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="move&size/size/+Y" unique_id=1191415177]
+material_override = ExtResource("2_7k60f")
+mesh = SubResource("BoxMesh_a7u53")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="move&size/size/+Y" unique_id=1843594574]
+shape = SubResource("BoxShape3D_7mwia")
+
+[node name="+Z" type="Area3D" parent="move&size/size" unique_id=464589930 groups=["size", "z"]]
+process_priority = 3
+process_physics_priority = 3
+transform = Transform3D(1.9106855e-15, -4.371139e-08, -1, -1, -4.371139e-08, 0, -4.371139e-08, 1, -4.371139e-08, 0, 0, 2)
+collision_layer = 8
+collision_mask = 8
+monitoring = false
+priority = 3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="move&size/size/+Z" unique_id=1873118340]
+material_override = ExtResource("3_nyu6g")
+mesh = SubResource("BoxMesh_a7u53")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="move&size/size/+Z" unique_id=399085627]
+shape = SubResource("BoxShape3D_7mwia")
+
+[node name="-X" type="Area3D" parent="move&size/size" unique_id=2004499840 groups=["-", "size", "x"]]
+process_priority = 3
+process_physics_priority = 3
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -2, 0, 0)
+collision_layer = 8
+collision_mask = 8
+monitoring = false
+priority = 3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="move&size/size/-X" unique_id=2020970514]
+material_override = ExtResource("4_cj8tr")
+mesh = SubResource("BoxMesh_a7u53")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="move&size/size/-X" unique_id=1997009455]
+shape = SubResource("BoxShape3D_7mwia")
+
+[node name="-Y" type="Area3D" parent="move&size/size" unique_id=1800214528 groups=["-", "size", "y"]]
+process_priority = 3
+process_physics_priority = 3
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+collision_layer = 8
+collision_mask = 8
+monitoring = false
+priority = 3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="move&size/size/-Y" unique_id=1233546464]
+material_override = ExtResource("5_hcbm7")
+mesh = SubResource("BoxMesh_a7u53")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="move&size/size/-Y" unique_id=634184705]
+shape = SubResource("BoxShape3D_7mwia")
+
+[node name="-Z" type="Area3D" parent="move&size/size" unique_id=1533880015 groups=["-", "size", "z"]]
+process_priority = 3
+process_physics_priority = 3
+transform = Transform3D(1.9106855e-15, -4.371139e-08, -1, -1, -4.371139e-08, 0, -4.371139e-08, 1, -4.371139e-08, 0, 0, -2)
+collision_layer = 8
+collision_mask = 8
+monitoring = false
+priority = 3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="move&size/size/-Z" unique_id=1420593405]
+material_override = ExtResource("6_plw6a")
+mesh = SubResource("BoxMesh_a7u53")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="move&size/size/-Z" unique_id=788374840]
+shape = SubResource("BoxShape3D_7mwia")
+
+[node name="rotate" type="Node3D" parent="." unique_id=1749314566]
+visible = false
+
+[node name="X" type="Area3D" parent="rotate" unique_id=1476650710 groups=["rotate", "x"]]
+process_priority = 3
+process_physics_priority = 3
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+collision_layer = 8
+collision_mask = 0
+monitoring = false
+priority = 3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="rotate/X" unique_id=885165374]
+material_override = ExtResource("1_veywm")
+mesh = SubResource("TorusMesh_w2tki")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rotate/X" unique_id=651313649]
+shape = SubResource("ConcavePolygonShape3D_7k60f")
+disabled = true
+
+[node name="Y" type="Area3D" parent="rotate" unique_id=1600668578 groups=["rotate", "y"]]
+process_priority = 3
+process_physics_priority = 3
+collision_layer = 8
+collision_mask = 0
+monitoring = false
+priority = 3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="rotate/Y" unique_id=1891560053]
+material_override = ExtResource("2_7k60f")
+mesh = SubResource("TorusMesh_w2tki")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rotate/Y" unique_id=801798850]
+shape = SubResource("ConcavePolygonShape3D_7k60f")
+disabled = true
+
+[node name="Z" type="Area3D" parent="rotate" unique_id=378932467 groups=["rotate", "z"]]
+process_priority = 3
+process_physics_priority = 3
+transform = Transform3D(1.9106855e-15, -4.371139e-08, -1, -1, -4.371139e-08, 0, -4.371139e-08, 1, -4.371139e-08, 0, 0, 0)
+collision_layer = 8
+collision_mask = 0
+monitoring = false
+priority = 3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="rotate/Z" unique_id=358422970]
+material_override = ExtResource("3_nyu6g")
+mesh = SubResource("TorusMesh_w2tki")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rotate/Z" unique_id=1070840647]
+shape = SubResource("ConcavePolygonShape3D_7k60f")
+disabled = true
+
+[connection signal="visibility_changed" from="move&size" to="." method="_on_movesize_visibility_changed"]
+[connection signal="visibility_changed" from="rotate" to="." method="_on_rotate_visibility_changed"]

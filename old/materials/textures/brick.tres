@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bjyfv1y18bnjs"]
+
+[ext_resource type="Texture2D" uid="uid://we31qepfv5rd" path="res://old/materials/textures/assets/brick.png" id="1_qcesu"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 2
+albedo_color = Color(1, 0.528, 0.52, 1)
+albedo_texture = ExtResource("1_qcesu")
+uv1_scale = Vector3(0.4, 0.4, 0.4)
+uv1_triplanar = true

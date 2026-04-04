@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://c5fqc1j54o2xi"]
+
+[ext_resource type="Script" uid="uid://cr2dgvo33htij" path="res://old/scripts/gameloop/map_settings.gd" id="1_hgs20"]
+[ext_resource type="AudioStream" uid="uid://f8xrv4240fjt" path="res://old/maps/Whimsical Ahh Belenge Beat.mp3" id="2_xd0rm"]
+[ext_resource type="Texture2D" uid="uid://drfcef03hc8mr" path="res://old/images/skies/pink_sunset.png" id="3_uu6bk"]
+[ext_resource type="Material" uid="uid://do6njjm35omxb" path="res://old/materials/textures/grass.tres" id="4_b025c"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_eukwx"]
+panorama = ExtResource("3_uu6bk")
+
+[sub_resource type="Sky" id="Sky_lcvph"]
+sky_material = SubResource("PanoramaSkyMaterial_eukwx")
+radiance_size = 0
+
+[sub_resource type="Environment" id="Environment_lcvph"]
+background_mode = 2
+background_color = Color(1, 0.48713964, 0.3187554, 1)
+sky = SubResource("Sky_lcvph")
+ambient_light_source = 2
+ambient_light_color = Color(1, 0.74, 0.74, 1)
+reflected_light_source = 1
+adjustment_enabled = true
+adjustment_brightness = 1.3
+adjustment_contrast = 1.2
+adjustment_saturation = 1.4
+
+[node name="map" type="Node3D" unique_id=58885349]
+
+[node name="settings" type="Node" parent="." unique_id=932642946]
+script = ExtResource("1_hgs20")
+music_volume = 80
+fuel = 5.0
+
+[node name="music" type="AudioStreamPlayer" parent="settings" unique_id=2103185888]
+stream = ExtResource("2_xd0rm")
+volume_db = -5.0
+
+[node name="light" type="DirectionalLight3D" parent="settings" unique_id=317809873]
+transform = Transform3D(0.8660254, 0.43301284, -0.25, 2.7805951e-08, 0.49999988, 0.8660255, 0.5000001, -0.75000006, 0.43301257, 0, 0, 0)
+light_color = Color(0.84, 0.76607996, 0.7056, 1)
+light_energy = 0.3
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+light_specular = 0.0
+shadow_transmittance_bias = 0.0
+shadow_opacity = 0.5
+shadow_blur = 0.0
+directional_shadow_mode = 0
+directional_shadow_max_distance = 0.0
+directional_shadow_pancake_size = 0.0
+
+[node name="environment" type="WorldEnvironment" parent="settings" unique_id=537311252]
+environment = SubResource("Environment_lcvph")
+
+[node name="orbs" type="Node3D" parent="." unique_id=921069455]
+
+[node name="spawn" type="Node3D" parent="." unique_id=86277857]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+
+[node name="main" type="Node3D" parent="." unique_id=1948297896]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="main" unique_id=209002904]
+material_override = ExtResource("4_b025c")
+use_collision = true
+collision_layer = 5
+size = Vector3(15, 1, 15)

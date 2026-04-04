@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://3j6430rk1nl"]
+
+[ext_resource type="FontFile" uid="uid://cixohe42kxmvu" path="res://old/themes/fonts/league_spartan_bold.ttf" id="1_2qwah"]
+
+[node name="value" type="LineEdit" unique_id=1742062127]
+theme_override_fonts/font = ExtResource("1_2qwah")
+theme_override_font_sizes/font_size = 30
+placeholder_text = "Value"
