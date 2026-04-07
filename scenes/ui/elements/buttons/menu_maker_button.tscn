@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://qkam0dfqbblv"]
+
+[ext_resource type="FontFile" uid="uid://3evwu8ya3ouj" path="res://assets/fonts/league_spartan_bold.ttf" id="1_jn0nr"]
+[ext_resource type="Script" uid="uid://b0aha288pikbc" path="res://scripts/ui/buttons/menu_maker_button.gd" id="2_dxgvp"]
+[ext_resource type="PackedScene" uid="uid://cotigrs8kqkx4" path="res://scenes/ui/elements/pulse.tscn" id="3_ujyy2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jn0nr"]
+bg_color = Color(0.575478, 0.8188026, 0.5066924, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.14028886, 0.22976607, 0.16510898, 1)
+corner_detail = 1
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ujyy2"]
+bg_color = Color(0.2688, 0.48, 0.30399996, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.14028886, 0.22976607, 0.16510898, 1)
+corner_detail = 1
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dxgvp"]
+bg_color = Color(0.8073386, 0.8591203, 0.52446574, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.14028886, 0.22976607, 0.16510898, 1)
+corner_detail = 1
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_25vsj"]
+bg_color = Color(0.34, 0.34, 0.34, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.23, 0.23, 0.23, 1)
+corner_detail = 1
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u5ig2"]
+bg_color = Color(0.575478, 0.8188026, 0.5066924, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.14028886, 0.22976607, 0.16510898, 1)
+corner_detail = 1
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[node name="Button" type="Button" unique_id=858339634]
+custom_minimum_size = Vector2(50, 50)
+offset_right = 8.0
+offset_bottom = 8.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("1_jn0nr")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_jn0nr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ujyy2")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dxgvp")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_25vsj")
+theme_override_styles/focus = SubResource("StyleBoxFlat_u5ig2")
+text = "Adlib"
+script = ExtResource("2_dxgvp")
+
+[node name="anim" parent="." unique_id=1417606283 instance=ExtResource("3_ujyy2")]
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -19,14 +19,10 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Breeze Trials Remake"
-run/main_scene="uid://bj6yss6l653qa"
+run/main_scene="uid://canje7ofj6rst"
 config/features=PackedStringArray("4.6", "Forward Plus")
 boot_splash/bg_color=Color(0.266, 0.35, 0.329, 1)
 boot_splash/show_image=false
-
-[autoload]
-
-global="*res://old/scripts/global.gd"
 
 [debug]
 
@@ -48,7 +44,7 @@ version_control/autoload_on_startup=true
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/NodeShaker3D/plugin.cfg", "res://addons/csg_converter/plugin.cfg")
+enabled=PackedStringArray()
 
 [input]
 

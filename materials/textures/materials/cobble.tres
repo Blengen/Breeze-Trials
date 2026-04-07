@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cd74c7c1ab8hc"]
+
+[ext_resource type="Texture2D" uid="uid://7etwwa6vokku" path="res://--old/materials/textures/assets/cobble.png" id="1_4nfsf"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 2
+albedo_color = Color(0.70796657, 0.7079665, 0.7079665, 1)
+albedo_texture = ExtResource("1_4nfsf")
+uv1_scale = Vector3(0.15, 0.15, 0.15)
+uv1_triplanar = true

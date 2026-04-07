@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://canje7ofj6rst"]
+
+[ext_resource type="Script" uid="uid://cvsruqi21jic6" path="res://scripts/ui/menu_maker.gd" id="1_vlr4j"]
+
+[node name="menu_maker" type="Control" unique_id=95212590 groups=["menu_maker"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+script = ExtResource("1_vlr4j")
+
+[node name="string" type="Label" parent="." unique_id=724026993]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "label§200§0,1,0.7§Breeze Trials
+label§60§0,1,0§v0.1 WIP
+button§100§1,1,1§Main Maps§main
+button§100§1,1,1§Custom Maps§custom
+button§100§1,1,1§Settings§settings
+button§100§1,1,1§Credits§credits
+button§100§1,1,1§Exit§exit"
+
+[node name="vbox" type="VBoxContainer" parent="." unique_id=751756000]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="logic_handler" type="Node" parent="." unique_id=1419580173]

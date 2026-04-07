@@ -1,9 +1,0 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://ojolesk2qori"]
-
-[resource]
-transparency = 1
-depth_draw_mode = 2
-shading_mode = 0
-diffuse_mode = 3
-specular_mode = 2
-albedo_color = Color(0, 0, 0, 0)
