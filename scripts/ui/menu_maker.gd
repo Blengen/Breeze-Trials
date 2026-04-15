@@ -1,13 +1,15 @@
 extends Control
 
+#region Definitions
 # Assets
 @onready var label: PackedScene = preload("res://scenes/ui/elements/labels/menu_maker_label.tscn")
 @onready var button: PackedScene = preload("res://scenes/ui/elements/buttons/menu_maker_button.tscn")
 
 # Children
-@onready var vbox: VBoxContainer = $vbox
+@onready var vbox: VBoxContainer = $scroll/vbox
+@onready var scroll: ScrollContainer = $scroll
 @onready var logic_handler: Node = $logic_handler
-
+#endregion Definitions
 
 func text_settings(object: Node, args: PackedStringArray) -> void: # Sets color, font size, text, and outline thickness
 	# Set font size, color, and text, based on argument 2, 3, and 4
@@ -26,9 +28,13 @@ func text_settings(object: Node, args: PackedStringArray) -> void: # Sets color,
 	pass
 
 func button_press(id: String) -> void: # On button pressed
-	if id == "useless": get_tree().quit()
+	logic_handler.button_press(id)
+	
 
 func _ready() -> void: # Make the menu
+	
+	scroll.set_deferred("size", Vector2(1920, 1080)) # Reset ScrollContainer so the VBox can scale properly
+	await get_tree().process_frame
 	
 	var text: PackedStringArray = $string.text.split("
 ", false) # Array of each line in the string
@@ -46,5 +52,16 @@ func _ready() -> void: # Make the menu
 		elif args[0] == "button":
 			var new_button: Button = button.instantiate()
 			vbox.add_child(new_button) # Add new basic button
-			new_button.id = args[3]
+			new_button.id = args[4]
 			text_settings(new_button, args) # Sets color, font size, text, and outline thickness
+	
+	await get_tree().process_frame
+	
+	scroll.set_deferred("size", vbox.size)
+	if vbox.size.y > 1080: scroll.set_deferred("size", Vector2(vbox.size.x, 1080))
+	scroll.position.x = (1920 - vbox.size.x) / 2
+	scroll.position.y = (1080 - vbox.size.y) / 2
+	if scroll.position.y < 0: scroll.position.y = 0
+		
+func erase() -> void:
+	for child in vbox.get_children(): child.queue_free()

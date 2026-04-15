@@ -3,7 +3,7 @@ extends Button
 @onready var menu_maker: Node = self
 var id: String = ""
 
-func _ready() -> void: # Identify Menu Maker and run animation
+func _ready() -> void: # Identify Menu Maker and run animation. Probably unecessarily safe
 	
 	for count in range(100): # Max 100 iterations to be safe
 		
@@ -18,4 +18,8 @@ func _ready() -> void: # Identify Menu Maker and run animation
 	print("Something went wrong, couldn't find menu_maker parent")
 
 func _on_pressed() -> void:
-	if menu_maker.is_in_group("menu_maker"): get_parent().get_parent().button_press(id)
+	if menu_maker.is_in_group("menu_maker"): menu_maker.button_press(id)
+
+
+func _on_mouse_entered() -> void:
+	pass # Replace with function body.

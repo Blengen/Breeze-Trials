@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://d3xymbxsd4myp"]
+
+[ext_resource type="Script" uid="uid://1gsnfhdhvud0" path="res://scripts/components/map_loader.gd" id="1_u5o7e"]
+[ext_resource type="PackedScene" uid="uid://c58api45whqr5" path="res://scenes/play/player.tscn" id="2_3t680"]
+
+[node name="root" type="Node3D" unique_id=607884152 groups=["root"]]
+
+[node name="components" type="Node" parent="." unique_id=1916483774]
+
+[node name="map_loader" type="Node" parent="components" unique_id=1325040670]
+script = ExtResource("1_u5o7e")
+
+[node name="player" parent="." unique_id=325942831 instance=ExtResource("2_3t680")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
