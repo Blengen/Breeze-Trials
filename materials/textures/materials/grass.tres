@@ -1,6 +1,6 @@
 [gd_resource type="StandardMaterial3D" format=3 uid="uid://c4ve13a5mmy3d"]
 
-[ext_resource type="Texture2D" uid="uid://bycnoo1e8w5ve" path="res://--old/materials/textures/assets/grass.jpg" id="1_regio"]
+[ext_resource type="Texture2D" uid="uid://8fu2n58cg7ln" path="res://materials/textures/assets/x256/grass.jpg" id="1_regio"]
 
 [resource]
 diffuse_mode = 3

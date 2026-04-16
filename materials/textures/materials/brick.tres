@@ -1,6 +1,6 @@
 [gd_resource type="StandardMaterial3D" format=3 uid="uid://bstdqmmtk5rwd"]
 
-[ext_resource type="Texture2D" uid="uid://we31qepfv5rd" path="res://--old/materials/textures/assets/brick.png" id="1_502hw"]
+[ext_resource type="Texture2D" uid="uid://b1dy7mi8c7hpi" path="res://materials/textures/assets/x256/brick.png" id="1_502hw"]
 
 [resource]
 diffuse_mode = 3

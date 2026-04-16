@@ -1,6 +1,6 @@
 [gd_resource type="StandardMaterial3D" format=3 uid="uid://d3dexafmnbcmc"]
 
-[ext_resource type="Texture2D" uid="uid://btqqsusxqkbic" path="res://--old/materials/textures/assets/metal_plate.png" id="1_x34qe"]
+[ext_resource type="Texture2D" uid="uid://d00kursin0f1x" path="res://materials/textures/assets/x256/metal_plate.png" id="1_x34qe"]
 
 [resource]
 diffuse_mode = 3

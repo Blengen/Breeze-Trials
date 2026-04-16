@@ -17,3 +17,6 @@ texture = ExtResource("1_gbr5m")
 
 [node name="collider" type="CollisionShape3D" parent="." unique_id=1827361936]
 shape = SubResource("SphereShape3D_vh0f7")
+
+[node name="timer" type="Timer" parent="." unique_id=943108270]
+one_shot = true

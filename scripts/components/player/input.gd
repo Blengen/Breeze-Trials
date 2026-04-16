@@ -3,6 +3,7 @@ extends Node
 # COMPONENTS #
 @onready var camera: Node = $"../camera"
 @onready var move_y: Node = $"../move_y"
+@onready var ability: Node = $"../ability"
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion: camera.turn_camera(event)
@@ -14,6 +15,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 		# Player keys
 		if event.is_action_pressed("quick_drop"): move_y.quick_drop()
+	
+		# Ability
+		if event.is_action_pressed("ability"): ability.ability_key_pressed()
 	
 	elif event is InputEventMouseButton:
 		

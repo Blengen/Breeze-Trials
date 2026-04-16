@@ -4,10 +4,13 @@ extends Area3D
 @export var value: float = 0
 
 @onready var sprite: Sprite3D = $sprite
+@onready var collider: CollisionShape3D = $collider
+@onready var timer: Timer = $timer
 
 func _ready() -> void:
 	load_texture()
 	if not body_entered.is_connected(_body_entered): connect("body_entered", _body_entered)
+	if not timer.timeout.is_connected(_timeout): timer.connect("timeout", _timeout)
 	
 func load_texture() -> void:
 	match type:
@@ -28,3 +31,7 @@ func _body_entered(body: Node3D) -> void:
 		var ability_component: Node = body.get_parent().get_child(0).get_child(0)
 
 		ability_component.orb_hit(self)
+
+func _timeout() -> void:
+	show()
+	$collider.disabled = false

@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://1gsnfhdhvud0" path="res://scripts/components/map_loader.gd" id="1_u5o7e"]
 [ext_resource type="PackedScene" uid="uid://c58api45whqr5" path="res://scenes/play/player.tscn" id="2_3t680"]
+[ext_resource type="Script" uid="uid://8qantxwla5et" path="res://scripts/components/debug/fps.gd" id="3_fxwjs"]
+[ext_resource type="FontFile" uid="uid://3evwu8ya3ouj" path="res://assets/fonts/league_spartan_bold.ttf" id="3_kpfyx"]
 
 [node name="root" type="Node3D" unique_id=607884152 groups=["root"]]
 
@@ -12,3 +14,30 @@ script = ExtResource("1_u5o7e")
 
 [node name="player" parent="." unique_id=325942831 instance=ExtResource("2_3t680")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="ui" type="Control" parent="." unique_id=1353630591]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="debug" type="VBoxContainer" parent="ui" unique_id=2098062224]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="fps" type="Label" parent="ui/debug" unique_id=1322887841]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_kpfyx")
+theme_override_font_sizes/font_size = 30
+text = "FPS: "
+script = ExtResource("3_fxwjs")
+
+[node name="update_timer" type="Timer" parent="ui/debug/fps" unique_id=1388614378]
+autostart = true
+
+[connection signal="timeout" from="ui/debug/fps/update_timer" to="ui/debug/fps" method="_on_update_timer_timeout"]

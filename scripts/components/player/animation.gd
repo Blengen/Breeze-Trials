@@ -19,7 +19,7 @@ func animate() -> void:
 		
 	else: # RUN TURNING CODE #
 		if not (is_zero_approx(player.velocity.x) and is_zero_approx(player.velocity.z)): # Only when not in camlock #
-			var offset: float = vec2_to_deg(Input.get_vector("left", "right", "front", "back"))
+			var offset: float = vars.vec2_to_deg(Input.get_vector("left", "right", "front", "back"))
 			
 			var player_angle: float = player.rotation_degrees.y
 			var target_angle: float = cambase.rotation_degrees.y + offset
@@ -37,20 +37,7 @@ func animate() -> void:
 			player.rotation_degrees.y -= difference * 0.01 # Multiplication each frame, maybe optimizable?
 
 
-func vec2_to_deg(value: Vector2) -> int:
-	match value:
-		Vector2(0, -1): return 0
-		Vector2(-1, 0): return 90
-		Vector2(0, 1): return 180
-		Vector2(1, 0): return 270
-		
-	if value.x < -0.5 and value.y < -0.5: return 45
-	elif value.x < -0.5 and value.y > 0.5: return 135
-	elif value.x > 0.5 and value.y > 0.5: return 235
-	elif value.x > 0.5 and value.y < -0.5: return 315
-	
-	print(value)
-	return 0
+
 
 func play_animation(anim_name: String) -> void:
 	if not anim.current_animation == anim_name: anim.play(anim_name)

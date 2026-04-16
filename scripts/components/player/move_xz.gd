@@ -16,4 +16,15 @@ func input_movement() -> void:
 	var cambasis: Basis = cambase.basis
 	cambase.rotation_degrees.x = cambase_rot_x
 	
-	player.velocity = cambasis * Vector3(vec_normalized.x * vars.speed, player.velocity.y, vec_normalized.y * vars.speed)
+	# Normal movement if going slower than walkspeed
+	var current_velocity_xz: Vector2 = Vector2(player.velocity.x, player.velocity.z)
+	if current_velocity_xz.length() < vars.speed + 0.01:
+		player.velocity = cambasis * Vector3(vec_normalized.x * vars.speed, player.velocity.y, vec_normalized.y * vars.speed)
+	else:
+		current_velocity_xz = current_velocity_xz.move_toward(Vector2.ZERO, 0.2) # Decellerates at speed units/s
+		
+		player.velocity.x = current_velocity_xz.x
+		player.velocity.z = current_velocity_xz.y
+		
+		#player.velocity += cambasis * Vector3(vec_normalized.x * vars.speed * 0.2, player.velocity.y, vec_normalized.y * vars.speed * 0.2)
+		

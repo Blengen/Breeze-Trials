@@ -1,6 +1,6 @@
 [gd_resource type="StandardMaterial3D" format=3 uid="uid://cd74c7c1ab8hc"]
 
-[ext_resource type="Texture2D" uid="uid://7etwwa6vokku" path="res://--old/materials/textures/assets/cobble.png" id="1_4nfsf"]
+[ext_resource type="Texture2D" uid="uid://btwaltoc2u2or" path="res://materials/textures/assets/x256/cobble.png" id="1_4nfsf"]
 
 [resource]
 diffuse_mode = 3
