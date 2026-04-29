@@ -2,26 +2,27 @@
 
 [ext_resource type="PackedScene" uid="uid://cdrw0og5akljr" path="res://scenes/ui/elements/noise_bg.tscn" id="1_ghf4a"]
 [ext_resource type="PackedScene" uid="uid://canje7ofj6rst" path="res://scenes/ui/menus_full/menu_maker.tscn" id="2_kuuhj"]
-[ext_resource type="Script" uid="uid://b43q1qfgwfljy" path="res://scripts/components/logic_handler_main_menu.gd" id="3_kuuhj"]
+[ext_resource type="Script" uid="uid://b43q1qfgwfljy" path="res://scripts/components/menu_maker_logic_handlers/logic_handler_main_menu.gd" id="3_kuuhj"]
 
 [node name="root" type="Node" unique_id=727453517]
 
 [node name="bg" parent="." unique_id=1441183019 instance=ExtResource("1_ghf4a")]
 
 [node name="menu_maker" parent="." unique_id=95212590 instance=ExtResource("2_kuuhj")]
+z_index = 15
+z_as_relative = true
 
 [node name="string" parent="menu_maker" index="0" unique_id=724026993]
 text = "label§200§0,1,0.7§Breeze Trials
 label§60§0,1,0§v0.1 WIP
 button§100§1,1,1§Main Maps§main
 button§100§1,1,1§Custom Maps§custom
-button§100§1,1,1§Settings§settings
 button§100§1,1,1§Credits§credits
 
 label§50§1,1,1§ 
 button§100§1,1,1§Exit§exit"
 
-[node name="logic_handler" type="Node" parent="menu_maker" unique_id=1640459540]
+[node name="logic_handler" parent="menu_maker" index="2" unique_id=631456819]
 script = ExtResource("3_kuuhj")
 
 [editable path="menu_maker"]

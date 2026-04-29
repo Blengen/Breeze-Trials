@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cotigrs8kqkx4" path="res://scenes/ui/elements/pulse.tscn" id="2_1jo0e"]
 
 [node name="label" type="Label" unique_id=211277590]
+z_as_relative = false
 offset_right = 40.0
 offset_bottom = 23.0
 pivot_offset_ratio = Vector2(0.5, 0.5)

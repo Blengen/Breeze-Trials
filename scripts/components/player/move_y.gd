@@ -19,10 +19,10 @@ extends Node
 ]
 
 func jump() -> void:
-	if player.is_on_floor() or vars.coyote < 0.15:
+	if player.is_on_floor() or vars.coyote < 0.1:
 		if Input.is_action_pressed("jump"):
-			player.velocity.y = vars.jump
-			anim.play("jump")
+			player.velocity.y = vars.jump + (vars.coyote * 50)
+			anim.set_deferred("current_animation", "jump")
 			vars.coyote = 1
 
 func quick_drop() -> void:
@@ -37,6 +37,7 @@ func air(delta: float) -> void:
 	else: vars.coyote = 0
 	
 func ledge() -> void:
+	
 	if player.is_on_floor():
 		if ledge_colliders[0].disabled:
 			for child: CollisionShape3D in ledge_colliders: child.disabled = false

@@ -57,10 +57,12 @@ expand_margin_right = 3.0
 expand_margin_bottom = 3.0
 
 [node name="Button" type="Button" unique_id=858339634]
+z_as_relative = false
 custom_minimum_size = Vector2(50, 50)
 offset_right = 8.0
 offset_bottom = 8.0
 pivot_offset_ratio = Vector2(0.5, 0.5)
+focus_mode = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("1_jn0nr")

@@ -10,6 +10,9 @@ var coyote: float = 0
 
 var camlock: bool = false
 
+var playing: bool = false
+var fuel: float = 0
+
 func vec2_to_deg(value: Vector2) -> int:
 	match value:
 		Vector2(0, -1): return 0
@@ -22,5 +25,4 @@ func vec2_to_deg(value: Vector2) -> int:
 	elif value.x > 0.5 and value.y > 0.5: return 235
 	elif value.x > 0.5 and value.y < -0.5: return 315
 	
-	print(value)
 	return 0

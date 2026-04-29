@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://c4ve13a5mmy3d"]
+
+[ext_resource type="Texture2D" uid="uid://8fu2n58cg7ln" path="res://materials/textures/toon/assets/x256/grass.jpg" id="1_regio"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 2
+albedo_color = Color(0.35959998, 0.62, 0.34100002, 1)
+albedo_texture = ExtResource("1_regio")
+uv1_scale = Vector3(0.1, 0.1, 0.1)
+uv1_triplanar = true

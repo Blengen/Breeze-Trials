@@ -5,21 +5,16 @@ extends Node
 @onready var move_y: Node = $"../move_y"
 @onready var ability: Node = $"../ability"
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion: camera.turn_camera(event)
 	
-	elif event is InputEventKey:
+	elif event is InputEventKey or InputEventMouseButton:
 		
 		# Camera keys
 		if event.is_action_pressed("camlock"): camera.camlock()
 		
 		# Player keys
 		if event.is_action_pressed("quick_drop"): move_y.quick_drop()
-	
-		# Ability
-		if event.is_action_pressed("ability"): ability.ability_key_pressed()
-	
-	elif event is InputEventMouseButton:
 		
 		# Camera keys
 		if event.is_action_pressed("zoom_in"): camera.zoom(-2.5)

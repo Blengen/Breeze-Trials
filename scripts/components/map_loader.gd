@@ -7,3 +7,8 @@ func _ready() -> void:
 	
 	var map_instance: Node3D = load(global.selected_map).instantiate()
 	root.add_child.call_deferred(map_instance)
+
+	$"../pause_handler/pause_ui/menu_maker/logic_handler".settings_changed.connect("update")
+	
+func update():
+	pass

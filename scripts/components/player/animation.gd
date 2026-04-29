@@ -7,7 +7,7 @@ extends Node
 @onready var anim: AnimationPlayer = $"../../body/visual/anim"
 @onready var player: CharacterBody3D = $"../../body"
 
-func animate() -> void:
+func animate(delta: float) -> void:
 	if player.is_on_floor():
 		if player.velocity == Vector3.ZERO: play_animation("idle")
 		else: play_animation("walk")
@@ -26,7 +26,7 @@ func animate() -> void:
 			
 
 			target_angle = fmod(target_angle, 360.0)
-			
+
 			# FIND CLOSEST ANGLE #
 			target_angle -= 360
 			for count: int in range(3):
@@ -34,7 +34,7 @@ func animate() -> void:
 			
 			var difference: float = player_angle - target_angle 
 			
-			player.rotation_degrees.y -= difference * 0.01 # Multiplication each frame, maybe optimizable?
+			player.rotation_degrees.y -= difference * delta * 15
 
 
 

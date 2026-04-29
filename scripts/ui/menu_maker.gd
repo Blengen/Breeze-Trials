@@ -11,6 +11,7 @@ extends Control
 @onready var logic_handler: Node = $logic_handler
 #endregion Definitions
 
+
 func text_settings(object: Node, args: PackedStringArray) -> void: # Sets color, font size, text, and outline thickness
 	# Set font size, color, and text, based on argument 2, 3, and 4
 	object["theme_override_font_sizes/font_size"] = args[1].to_int() # Font size
@@ -33,6 +34,7 @@ func button_press(id: String) -> void: # On button pressed
 
 func _ready() -> void: # Make the menu
 	
+	
 	scroll.set_deferred("size", Vector2(1920, 1080)) # Reset ScrollContainer so the VBox can scale properly
 	await get_tree().process_frame
 	
@@ -46,14 +48,19 @@ func _ready() -> void: # Make the menu
 		
 		if args[0] == "label":
 			var new_label: Label = label.instantiate()
+			new_label.visible = true
 			vbox.add_child(new_label) # Add new basic label
 			text_settings(new_label, args) # Sets color, font size, text, and outline thickness
+			if args.size() == 5: new_label.z_index = args[4].to_int()
 			
 		elif args[0] == "button":
 			var new_button: Button = button.instantiate()
+			new_button.visible = true
 			vbox.add_child(new_button) # Add new basic button
 			new_button.id = args[4]
 			text_settings(new_button, args) # Sets color, font size, text, and outline thickness
+			if args.size() == 6: new_button.z_index = args[5].to_int()
+
 	
 	await get_tree().process_frame
 	
@@ -62,6 +69,7 @@ func _ready() -> void: # Make the menu
 	scroll.position.x = (1920 - vbox.size.x) / 2
 	scroll.position.y = (1080 - vbox.size.y) / 2
 	if scroll.position.y < 0: scroll.position.y = 0
-		
+	
+	
 func erase() -> void:
 	for child in vbox.get_children(): child.queue_free()
