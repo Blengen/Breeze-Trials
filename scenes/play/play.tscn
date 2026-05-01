@@ -1,0 +1,148 @@
+[gd_scene format=3 uid="uid://d3xymbxsd4myp"]
+
+[ext_resource type="Script" uid="uid://1gsnfhdhvud0" path="res://scripts/components/map_loader.gd" id="1_u5o7e"]
+[ext_resource type="PackedScene" uid="uid://c58api45whqr5" path="res://scenes/play/player.tscn" id="2_3t680"]
+[ext_resource type="Script" uid="uid://bfw0xiwq047by" path="res://scripts/components/pause_handler.gd" id="2_tdyfg"]
+[ext_resource type="FontFile" uid="uid://3evwu8ya3ouj" path="res://assets/fonts/league_spartan_bold.ttf" id="3_kpfyx"]
+[ext_resource type="PackedScene" uid="uid://canje7ofj6rst" path="res://scenes/ui/menus_full/menu_maker.tscn" id="3_tdyfg"]
+[ext_resource type="Script" uid="uid://d4cf8yq6hgglk" path="res://scripts/components/menu_maker_logic_handlers/logic_handler_pause.gd" id="5_1phcp"]
+[ext_resource type="PackedScene" uid="uid://b0of3618di8yw" path="res://scenes/ui/menus_full/settings.tscn" id="6_damvd"]
+
+[node name="root" type="Node3D" unique_id=607884152 groups=["root"]]
+
+[node name="components" type="Node" parent="." unique_id=1916483774]
+
+[node name="map_loader" type="Node" parent="components" unique_id=1325040670]
+script = ExtResource("1_u5o7e")
+
+[node name="pause_handler" type="Node" parent="components" unique_id=530147209]
+process_mode = 3
+script = ExtResource("2_tdyfg")
+
+[node name="pause_ui" type="Control" parent="components/pause_handler" unique_id=1991942789]
+process_mode = 2
+z_as_relative = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="cover" type="ColorRect" parent="components/pause_handler/pause_ui" unique_id=592195962]
+z_index = -1
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.7058824)
+
+[node name="map_name" type="Label" parent="components/pause_handler/pause_ui" unique_id=856498404]
+z_index = 11
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -796.0
+offset_top = -581.0
+offset_right = 796.0
+offset_bottom = -323.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0.87, 0.96533334, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0.22733332, 0.44, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("3_kpfyx")
+theme_override_font_sizes/font_size = 120
+text = "Map Name - ◆2.0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="music" type="Label" parent="components/pause_handler/pause_ui" unique_id=899833548]
+z_index = 11
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -796.0
+offset_top = -361.0
+offset_right = 796.0
+offset_bottom = -305.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0.8505, 1, 0.61, 1)
+theme_override_colors/font_outline_color = Color(0.20066668, 0.28, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("3_kpfyx")
+theme_override_font_sizes/font_size = 60
+text = "Music: Song name (By composer)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="license" type="Label" parent="components/pause_handler/pause_ui" unique_id=787059923]
+z_index = 11
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -796.0
+offset_top = -284.0
+offset_right = 796.0
+offset_bottom = -228.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0.45, 0.45, 0.45, 1)
+theme_override_colors/font_outline_color = Color(0.14, 0.14, 0.14, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("3_kpfyx")
+theme_override_font_sizes/font_size = 60
+text = "Music license: Cool License"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="menu_maker" parent="components/pause_handler/pause_ui" unique_id=95212590 instance=ExtResource("3_tdyfg")]
+process_mode = 2
+layout_mode = 1
+mouse_filter = 2
+
+[node name="string" parent="components/pause_handler/pause_ui/menu_maker" index="0" unique_id=724026993]
+text = "
+label§350§0,1,0§ 
+button§150§1,1,1§Continue§continue
+button§150§1,1,1§Settings§settings
+button§150§1,1,1§Exit§exit"
+
+[node name="scroll" parent="components/pause_handler/pause_ui/menu_maker" index="1" unique_id=200760928]
+mouse_filter = 2
+
+[node name="vbox" parent="components/pause_handler/pause_ui/menu_maker/scroll" index="0" unique_id=751756000]
+mouse_filter = 2
+
+[node name="logic_handler" parent="components/pause_handler/pause_ui/menu_maker" index="2" unique_id=631456819]
+script = ExtResource("5_1phcp")
+
+[node name="settings" parent="components/pause_handler/pause_ui" unique_id=2059253323 instance=ExtResource("6_damvd")]
+layout_mode = 1
+
+[node name="player" parent="." unique_id=325942831 instance=ExtResource("2_3t680")]
+
+[editable path="components/pause_handler/pause_ui/menu_maker"]
+[editable path="components/pause_handler/pause_ui/settings"]
+[editable path="components/pause_handler/pause_ui/settings/menu_maker"]

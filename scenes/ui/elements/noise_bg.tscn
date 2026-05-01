@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://cdrw0og5akljr"]
+
+[ext_resource type="Script" uid="uid://fdxfh8gwor08" path="res://scripts/ui/noise_background.gd" id="1_oh5ar"]
+[ext_resource type="Texture2D" uid="uid://dnt30crnndcwm" path="res://assets/textures/ui/Vignette.png" id="2_vhs3b"]
+
+[sub_resource type="Gradient" id="Gradient_vhs3b"]
+offsets = PackedFloat32Array(0, 0.16, 0.31333333, 0.49333334, 0.72, 1)
+colors = PackedColorArray(0.25, 0.099999994, 0.099999994, 1, 0.25, 0.175, 0.099999994, 1, 0.25, 0.25, 0.099999994, 1, 0.099999994, 0.25, 0.15000002, 1, 0.099999994, 0.099999994, 0.25, 1, 0.25, 0.099999994, 0.19750002, 1)
+metadata/_snap_count = 5
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_7icyc"]
+noise_type = 2
+frequency = 0.0055
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_y4pwm"]
+width = 192
+height = 108
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_7icyc")
+color_ramp = SubResource("Gradient_vhs3b")
+
+[node name="bg" type="TextureRect" unique_id=1441183019]
+z_index = -10
+z_as_relative = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("NoiseTexture2D_y4pwm")
+script = ExtResource("1_oh5ar")
+
+[node name="vignette" type="TextureRect" parent="." unique_id=935661255]
+modulate = Color(0, 0, 0, 0.50980395)
+z_index = -9
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_vhs3b")

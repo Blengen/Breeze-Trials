@@ -1,0 +1,170 @@
+[gd_scene format=3 uid="uid://b0of3618di8yw"]
+
+[ext_resource type="PackedScene" uid="uid://canje7ofj6rst" path="res://scenes/ui/menus_full/menu_maker.tscn" id="1_5q7tw"]
+[ext_resource type="Script" uid="uid://bl3kng5ovxxpx" path="res://scripts/components/menu_maker_logic_handlers/logic_handler_settings.gd" id="2_rcxqd"]
+[ext_resource type="FontFile" uid="uid://3evwu8ya3ouj" path="res://assets/fonts/league_spartan_bold.ttf" id="3_qpxbr"]
+[ext_resource type="PackedScene" uid="uid://dfuk61j8ugwxp" path="res://scenes/ui/elements/labels/menu_maker_label.tscn" id="4_x3lrp"]
+
+[node name="settings" type="Control" unique_id=2059253323]
+z_as_relative = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="bg" type="ColorRect" parent="." unique_id=758801858]
+z_index = 50
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.78431374)
+
+[node name="menu_maker" parent="." unique_id=95212590 instance=ExtResource("1_5q7tw")]
+layout_mode = 1
+
+[node name="string" parent="menu_maker" index="0" unique_id=724026993]
+text = "label§25§1,1,1§                                                                                                                                                                                                                                          
+
+label§200§1,0.5,0.2§Settings§51
+
+label§150§1,1,1§Gameplay§51
+button§100§1,1,1§Sensitivity: 0.1§sens§51
+button§100§1,1,1§Game Speed: 1.0§game_speed§51
+button§100§1,1,1§Use Physics Process: False§upp§51
+button§100§1,1,1§Physics FPS: 240§physics_fps§51
+
+label§150§1,1,1§Visual§51
+button§100§1,1,1§FPS Cap: 0§fps_cap§51
+button§100§1,1,1§Show FPS: True§show_fps§51
+button§100§1,1,1§FOV: 90§fov§51
+
+label§150§1,1,1§Audio§51s
+button§100§1,1,1§Music Volume Multiplier: 1.0§music_volume§51
+
+label§150§1,1,1§Keybinds§51
+button§60§1,1,1§Move Forward: W§w§51
+button§60§1,1,1§Move Left: A§a§51
+button§60§1,1,1§Move Back: S§s§51
+button§60§1,1,1§Move Right: D§d§51
+button§60§1,1,1§Jump: Space§jump§51
+button§60§1,1,1§Quick Drop: Q§quick_drop§51
+button§60§1,1,1§Ability: E§ability§51
+button§60§1,1,1§Camlock: Shift§camlock§51
+button§60§1,1,1§Zoom in: Wheel up§zoom_in§51
+button§60§1,1,1§Zoom out: Wheel down§zoom_out§51
+button§60§1,1,1§Debug: P§debug§51
+
+label§150§1,1,1§ 
+button§100§1,1,1§Back§exit_settings§51
+label§25§1,1,1§ "
+
+[node name="logic_handler" parent="menu_maker" index="2" unique_id=631456819]
+script = ExtResource("2_rcxqd")
+
+[node name="text_input" type="Control" parent="." unique_id=1066550440]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="bg" type="ColorRect" parent="text_input" unique_id=277884318]
+z_index = 55
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.78431374)
+
+[node name="lineedit" type="LineEdit" parent="text_input" unique_id=380413558]
+z_index = 60
+custom_minimum_size = Vector2(1500, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -750.0
+offset_top = -50.0
+offset_right = 750.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("3_qpxbr")
+theme_override_font_sizes/font_size = 90
+placeholder_text = "Insert Value"
+alignment = 1
+
+[node name="label" parent="text_input" unique_id=211277590 instance=ExtResource("4_x3lrp")]
+z_index = 60
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -566.0
+offset_top = -213.0
+offset_right = 566.0
+offset_bottom = 207.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 150
+text = "Type New Value:
+
+\"Enter\" to submit"
+
+[node name="key_input" type="Control" parent="." unique_id=1586227492]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="bg" type="ColorRect" parent="key_input" unique_id=2019782537]
+z_index = 55
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.78431374)
+
+[node name="label" parent="key_input" unique_id=59291737 instance=ExtResource("4_x3lrp")]
+z_index = 60
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -566.0
+offset_top = -213.0
+offset_right = 566.0
+offset_bottom = 207.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 150
+text = "Awaiting Keystroke
+\"ESC\" to cancel"
+
+[connection signal="text_submitted" from="text_input/lineedit" to="menu_maker/logic_handler" method="_on_lineedit_text_submitted"]
+
+[editable path="menu_maker"]

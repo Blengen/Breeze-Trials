@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dfuk61j8ugwxp"]
+
+[ext_resource type="FontFile" uid="uid://3evwu8ya3ouj" path="res://assets/fonts/league_spartan_bold.ttf" id="1_opdpg"]
+[ext_resource type="PackedScene" uid="uid://cotigrs8kqkx4" path="res://scenes/ui/elements/pulse.tscn" id="2_1jo0e"]
+
+[node name="label" type="Label" unique_id=211277590]
+z_as_relative = false
+offset_right = 40.0
+offset_bottom = 23.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.49803922)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_opdpg")
+theme_override_font_sizes/font_size = 60
+text = "Label"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="anim" parent="." unique_id=1417606283 instance=ExtResource("2_1jo0e")]

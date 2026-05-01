@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://uypgtg4chvdm"
+path="res://.godot/imported/head.obj-ab1a4dd22ed824d721b91db349f410cb.mesh"
+
+[deps]
+
+files=["res://.godot/imported/head.obj-ab1a4dd22ed824d721b91db349f410cb.mesh"]
+
+source_file="res://assets/3d_models/player/head.obj"
+dest_files=["res://.godot/imported/head.obj-ab1a4dd22ed824d721b91db349f410cb.mesh", "res://.godot/imported/head.obj-ab1a4dd22ed824d721b91db349f410cb.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=true
+generate_lightmap_uv2_texel_size=1.0
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

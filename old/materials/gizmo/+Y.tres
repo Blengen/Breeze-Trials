@@ -1,8 +1,0 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://lsmdcskff7m4"]
-
-[resource]
-render_priority = 5
-no_depth_test = true
-shading_mode = 0
-specular_mode = 2
-albedo_color = Color(0, 1, 0, 1)

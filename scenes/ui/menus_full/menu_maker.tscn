@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://canje7ofj6rst"]
+
+[ext_resource type="Script" uid="uid://cvsruqi21jic6" path="res://scripts/ui/menu_maker.gd" id="1_vlr4j"]
+
+[node name="menu_maker" type="Control" unique_id=95212590 groups=["menu_maker"]]
+z_as_relative = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+script = ExtResource("1_vlr4j")
+
+[node name="string" type="Label" parent="." unique_id=724026993]
+visible = false
+z_as_relative = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="scroll" type="ScrollContainer" parent="." unique_id=200760928]
+z_as_relative = false
+layout_mode = 0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+
+[node name="vbox" type="VBoxContainer" parent="scroll" unique_id=751756000]
+z_as_relative = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="logic_handler" type="Node" parent="." unique_id=631456819]
