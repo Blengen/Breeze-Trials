@@ -21,6 +21,7 @@
 [ext_resource type="AudioStream" uid="uid://cujeby0berikb" path="res://assets/audio/sfx/player/hihat.mp3" id="11_ofde1"]
 [ext_resource type="AudioStream" uid="uid://dgss8dh26qd7p" path="res://assets/audio/sfx/player/death.mp3" id="13_r76e6"]
 [ext_resource type="Script" uid="uid://baqvl7oqmvy74" path="res://scripts/components/player/animation.gd" id="14_yta4w"]
+[ext_resource type="Script" uid="uid://cgt2jfin1tju8" path="res://scripts/components/player/debug.gd" id="15_hff1h"]
 [ext_resource type="FontFile" uid="uid://3evwu8ya3ouj" path="res://assets/fonts/league_spartan_bold.ttf" id="17_58j8h"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_58j8h"]
@@ -978,6 +979,7 @@ script = ExtResource("14_yta4w")
 script = ExtResource("9_dnbw0")
 
 [node name="label_fuel" type="Label" parent="components/fuel" unique_id=1061907150]
+visible = false
 z_index = -20
 z_as_relative = false
 anchors_preset = 5
@@ -1095,6 +1097,32 @@ vertical_alignment = 1
 [node name="anim" type="AnimationPlayer" parent="components/gameloop/death_ui" unique_id=1182967259]
 libraries/ = SubResource("AnimationLibrary_r0rfe")
 
+[node name="debug" type="Node" parent="components" unique_id=2139347580]
+process_mode = 3
+script = ExtResource("15_hff1h")
+
+[node name="debug_label" type="Label" parent="components/debug" unique_id=1207919157]
+z_index = -20
+z_as_relative = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -950.0
+offset_top = 7.0
+offset_right = 168.46753
+offset_bottom = 1078.8524
+grow_horizontal = 2
+rotation = -0.00014196071
+theme_override_colors/font_color = Color(0.63, 0.63, 0.63, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("17_58j8h")
+theme_override_font_sizes/font_size = 25
+
+[node name="fps_timer" type="Timer" parent="components/debug" unique_id=123523235]
+autostart = true
+ignore_time_scale = true
+
 [node name="body" type="CharacterBody3D" parent="." unique_id=1074058138 groups=["player"]]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 input_ray_pickable = false
@@ -1210,6 +1238,7 @@ transform = Transform3D(1, 0, 0, 0, 0.7071066, 0.7071066, 0, -0.7071066, 0.70710
 [node name="cam" type="Camera3D" parent="cambase" unique_id=139273071]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15)
 fov = 90.0
+far = 200.0
 
 [node name="shake" type="Node3D" parent="cambase/cam" unique_id=1568419448 node_paths=PackedStringArray("target")]
 script = ExtResource("8_7l42e")
@@ -1221,4 +1250,5 @@ positional_scaler = Vector3(0, 0, 0)
 rotational_scaler = Vector3(0.1, 0.1, 0.1)
 
 [connection signal="timeout" from="components/gameloop/timer_respawn" to="components/gameloop" method="_on_timer_respawn_timeout"]
+[connection signal="timeout" from="components/debug/fps_timer" to="components/debug" method="_on_timer_timeout"]
 [connection signal="area_entered" from="body/area" to="body" method="_on_area_entered"]

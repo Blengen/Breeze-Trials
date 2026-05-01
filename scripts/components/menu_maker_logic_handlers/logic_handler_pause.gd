@@ -10,7 +10,9 @@ func button_press(id: String) -> void:
 		get_tree().paused = false
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
-	if id == "settings": $"../../settings".show()
+	if id == "settings":
+		$"../../settings".show()
+		$"../../settings/menu_maker/logic_handler".update_button_values()
 
 	if id == "exit":
 		get_tree().set_deferred("paused", false)

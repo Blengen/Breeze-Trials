@@ -30,13 +30,11 @@ func orb_hit(orb: Area3D) -> void:
 
 		"stat_speed":
 			vars.speed = value
-			global.stat_speed = value
 			update_orbs(orb)
 			put_orb_on_cooldown(orb)
 
 		"stat_jump":
 			vars.jump = value
-			global.stat_jump = value
 			for child in orb.get_parent().get_children(): child.load_texture()
 			
 			update_orbs(orb)

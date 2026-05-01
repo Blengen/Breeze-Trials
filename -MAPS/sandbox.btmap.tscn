@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://cjp4o3sbg3umu"]
 
 [ext_resource type="PackedScene" uid="uid://b26mayqftvhwo" path="res://scenes/play/orb.tscn" id="1_igy5f"]
-[ext_resource type="Script" uid="uid://cqklbtk30lpju" path="res://scripts/components/settings.gd" id="1_r17ur"]
+[ext_resource type="Script" uid="uid://cqklbtk30lpju" path="res://scripts/components/map_settings.gd" id="1_r17ur"]
+[ext_resource type="AudioStream" uid="uid://ce1xjreonvqld" path="res://-MAPS/Phantom.mp3" id="2_0bfti"]
 [ext_resource type="Material" uid="uid://yf8bn3o7q57n" path="res://materials/textures/toon/materials/stone_brick.tres" id="2_gma6m"]
 [ext_resource type="Texture2D" uid="uid://cr0rfb62v0ddv" path="res://assets/textures/skyboxes/768x384/pink_sunset.webp" id="2_umxor"]
 [ext_resource type="Material" uid="uid://d3dexafmnbcmc" path="res://materials/textures/toon/materials/metal_plate.tres" id="3_r17ur"]
@@ -17,9 +18,9 @@
 [ext_resource type="Texture2D" uid="uid://8fu2n58cg7ln" path="res://materials/textures/toon/assets/x256/grass.jpg" id="13_7wus8"]
 [ext_resource type="Texture2D" uid="uid://2x77qjfskyvr" path="res://assets/3d_models/props/bush_1/diffuse.tga" id="16_j3ukh"]
 [ext_resource type="ArrayMesh" uid="uid://b2ioctacfvhr4" path="res://assets/3d_models/props/bush_1/bush_01.obj" id="17_4bu5j"]
-[ext_resource type="Texture2D" uid="uid://cwjytmla5hlq1" path="res://assets/3d_models/props/bush_1/normal.tga" id="17_kqh33"]
 [ext_resource type="Material" uid="uid://ba31xp8lwmv7g" path="res://assets/3d_models/props/tree_1+2/tree_1+2.tres" id="19_flrrm"]
 [ext_resource type="ArrayMesh" uid="uid://if6uhoes3iik" path="res://assets/3d_models/props/tree_1+2/tree_1.obj" id="20_0bfti"]
+[ext_resource type="Texture2D" uid="uid://cx8pn1qav46f" path="res://assets/3d_models/props/tree_1+2/tree_1+2.png" id="21_0bfti"]
 [ext_resource type="ArrayMesh" uid="uid://e2q1iggn8n7o" path="res://assets/3d_models/props/tree_1+2/tree_2.obj" id="21_0hy6o"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_tagcr"]
@@ -38,18 +39,17 @@ sky = SubResource("Sky_lcvph")
 ambient_light_source = 2
 ambient_light_color = Color(1, 0.74, 0.74, 1)
 reflected_light_source = 1
-ssao_radius = 3.0
-ssao_intensity = 15.03
+fog_enabled = true
 fog_mode = 1
-fog_light_color = Color(0.4971475, 0.55285186, 0.6500039, 1)
+fog_light_color = Color(0.8207947, 0.42653918, 0.19952983, 1)
 fog_density = 1.0
 fog_sky_affect = 0.4
-fog_depth_begin = 75.0
-fog_depth_end = 75.0
+fog_depth_begin = -20.0
+fog_depth_end = 230.0
 adjustment_enabled = true
 adjustment_brightness = 1.05
 adjustment_contrast = 1.3
-adjustment_saturation = 1.1
+adjustment_saturation = 1.3
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m46g1"]
 cull_mode = 2
@@ -76,6 +76,8 @@ cull_mode = 2
 albedo_texture = SubResource("GradientTexture2D_m46g1")
 
 [sub_resource type="PrismMesh" id="PrismMesh_4bu5j"]
+lightmap_size_hint = Vector2i(9, 26)
+add_uv2 = true
 size = Vector3(1, 2, 0.1)
 
 [sub_resource type="MultiMesh" id="MultiMesh_7wus8"]
@@ -114,16 +116,41 @@ transparency = 1
 blend_mode = 3
 albedo_texture = SubResource("NoiseTexture2D_tagcr")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kqh33"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0hy6o"]
+transparency = 2
+alpha_scissor_threshold = 0.9
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_color = Color(0.73632663, 0.89, 0.6408, 1)
+albedo_texture = ExtResource("16_j3ukh")
+
+[sub_resource type="MultiMesh" id="MultiMesh_vjsat"]
+transform_format = 1
+instance_count = 3
+visible_instance_count = 3
+mesh = ExtResource("17_4bu5j")
+buffer = PackedFloat32Array(1.7, 0, 0, 29.056797, 0, 1.149, 0, -7.2723083, 0, 0, 1.7, -26.066696, 1.7, 0, 0, -30.943203, 0, 1.149, 0, -7.2723083, 0, 0, 1.7, -0.06669617, 1.7, 0, 0, 18.056797, 0, 1.149, 0, -7.2723083, 0, 0, 1.7, 14.933304)
+
+[sub_resource type="MultiMesh" id="MultiMesh_bq3in"]
+transform_format = 1
+instance_count = 7
+visible_instance_count = 7
+mesh = ExtResource("20_0bfti")
+buffer = PackedFloat32Array(4, 0, 0, -50.519684, 0, 4, 0, -5.082994, 0, 0, 4, -13.166773, 4, 0, 0, -32.519684, 0, 4, 0, -5.082994, 0, 0, 4, 47.33323, 4, 0, 0, 56.480316, 0, 4, 0, -5.082994, 0, 0, 4, 59.33323, 4, 0, 0, 39.480316, 0, 4, 0, -5.082994, 0, 0, 4, -1.6667709, 4, 0, 0, 58.480316, 0, 4, 0, -5.082994, 0, 0, 4, -54.66677, 4, 0, 0, 22.480316, 0, 4, 0, -5.082994, 0, 0, 4, 49.33323, 4, 0, 0, -29.519684, 0, 4, 0, -5.082994, 0, 0, 4, -48.66677)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cpnku"]
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 cull_mode = 2
-albedo_color = Color(0.48820502, 0.57, 0.33630002, 1)
-albedo_texture = ExtResource("16_j3ukh")
-normal_enabled = true
-normal_scale = 16.0
-normal_texture = ExtResource("17_kqh33")
+albedo_texture = ExtResource("21_0bfti")
+
+[sub_resource type="MultiMesh" id="MultiMesh_jsw4o"]
+transform_format = 1
+instance_count = 7
+visible_instance_count = 7
+mesh = ExtResource("21_0hy6o")
+buffer = PackedFloat32Array(3.5, 0, 0, -53.114326, 0, 3.5, 0, -5.066617, 0, 0, 3.5, 31.636698, 3.5, 0, 0, -53.114326, 0, 3.5, 0, -5.066617, 0, 0, 3.5, -53.363304, 3.5, 0, 0, -18.114326, 0, 3.5, 0, -5.066617, 0, 0, 3.5, -37.363304, 3.5, 0, 0, 40.885674, 0, 3.5, 0, -5.066617, 0, 0, 3.5, -60.363304, 3.5, 0, 0, 59.885674, 0, 3.5, 0, -5.066617, 0, 0, 3.5, -22.363304, 3.5, 0, 0, 59.885674, 0, 3.5, 0, -5.066617, 0, 0, 3.5, 26.636696, 3.5, 0, 0, -0.11432648, 0, 3.5, 0, -5.066617, 0, 0, 3.5, 66.636696)
 
 [node name="map" type="Node3D" unique_id=58885349]
 
@@ -132,29 +159,38 @@ script = ExtResource("1_r17ur")
 map_name = "Sandbox"
 map_difficulty = 0.0
 music_name = "Some Blengen soundtrack"
+music_file = "Phantom.mp3"
 music_composer = "Blengen"
 music_license = "CC0"
 starting_fuel = 999900.0
 
 [node name="music" type="AudioStreamPlayer" parent="settings" unique_id=2103185888]
+stream = ExtResource("2_0bfti")
 volume_db = -5.0
-
-[node name="light" type="DirectionalLight3D" parent="settings" unique_id=317809873]
-transform = Transform3D(0.8660254, 0.43301284, -0.25, 2.7805951e-08, 0.49999988, 0.8660255, 0.5000001, -0.75000006, 0.43301257, 0, 0, 0)
-light_color = Color(0.84, 0.76607996, 0.7056, 1)
-light_energy = 0.3
-light_indirect_energy = 0.0
-light_volumetric_fog_energy = 0.0
-light_specular = 0.0
-shadow_transmittance_bias = 0.0
-shadow_opacity = 0.5
-shadow_blur = 0.0
-directional_shadow_mode = 0
-directional_shadow_max_distance = 0.0
-directional_shadow_pancake_size = 0.0
 
 [node name="environment" type="WorldEnvironment" parent="settings" unique_id=537311252]
 environment = SubResource("Environment_lcvph")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="settings" unique_id=866313791]
+transform = Transform3D(0.8480481, 0.33707014, -0.40889874, 0, 0.77162457, 0.6360783, 0.52991927, -0.53942496, 0.6543748, 0, 0, 0)
+light_energy = 0.5
+light_volumetric_fog_energy = 0.0
+shadow_enabled = true
+shadow_transmittance_bias = 0.0
+shadow_blur = 0.0
+directional_shadow_split_1 = 0.25
+directional_shadow_split_2 = 0.5
+directional_shadow_split_3 = 0.75
+directional_shadow_blend_splits = true
+directional_shadow_fade_start = 0.925
+directional_shadow_pancake_size = 50.0
+sky_mode = 1
+
+[node name="LightmapGI" type="LightmapGI" parent="settings" unique_id=1765084615]
+quality = 2
+bounces = 1
+texel_scale = 2.0
+max_texture_size = 2048
 
 [node name="orbs" type="Node3D" parent="." unique_id=921069455]
 
@@ -172,6 +208,11 @@ value = 20.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 8, -18)
 type = "jump"
 value = 100.0
+
+[node name="orb9" parent="orbs" unique_id=1332198129 instance=ExtResource("1_igy5f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 37, -6)
+type = "jump"
+value = 70.0
 
 [node name="orb6" parent="orbs" unique_id=320897930 instance=ExtResource("1_igy5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 8, -18)
@@ -612,94 +653,37 @@ material_overlay = SubResource("StandardMaterial3D_7wus8")
 use_collision = true
 size = Vector3(7, 7, 7)
 
-[node name="Bush01" type="MeshInstance3D" parent="." unique_id=1540246523]
-transform = Transform3D(0.21, 0, 0, 0, 0.142, 0, 0, 0, 0.21, 29.056797, -7.2723083, -26.066696)
-material_override = SubResource("StandardMaterial3D_kqh33")
-mesh = ExtResource("17_4bu5j")
+[node name="MetaMultimeshInstance3D3" type="MultiMeshInstance3D" parent="." unique_id=881586942]
+material_override = SubResource("StandardMaterial3D_0hy6o")
+multimesh = SubResource("MultiMesh_vjsat")
+script = ExtResource("12_tagcr")
+go_explode = null
+shape_type = 0
+go_make_colliders = null
+metadata/_custom_type_script = "uid://cpnvqsry47e8c"
 
-[node name="Bush02" type="MeshInstance3D" parent="." unique_id=1574301184]
-transform = Transform3D(0.21, 0, 0, 0, 0.142, 0, 0, 0, 0.21, -30.943203, -7.2723083, -0.06669617)
-material_override = SubResource("StandardMaterial3D_kqh33")
-mesh = ExtResource("17_4bu5j")
-
-[node name="Bush03" type="MeshInstance3D" parent="." unique_id=1344126728]
-transform = Transform3D(0.21, 0, 0, 0, 0.142, 0, 0, 0, 0.21, 18.056797, -7.2723083, 14.933304)
-material_override = SubResource("StandardMaterial3D_kqh33")
-mesh = ExtResource("17_4bu5j")
-
-[node name="Tree1" type="MeshInstance3D" parent="." unique_id=385754267]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -50.519684, -5.082994, -13.166773)
+[node name="MetaMultimeshInstance3D" type="MultiMeshInstance3D" parent="." unique_id=2035420941]
 material_override = ExtResource("19_flrrm")
-mesh = ExtResource("20_0bfti")
+multimesh = SubResource("MultiMesh_bq3in")
+script = ExtResource("12_tagcr")
+go_explode = null
+shape_type = 0
+go_make_colliders = null
+metadata/_custom_type_script = "uid://cpnvqsry47e8c"
 
-[node name="Tree2" type="MeshInstance3D" parent="." unique_id=488596584]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -32.519684, -5.082994, 47.33323)
-material_override = ExtResource("19_flrrm")
-mesh = ExtResource("20_0bfti")
-
-[node name="Tree3" type="MeshInstance3D" parent="." unique_id=1808690943]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 56.480316, -5.082994, 59.33323)
-material_override = ExtResource("19_flrrm")
-mesh = ExtResource("20_0bfti")
-
-[node name="Tree4" type="MeshInstance3D" parent="." unique_id=927077557]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 39.480316, -5.082994, -1.6667709)
-material_override = ExtResource("19_flrrm")
-mesh = ExtResource("20_0bfti")
-
-[node name="Tree5" type="MeshInstance3D" parent="." unique_id=1054975058]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 58.480316, -5.082994, -54.66677)
-material_override = ExtResource("19_flrrm")
-mesh = ExtResource("20_0bfti")
-
-[node name="Tree6" type="MeshInstance3D" parent="." unique_id=79177345]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 22.480316, -5.082994, 49.33323)
-material_override = ExtResource("19_flrrm")
-mesh = ExtResource("20_0bfti")
-
-[node name="Tree7" type="MeshInstance3D" parent="." unique_id=2000491257]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -29.519684, -5.082994, -48.66677)
-material_override = ExtResource("19_flrrm")
-mesh = ExtResource("20_0bfti")
-
-[node name="Tree8" type="MeshInstance3D" parent="." unique_id=1006064605]
-transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, -53.114326, -5.066617, 31.636698)
-material_override = ExtResource("19_flrrm")
-mesh = ExtResource("21_0hy6o")
-
-[node name="Tree9" type="MeshInstance3D" parent="." unique_id=1309527821]
-transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, -53.114326, -5.066617, -53.363304)
-material_override = ExtResource("19_flrrm")
-mesh = ExtResource("21_0hy6o")
-
-[node name="Tree10" type="MeshInstance3D" parent="." unique_id=2036362843]
-transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, -18.114326, -5.066617, -37.363304)
-material_override = ExtResource("19_flrrm")
-mesh = ExtResource("21_0hy6o")
-
-[node name="Tree11" type="MeshInstance3D" parent="." unique_id=1683424791]
-transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 40.885674, -5.066617, -60.363304)
-material_override = ExtResource("19_flrrm")
-mesh = ExtResource("21_0hy6o")
-
-[node name="Tree12" type="MeshInstance3D" parent="." unique_id=1220935679]
-transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 59.885674, -5.066617, -22.363304)
-material_override = ExtResource("19_flrrm")
-mesh = ExtResource("21_0hy6o")
-
-[node name="Tree13" type="MeshInstance3D" parent="." unique_id=984836904]
-transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 59.885674, -5.066617, 26.636696)
-material_override = ExtResource("19_flrrm")
-mesh = ExtResource("21_0hy6o")
-
-[node name="Tree14" type="MeshInstance3D" parent="." unique_id=511816607]
-transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, -2.1143265, -5.066617, 51.636696)
-material_override = ExtResource("19_flrrm")
-mesh = ExtResource("21_0hy6o")
+[node name="MetaMultimeshInstance3D2" type="MultiMeshInstance3D" parent="." unique_id=369262362]
+material_override = SubResource("StandardMaterial3D_cpnku")
+multimesh = SubResource("MultiMesh_jsw4o")
+script = ExtResource("12_tagcr")
+go_explode = null
+shape_type = 0
+go_make_colliders = null
+metadata/_custom_type_script = "uid://cpnvqsry47e8c"
 
 [connection signal="body_entered" from="orbs/orb" to="orbs/orb" method="_body_entered"]
 [connection signal="body_entered" from="orbs/orb2" to="orbs/orb2" method="_body_entered"]
 [connection signal="body_entered" from="orbs/orb5" to="orbs/orb5" method="_body_entered"]
+[connection signal="body_entered" from="orbs/orb9" to="orbs/orb9" method="_body_entered"]
 [connection signal="body_entered" from="orbs/orb6" to="orbs/orb6" method="_body_entered"]
 [connection signal="body_entered" from="orbs/orb7" to="orbs/orb7" method="_body_entered"]
 [connection signal="body_entered" from="orbs/orb8" to="orbs/orb8" method="_body_entered"]

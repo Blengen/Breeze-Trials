@@ -3,6 +3,11 @@ extends Node
 @onready var menu_maker: Control = $".."
 @onready var string: Label = $"../string"
 
+func _ready() -> void:
+	await get_tree().process_frame
+	await get_tree().process_frame
+	$"../settings".hide()
+
 func button_press(id: String) -> void:
 	
 	if id == "back":
@@ -47,16 +52,7 @@ button§100§1,1,1§Back§back
 		menu_maker._ready()
 
 	if id == "settings":
-		menu_maker.erase()
-		string.text = "
-label§200§1,0.6,0.3§Settings
-label§100§1,1,1§Option
-button§100§1,1,1§Input§input_1
-
-label§50§1,1,1§ 
-button§100§1,1,1§Back§back
-"
-		menu_maker._ready()
+		$"../settings".show()
 
 	if id == "credits":
 		menu_maker.erase()

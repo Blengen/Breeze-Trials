@@ -22,11 +22,13 @@ func _ready() -> void:
 	map_settings = $"../../../map/settings"
 	
 	await get_tree().process_frame
-	await get_tree().process_frame # lol this is so stupid but it works
+	await get_tree().process_frame # lol this is so stupid but it works. I love await :)
+
 	
 	restart()
 
 func restart() -> void:
+	global.emit_signal("restart")
 	vars.playing = false
 	player.position = spawn.position
 	$timer_respawn.start()
@@ -46,7 +48,7 @@ func restart() -> void:
 	fuel_label.text = str(vars.fuel)
 	$death_ui.hide()
 	
-		# Orb things
+	# Orb things
 	await get_tree().process_frame
 	for child in $"../../../map/orbs".get_children():
 		child.show()
@@ -60,6 +62,7 @@ func restart() -> void:
 func _on_timer_respawn_timeout() -> void:
 	vars.playing = true
 	player.move_and_slide()
+	global.emit_signal("begin")
 
 
 func check_for_restart(delta: float) -> void:

@@ -142,9 +142,7 @@ script = ExtResource("5_1phcp")
 layout_mode = 1
 
 [node name="player" parent="." unique_id=325942831 instance=ExtResource("2_3t680")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [editable path="components/pause_handler/pause_ui/menu_maker"]
 [editable path="components/pause_handler/pause_ui/settings"]
 [editable path="components/pause_handler/pause_ui/settings/menu_maker"]
-[editable path="player"]

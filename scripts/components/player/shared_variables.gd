@@ -13,6 +13,13 @@ var camlock: bool = false
 var playing: bool = false
 var fuel: float = 0
 
+func _ready() -> void:
+	settings.settings_changed.connect(fix_vars)
+
+func fix_vars() -> void:
+	$"../../cambase/cam".fov = settings.fov
+	
+
 func vec2_to_deg(value: Vector2) -> int:
 	match value:
 		Vector2(0, -1): return 0

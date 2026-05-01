@@ -1,14 +1,12 @@
 extends Node
 
-const is_input_list: PackedStringArray = ["sens", "game_speed", "fps_cap", "music_volume", "fov"]
-const is_bool_list: PackedStringArray = ["upp"]
+const is_input_list: PackedStringArray = ["sens", "game_speed", "fps_cap", "music_volume", "fov", "physics_fps"]
+const is_bool_list: PackedStringArray = ["upp", "show_fps"]
 const is_key_list: PackedStringArray = ["w", "a", "s", "d", "jump", "quick_drop", "ability", "camlock", "zoom_in", "zoom_out", "debug"]
 
-const button_ids: PackedStringArray = ["sens", "fps_cap", "game_speed", "w", "a", "s", "d", "jump", "quick_drop", "ability", "camlock", "zoom_in", "zoom_out", "debug", "exit_settings", "upp", "fov", "music_volume"]
+const button_ids: PackedStringArray = ["sens", "fps_cap", "game_speed", "w", "a", "s", "d", "jump", "quick_drop", "ability", "camlock", "zoom_in", "zoom_out", "debug", "exit_settings", "upp", "fov", "music_volume", "physics_fps", "show_fps"]
 
 var id: String = ""
-
-signal settings_changed
 
 @onready var key_input: Control = $"../../key_input" 
 
@@ -17,7 +15,6 @@ func _input(event: InputEvent) -> void: # Input collection for custom keybinds
 	if not (event is InputEventMouseButton or event is InputEventKey): return # Only run on keybind
 	if event.is_action_pressed("esc"): # Cancel operation
 		key_input.hide()
-		emit_signal("settings_changed")
 		return
 	
 # THUKUNA :DDD
@@ -25,11 +22,16 @@ func _input(event: InputEvent) -> void: # Input collection for custom keybinds
 	else:
 		get_viewport().set_input_as_handled()
 		rebind(event)
+		update()
+
+func update() -> void:
+	update_button_values()
+	settings.emit_signal("settings_changed")
+	settings.save_settings()
 
 func rebind(key: InputEvent) -> void:
 	match id:
 		"w":
-			print(key)
 			InputMap.action_erase_events("front")
 			InputMap.action_add_event("front", key)
 		"a":
@@ -66,6 +68,7 @@ func rebind(key: InputEvent) -> void:
 
 	key_input.hide()
 	update_button_values()
+	settings.emit_signal("settings_changed")
 	
 	
 func button_press(new_id: String) -> void:
@@ -81,10 +84,11 @@ func button_press(new_id: String) -> void:
 	elif type == "bool":
 		match id:
 			"upp": settings.use_physics_process = !settings.use_physics_process
+			"show_fps": settings.show_fps = !settings.show_fps
+		update()
 	
 	if id == "exit_settings": $"../..".hide()
 	
-	update_button_values()
 
 
 func _on_lineedit_text_submitted(val: String) -> void:
@@ -106,9 +110,11 @@ func _on_lineedit_text_submitted(val: String) -> void:
 		"fov":
 			if val.is_valid_float(): settings.fov = float(val)
 			settings.fov = clamp(settings.fov, 1, 175)
+		"physics_fps":
+			if val.is_valid_int(): Engine.physics_ticks_per_second = int(val)
+			Engine.physics_ticks_per_second = clamp(Engine.physics_ticks_per_second, 30, 10000)
 	
-	update_button_values()
-	emit_signal("settings_changed")
+	update()
 
 func update_button_values() -> void:
 	
@@ -127,7 +133,9 @@ func update_button_values() -> void:
 			"game_speed": button_node.text = "Game Speed: " + str(Engine.time_scale)
 			"music_volume": button_node.text = "Music Volume: " + str(settings.music_volume)
 			"upp": button_node.text = "Use Physics Process: " + str(settings.use_physics_process)
+			"show_fps": button_node.text = "Show FPS: " + str(settings.show_fps)
 			"fov": button_node.text = "FOV: " + str(settings.fov)
+			"physics_fps": button_node.text = "Physics FPS: " + str(Engine.physics_ticks_per_second)
 			
 			"w": button_node.text = "Move Forward: " + get_key_string("front")
 			"a": button_node.text = "Move Left: " + get_key_string("left")

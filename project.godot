@@ -36,6 +36,10 @@ config/icon="uid://bcfnac5kq7q1s"
 
 global="*uid://c0dk1uf3uy2fc"
 settings="*uid://bypro4hvbxgdn"
+AmbientAPI="*uid://cmbh88h6yljhy"
+AmbientParser="*uid://dcdrqnwmpgvk4"
+AmbientFileHandler="*uid://dnh8sqjyu74hs"
+AmbientMaterialMaker="*uid://nig0lamfd3mv"
 
 [debug]
 
@@ -164,24 +168,37 @@ back_to_spawn={
 
 [physics]
 
-common/physics_ticks_per_second=20
+common/physics_ticks_per_second=240
 common/max_physics_steps_per_frame=12
 common/physics_jitter_fix=0.0
 
 [rendering]
 
+occlusion_culling/bvh_build_quality=1
 textures/canvas_textures/default_texture_repeat=1
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
-lights_and_shadows/directional_shadow/soft_shadow_filter_quality=0
-lights_and_shadows/positional_shadow/soft_shadow_filter_quality=0
+textures/webp_compression/lossless_compression_factor=40.0
+limits/time/time_rollover_secs=1024.0
+lights_and_shadows/directional_shadow/size=1025
+lights_and_shadows/directional_shadow/size.mobile=1025
+lights_and_shadows/directional_shadow/soft_shadow_filter_quality.mobile=2
+lights_and_shadows/positional_shadow/soft_shadow_filter_quality.mobile=2
+2d/shadow_atlas/size=1025
 reflections/sky_reflections/texture_array_reflections=false
 reflections/specular_occlusion/enabled=false
+shading/overrides/force_lambert_over_burley=true
 textures/default_filters/anisotropic_filtering_level=0
 environment/ssao/quality=0
 environment/ssil/quality=0
-textures/default_filters/texture_mipmap_bias=-0.5
 textures/decals/filter=1
 textures/light_projectors/filter=1
 environment/glow/upscale_mode=0
+environment/defaults/default_clear_color=Color(0.26666668, 0.34901962, 0.32941177, 1)
+lights_and_shadows/positional_shadow/atlas_size=1025
+lights_and_shadows/positional_shadow/atlas_size.mobile=1025
+lights_and_shadows/positional_shadow/atlas_quadrant_0_subdiv=0
+lights_and_shadows/positional_shadow/atlas_quadrant_1_subdiv=0
+lights_and_shadows/positional_shadow/atlas_quadrant_2_subdiv=0
+lights_and_shadows/positional_shadow/atlas_quadrant_3_subdiv=0
 environment/screen_space_reflection/roughness_quality=0

@@ -37,9 +37,11 @@ label§150§1,1,1§Gameplay§51
 button§100§1,1,1§Sensitivity: 0.1§sens§51
 button§100§1,1,1§Game Speed: 1.0§game_speed§51
 button§100§1,1,1§Use Physics Process: False§upp§51
+button§100§1,1,1§Physics FPS: 240§physics_fps§51
 
 label§150§1,1,1§Visual§51
 button§100§1,1,1§FPS Cap: 0§fps_cap§51
+button§100§1,1,1§Show FPS: True§show_fps§51
 button§100§1,1,1§FOV: 90§fov§51
 
 label§150§1,1,1§Audio§51s
