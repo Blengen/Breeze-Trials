@@ -4,6 +4,7 @@ extends Node
 @onready var camera: Node = $"../camera"
 @onready var move_y: Node = $"../move_y"
 @onready var ability: Node = $"../ability"
+@onready var gameloop: Node = $"../gameloop"
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion: camera.turn_camera(event)
@@ -21,3 +22,8 @@ func _input(event: InputEvent) -> void:
 		elif event.is_action_pressed("zoom_out"): camera.zoom(2.5)
 		
 		
+
+
+func _on_area_area_entered(area: Area3D) -> void:
+	if area.is_in_group("orb"): ability.orb_hit(area)
+	elif area.is_in_group("kill"): gameloop.death("Hit a Killbrick")

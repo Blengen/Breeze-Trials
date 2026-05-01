@@ -11,7 +11,6 @@ extends Area3D
 
 func _ready() -> void:
 
-	if not body_entered.is_connected(_body_entered): connect("body_entered", _body_entered)
 	if not timer.timeout.is_connected(_timeout): timer.connect("timeout", _timeout)
 	
 	await get_tree().process_frame
@@ -34,11 +33,6 @@ func load_texture() -> void:
 		"end": sprite.texture = preload("res://assets/textures/orbs/end.png")
 		_: sprite.texture = preload("res://assets/textures/orbs/none.png")
 
-func _body_entered(body: Node3D) -> void:
-	if body.is_in_group("player"):
-		var ability_component: Node = body.get_parent().get_child(0).get_child(0)
-
-		ability_component.orb_hit(self)
 
 func _timeout() -> void:
 	show()

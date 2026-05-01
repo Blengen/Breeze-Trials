@@ -26,7 +26,14 @@ func _ready() -> void:
 	music_path = music_path.path_join(music_file)
 	print(music_path)
 	
+	
 	music_node.stream = load(music_path)
 	
 	global.restart.connect(func() -> void: music_node.playing = false)
 	global.begin.connect(func() -> void: music_node.playing = true)
+	
+	settings.settings_changed.connect(update)
+	update()
+	
+func update() -> void:
+	music_node.pitch_scale = Engine.time_scale

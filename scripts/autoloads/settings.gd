@@ -8,6 +8,7 @@ var use_physics_process: bool = false
 
 # VISUAL SETTINGS #
 var fov: float = 90
+var render_distance: float = 200
 var show_fps: bool = true
 
 const items: PackedStringArray = ["sens", "fps_cap", "game_speed", "w", "a", "s", "d", "jump", "quick_drop",
@@ -34,6 +35,7 @@ func save_settings() -> void:
 	file.set_value("gameplay", "physics_fps", Engine.physics_ticks_per_second)
 	
 	file.set_value("visual", "fov", settings.fov)
+	file.set_value("visual", "render_distance", settings.render_distance)
 	file.set_value("visual", "show_fps", settings.show_fps)
 	
 	file.set_value("audio", "music_volume", settings.music_volume)
@@ -88,6 +90,7 @@ func load_settings() -> void:
 		
 		# Visual
 		if file.has_section_key("visual", "fov"): settings.fov = file.get_value("visual", "fov", settings.fov)
+		if file.has_section_key("visual", "render_distance"): settings.render_distance = file.get_value("visual", "render_distance", settings.render_distance)
 		if file.has_section_key("visual", "show_fps"): settings.show_fps = file.get_value("visual", "show_fps", settings.show_fps)
 		
 		# Audio

@@ -1,10 +1,16 @@
 extends Node
 
-const is_input_list: PackedStringArray = ["sens", "game_speed", "fps_cap", "music_volume", "fov", "physics_fps"]
+const is_input_list: PackedStringArray = ["sens", "game_speed", "fps_cap", "music_volume", "fov", "physics_fps", "render_distance"]
 const is_bool_list: PackedStringArray = ["upp", "show_fps"]
 const is_key_list: PackedStringArray = ["w", "a", "s", "d", "jump", "quick_drop", "ability", "camlock", "zoom_in", "zoom_out", "debug"]
 
-const button_ids: PackedStringArray = ["sens", "fps_cap", "game_speed", "w", "a", "s", "d", "jump", "quick_drop", "ability", "camlock", "zoom_in", "zoom_out", "debug", "exit_settings", "upp", "fov", "music_volume", "physics_fps", "show_fps"]
+const button_ids: PackedStringArray = [
+	
+"sens", "fps_cap", "game_speed", "w", "a", "s", "d", "jump",
+"quick_drop", "ability", "camlock", "zoom_in", "zoom_out", "debug", "exit_settings", "upp", "fov",
+"music_volume", "physics_fps", "show_fps", "render_distance"
+
+]
 
 var id: String = ""
 
@@ -110,6 +116,9 @@ func _on_lineedit_text_submitted(val: String) -> void:
 		"fov":
 			if val.is_valid_float(): settings.fov = float(val)
 			settings.fov = clamp(settings.fov, 1, 175)
+		"render_distance":
+			if val.is_valid_float(): settings.render_distance = float(val)
+			settings.render_distance = clamp(settings.render_distance, 0.1, 100000)
 		"physics_fps":
 			if val.is_valid_int(): Engine.physics_ticks_per_second = int(val)
 			Engine.physics_ticks_per_second = clamp(Engine.physics_ticks_per_second, 30, 10000)
@@ -135,6 +144,7 @@ func update_button_values() -> void:
 			"upp": button_node.text = "Use Physics Process: " + str(settings.use_physics_process)
 			"show_fps": button_node.text = "Show FPS: " + str(settings.show_fps)
 			"fov": button_node.text = "FOV: " + str(settings.fov)
+			"render_distance": button_node.text = "Render Distance: " + str(settings.render_distance)
 			"physics_fps": button_node.text = "Physics FPS: " + str(Engine.physics_ticks_per_second)
 			
 			"w": button_node.text = "Move Forward: " + get_key_string("front")

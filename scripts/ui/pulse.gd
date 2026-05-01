@@ -11,3 +11,4 @@ func fix_timescale() -> void:
 	await get_tree().process_frame
 	await get_tree().process_frame
 	speed_scale = timescale * global.reverse_time_scale
+	

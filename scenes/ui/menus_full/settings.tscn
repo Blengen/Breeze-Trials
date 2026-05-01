@@ -43,6 +43,7 @@ label§150§1,1,1§Visual§51
 button§100§1,1,1§FPS Cap: 0§fps_cap§51
 button§100§1,1,1§Show FPS: True§show_fps§51
 button§100§1,1,1§FOV: 90§fov§51
+button§100§1,1,1§Render Distance: 200§render_distance§51
 
 label§150§1,1,1§Audio§51s
 button§100§1,1,1§Music Volume Multiplier: 1.0§music_volume§51

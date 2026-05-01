@@ -18,6 +18,7 @@ func _ready() -> void:
 
 func fix_vars() -> void:
 	$"../../cambase/cam".fov = settings.fov
+	$"../../cambase/cam".far = settings.render_distance
 	
 
 func vec2_to_deg(value: Vector2) -> int:

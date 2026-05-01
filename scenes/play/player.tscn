@@ -979,7 +979,6 @@ script = ExtResource("14_yta4w")
 script = ExtResource("9_dnbw0")
 
 [node name="label_fuel" type="Label" parent="components/fuel" unique_id=1061907150]
-visible = false
 z_index = -20
 z_as_relative = false
 anchors_preset = 5
@@ -1251,4 +1250,4 @@ rotational_scaler = Vector3(0.1, 0.1, 0.1)
 
 [connection signal="timeout" from="components/gameloop/timer_respawn" to="components/gameloop" method="_on_timer_respawn_timeout"]
 [connection signal="timeout" from="components/debug/fps_timer" to="components/debug" method="_on_timer_timeout"]
-[connection signal="area_entered" from="body/area" to="body" method="_on_area_entered"]
+[connection signal="area_entered" from="body/area" to="components/input" method="_on_area_area_entered"]

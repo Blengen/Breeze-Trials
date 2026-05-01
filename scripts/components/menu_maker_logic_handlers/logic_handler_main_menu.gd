@@ -7,6 +7,19 @@ func _ready() -> void:
 	await get_tree().process_frame
 	await get_tree().process_frame
 	$"../settings".hide()
+	
+	var current_files: PackedStringArray = DirAccess.open("res://-MAPS/-CURRENT/").get_files()
+	print(current_files)
+	var current_files_map: String = ""
+	for file: String in current_files:
+		if file.ends_with(".btmap.tscn"):
+			current_files_map = "res://-MAPS/-CURRENT/" + file
+			print(current_files_map)
+	if Engine.get_physics_frames() < 500 and current_files_map:
+		global.selected_map = current_files_map
+		await get_tree().process_frame
+		get_tree().change_scene_to_file("res://scenes/play/play.tscn")
+		
 
 func button_press(id: String) -> void:
 	
